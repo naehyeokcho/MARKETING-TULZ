@@ -1114,23 +1114,34 @@ function renderSns(d,el){
   const skillNames={'promo-sns-image':'프로모션 이미지','product-lineup-sns-image':'라인업/비교 이미지','product-feature-sns-image':'특장점 이미지'};
   const usedSkill=d.detected_skill||'product-feature-sns-image';
   h+=`<div class="r-card" style="border-left:3px solid var(--teal)"><div class="r-head"><div class="r-head-title">📱 적용 스킬: ${skillNames[usedSkill]||usedSkill}</div></div><div class="r-body"><div style="font-size:12px;color:var(--gray)">콘텐츠 유형에 맞게 자동 선택됨</div></div></div>`;
-  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">✍️ 캡션 3가지 버전</div></div><div class="r-body">${(d.caption_versions||[]).map((v,i)=>`<div class="prompt-item" style="margin-bottom:12px"><div class="prompt-label">${v.label}</div><div class="prompt-text" id="sns-cap-${i}">${v.text}</div><div class="r-actions" style="margin-top:8px"><button class="prompt-copy" onclick="cp(document.getElementById('sns-cap-'+${i}).innerText,this)">캡션 복사</button><button class="btn-edit" onclick="makeEditable(document.getElementById('sns-cap-'+${i}))">✏️ 직접 편집</button><button class="btn-ai-edit" onclick="toggleAiBox('sns-cap-aibox-'+${i})">🤖 AI로 수정</button></div><div class="ai-edit-box" id="sns-cap-aibox-${i}"><input class="ai-edit-input" placeholder="예: 더 재미있게, 이모지 더 넣어, 짧게 줄여줘..."><button class="btn-ai-run" onclick="runAiEdit('sns-cap-'+${i},'sns-cap-aibox-'+${i},'인스타그램 캡션')">AI 수정하기</button><div class="edit-loading">🤖 수정 중...</div></div></div>`).join('')}</div></div>`;
+  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">✍️ 캡션 3가지 버전</div></div><div class="r-body">${(d.caption_versions||[]).map((v,i)=>`<div class="prompt-item" style="margin-bottom:12px"><div class="prompt-label">${v.label}</div><div class="prompt-text" id="sns-cap-${i}">${v.text}</div><div class="r-actions" style="margin-top:8px"><button class="prompt-copy" onclick="cp(document.getElementById('sns-cap-${i}').innerText,this)">캡션 복사</button><button class="btn-edit" onclick="makeEditable(document.getElementById('sns-cap-${i}'))">✏️ 직접 편집</button><button class="btn-ai-edit" onclick="toggleAiBox('sns-cap-aibox-${i}')">🤖 AI로 수정</button></div><div class="ai-edit-box" id="sns-cap-aibox-${i}"><input class="ai-edit-input" placeholder="예: 더 재미있게, 이모지 더 넣어, 짧게 줄여줘..."><button class="btn-ai-run" onclick="runAiEdit('sns-cap-${i}','sns-cap-aibox-${i}','인스타그램 캡션')">AI 수정하기</button><div class="edit-loading">🤖 수정 중...</div></div></div>`).join('')}</div></div>`;
   const hs=(d.hashtags||[]).map(t=>'#'+t).join(' ');
-  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🏷️ 해시태그 <span class="r-badge">30개</span></div><button class="copy-btn" onclick="cp('${hs.replace(/'/g,"\'")}',this)">전체 복사</button></div><div class="r-body"><div class="tag-wrap">${(d.hashtags||[]).map(t=>`<span class="tag">#${t}</span>`).join('')}</div></div></div>`;
+  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🏷️ 해시태그 <span class="r-badge">30개</span></div><button class="copy-btn" onclick="cp('${hs.replace(/'/g,"\\'")}',this)">전체 복사</button></div><div class="r-body"><div class="tag-wrap">${(d.hashtags||[]).map(t=>`<span class="tag">#${t}</span>`).join('')}</div></div></div>`;
   if(d.slides&&d.slides.length){
+    window._snsSlides=d.slides;
     let sHtml='';
     d.slides.forEach((s,i)=>{
       const hCode=s.html||'';
-      const hEnc=hCode.replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-      const hBlob=hCode.replace(/\/g,'\\').replace(/'/g,"\'").replace(/\n/g,'\n');
-      sHtml+=`<div style="margin-bottom:24px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><div style="background:var(--teal);color:#000;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">${s.slide}</div><strong style="font-size:13px;color:var(--dark2)">${s.title}</strong><span style="font-size:11px;color:var(--gray)">${s.desc||''}</span></div>`;
-      if(hCode) sHtml+=`<iframe srcdoc="${hEnc}" style="width:100%;height:320px;border:1px solid var(--border);border-radius:8px;background:#000" scrolling="no"></iframe><div style="margin-top:6px"><button onclick="(function(){const b=new Blob(['${hBlob}'],{type:'text/html'});const u=URL.createObjectURL(b);window.open(u,'_blank');})()" style="padding:6px 14px;background:var(--teal);color:#000;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-weight:700">🔗 새 탭 열기 (스크린샷용)</button></div>`;
+      const enc=hCode.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+      sHtml+=`<div style="margin-bottom:24px">`;
+      sHtml+=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><div style="background:var(--teal);color:#000;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">${s.slide}</div><strong style="font-size:13px;color:var(--dark2)">${s.title}</strong><span style="font-size:11px;color:var(--gray)">${s.desc||''}</span></div>`;
+      if(hCode){
+        sHtml+=`<iframe srcdoc="${enc}" style="width:100%;height:320px;border:1px solid var(--border);border-radius:8px;background:#000" scrolling="no"></iframe>`;
+        sHtml+=`<div style="margin-top:6px"><button onclick="openSlide(${i})" style="padding:6px 14px;background:var(--teal);color:#000;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-weight:700">🔗 새 탭 열기 (스크린샷용)</button></div>`;
+      }
       sHtml+=`</div>`;
     });
     h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🖼️ 카드뉴스 이미지 <span class="r-badge">5장</span></div><small style="font-size:11px;color:var(--gray)">새 탭 열기 → 스크린샷 → 인스타그램</small></div><div class="r-body">${sHtml}</div></div>`;
   }
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">💡 포스팅 팁</div></div><div class="r-body">${(d.posting_tips||[]).map(t=>`<div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"></div><span>${t}</span></div>`).join('')}</div></div>`;
   el.innerHTML=h;
+}
+function openSlide(i){
+  const slides=window._snsSlides||[];
+  if(!slides[i])return;
+  const b=new Blob([slides[i].html],{type:'text/html'});
+  const u=URL.createObjectURL(b);
+  window.open(u,'_blank');
 }
 function renderShorts(d,el){
   let h='';
