@@ -1139,7 +1139,7 @@ ${isCompare ? `## spec_table (스펙 비교표) 필수 포함
 
 길이: 1500~2000자 / 네이버SEO / 소제목(##) 구조 / 핵심키워드 2~3회
 
-JSON만 출력 (백틱/마크다운 절대 금지):
+JSON만 출력 (백틱/마크다운 절대 금지, body 필드 내 큰따옴표 사용 금지 — 작은따옴표로 대체, 줄바꿈은 반드시 \\n으로):
 {"keywords":["k1","k2","k3","k4","k5"],"keyword_desc":"선택이유","titles":[{"title":"t1","reason":"r"},{"title":"t2","reason":"r"},{"title":"t3","reason":"r"}],"tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10","t11","t12","t13","t14","t15","t16","t17","t18","t19","t20"],"body":"본문전체(줄바꿈은\\n으로)","spec_table":{"headers":["구분","음원용량","동시발음","건반","기타"],"rows":[["모델A","2GB","256음","해머88","특징"],["모델B","166MB","128음","해머88","특징"]]},"price_chart":{"items":[{"label":"모델명","new_price":1500000,"refurb_price":1200000},{"label":"경쟁모델","new_price":1300000,"refurb_price":null}]},"image_guide":[{"order":1,"label":"제품 메인 컷","source":"제조사 공식 이미지","desc":"정면 전체 컷 사용"},{"order":2,"label":"컨트롤러 섹션","source":"상세페이지","desc":"버튼/노브 클로즈업"},{"order":3,"label":"LCD/디스플레이","source":"상세페이지","desc":"화면 표시 클로즈업"},{"order":4,"label":"음색 카테고리","source":"상세페이지","desc":"음색 버튼 섹션"},{"order":5,"label":"실사용 환경","source":"직접 촬영 권장","desc":"교회 무대 or 스튜디오 설치 컷"},{"order":6,"label":"패키지/구성품","source":"실제 촬영","desc":"박스 오픈 or 구성품 전체"}],"spec_summary":{"sections":[{"category":"사운드 엔진","items":[{"name":"엔진명","value":"설명","what":"이게 뭔지","usage":"뭘 할 수 있는지"}]},{"category":"컨트롤러","items":[{"name":"컨트롤러명","value":"상세","what":"이게 뭔지","usage":"활용법"}]},{"category":"음원/메모리","items":[{"name":"항목명","value":"수치","what":"의미","usage":"실사용"}]},{"category":"연결/인터페이스","items":[{"name":"항목명","value":"스펙","what":"설명","usage":"활용"}]}]},"spec_comparison":[{"item":"항목","main":"메인모델값","competitors":[{"model":"경쟁모델명","value":"값","verdict":"유리/불리/동급"}]}],"youtube_queries":["q1","q2","q3"]}`;
   }
   if(t==='press') return base+`\n역피라미드기사형식 / 크몽대행사전달용 / CTA: 네이버에서 '사운드글룩' 검색 또는 ${s.url} / 문의: ${s.tel}\n\nJSON만 출력:\n{"headline":"h","sub_headline":"sh","lead":"리드2~3문장","body":"본문800~1000자","quote":{"text":"인용","speaker":"사운드글룩 관계자"},"boilerplate":"회사소개3~4문장","image_guides":[{"num":1,"label":"메인","desc":"설명"},{"num":2,"label":"제품상세","desc":"설명"},{"num":3,"label":"브랜드로고","desc":"설명"},{"num":4,"label":"사용환경","desc":"설명"}],"contact":"문의정보"}`;
@@ -1368,7 +1368,7 @@ function stopL(t){clearInterval(lTs[t]);}
 const btnTxt={blog:'블로그 콘텐츠 생성하기 →',press:'보도자료 생성하기 →',sns:'SNS 콘텐츠 생성하기 →',shorts:'쇼츠 스크립트 생성하기 →',youtube:'영상 기획안 생성하기 →'};
 
 // ★ blog는 8000, 나머지는 6000
-const maxTokensMap={blog:8000,press:6000,sns:8000,shorts:4000,youtube:6000};
+const maxTokensMap={blog:8000,press:6000,sns:16000,shorts:4000,youtube:6000};
 
 async function gen(t){
   if(!apiKey){openApi();return;}
@@ -1401,7 +1401,22 @@ async function gen(t){
     });
     if(!res.ok){const err=await res.json();throw new Error(err.error?.message||`API 오류 (${res.status})`);}
     const data=await res.json();
-    const d=JSON.parse(data.content.map(i=>i.text||'').join('').replace(/```json|```/g,'').trim());
+    const rawText=data.content.map(i=>i.text||'').join('').replace(/```json|```/g,'').trim();
+    let d;
+    try{
+      d=JSON.parse(rawText);
+    }catch(e1){
+      // body 필드 내 줄바꿈/따옴표 이스케이프 보정 후 재시도
+      const fixed=rawText
+        .replace(/("body"\s*:\s*")([\s\S]*?)(",\s*"(?:spec_table|price_chart|image_guide|spec_summary|spec_comparison|youtube_queries|keywords|titles|tags|detected_skill|caption_versions|hashtags|slides|posting_tips|headline|structure|description))/g,
+          (m,p1,p2,p3)=>p1+p2.replace(/
+/g,'\\n').replace(/(?<!\\)"/g,'\\"')+p3);
+      try{
+        d=JSON.parse(fixed);
+      }catch(e2){
+        throw new Error('JSON 파싱 실패: 생성된 내용에 특수문자가 포함됐습니다. 다시 시도해주세요.');
+      }
+    }
     stopL(t);lDiv.classList.add('hidden');rbDiv.classList.remove('hidden');
     ({blog:(d,el)=>renderBlog(d,el,cType),press:renderPress,sns:renderSns,shorts:renderShorts,youtube:renderYoutube})[t](d,rbDiv);
     rDiv.scrollIntoView({behavior:'smooth',block:'start'});
