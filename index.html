@@ -1042,9 +1042,12 @@ function buildPrompt(t,brand,item,cType,tn,model,compare,specInput){
     // ★ 브랜드별 공식 매뉴얼 가이드
     const manualGuide = getBrandManualGuide(brand, model);
     // ★ 비교 대상 처리
-    const compareNote = compare
-      ? `[비교 대상 모델 (사용자 지정)]: ${compare}\n→ 스펙 비교표와 가격 비교 차트는 반드시 위 모델들로 구성할 것. 임의 변경 금지.`
-      : `[비교 대상 모델]: AI가 동급 경쟁 모델 2~3개 자동 선택`;
+    const isCompare = cType === '비교';
+    const compareNote = isCompare
+      ? (compare
+          ? `[비교 대상 모델 (사용자 지정)]: ${compare}\n→ 스펙 비교표와 가격 비교 차트는 반드시 위 모델들로 구성할 것. 임의 변경 금지.`
+          : `[비교 대상 모델]: AI가 동급 경쟁 모델 2~3개 자동 선택`)
+      : null;
     // ★ 사용자 입력 스펙
     const specNote = specInput
       ? `\n\n## ★★ 사용자 입력 스펙 (최우선 적용) ★★\n아래 스펙이 입력됐습니다. 이 내용을 모든 스펙 설명의 최우선 근거로 사용하세요. 입력된 스펙과 다른 내용을 임의로 추가하거나 변경하지 마세요.\n\n${specInput}`
@@ -1085,7 +1088,7 @@ ${specInput ? '사용자가 직접 입력한 스펙이 있습니다. 위 [사용
 - 비유 적극 활용 ("마치 ~같아요", "예를 들어 ~")
 - 숫자는 항상 맥락과 함께 ("256음이 왜 좋은가"까지 설명)
 
-${compareNote}
+${isCompare && compareNote ? compareNote : ''}
 
 [블로그 작성 지침]
 
@@ -1109,7 +1112,7 @@ ${compareNote}
 ③ 실사용 맥락: 실제로 어떤 상황에서 차이 나는지
 ④ 경쟁 비교: 동급 타사 제품 대비 우위 또는 차이
 
-## spec_table (스펙 비교표) 필수 포함
+${isCompare ? `## spec_table (스펙 비교표) 필수 포함
 - 비교 대상: 위 [비교 대상 모델] 기준으로 구성
 - 항목: 음원용량, 동시발음, 건반, 컨트롤러, 오디오인터페이스, 출시연도 등 해당 품목에 맞게
 - headers 배열 + rows 배열 형태로 출력
@@ -1117,7 +1120,8 @@ ${compareNote}
 ## price_chart (가격 비교) 필수 포함
 - 신품 가격 / S급 리퍼 가격 (해당 시) 비교
 - 비교 대상 모델 가격도 포함
-- items 배열: [{label, new_price, refurb_price(없으면 null)}]
+- items 배열: [{label, new_price, refurb_price(없으면 null)}]` : `## spec_table / price_chart / spec_comparison
+- 이 글은 비교 유형이 아니므로 spec_table, price_chart, spec_comparison 항목은 JSON에서 완전히 생략할 것`}
 
 ## image_guide (이미지 사용 가이드)
 - 제조사/상세페이지의 실제 사진 어떤 것 쓸지 구체적으로 안내
@@ -1163,7 +1167,7 @@ function convertBlogMarkdown(text){
   return t;
 }
 
-function renderBlog(d,el){
+function renderBlog(d,el,cType){
   let h='';
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🔍 키워드 분석</div></div><div class="r-body"><div class="kw-chips">${d.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div><div class="kw-desc">${d.keyword_desc}</div></div></div>`;
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">✏️ 제목 후보 <span class="r-badge">3개</span></div><small style="font-size:12px;color:var(--gray)">클릭 → 복사</small></div><div class="r-body">${d.titles.map((t,i)=>`<div style="margin-bottom:10px"><div class="title-item" id="blog-title-${i}" onclick="navigator.clipboard.writeText(this.innerText);this.style.borderColor='var(--teal)';setTimeout(()=>this.style.borderColor='',1000)"><div class="title-num">T${i+1} · ${t.reason}</div>${t.title}</div><div class="r-actions"><button class="btn-edit" onclick="makeEditable(document.getElementById('blog-title-${i}'))">✏️ 직접 편집</button><button class="btn-ai-edit" onclick="toggleAiBox('blog-title-aibox-${i}')">🤖 AI로 수정</button></div><div class="ai-edit-box" id="blog-title-aibox-${i}"><input class="ai-edit-input" placeholder="예: 더 클릭율 높게, 키워드 강조, 20자 이내로..."><button class="btn-ai-run" onclick="runAiEdit('blog-title-${i}','blog-title-aibox-${i}','네이버 블로그 제목 SEO 최적화')">AI 수정하기</button><div class="edit-loading">🤖 수정 중...</div></div></div>`).join('')}</div></div>`;
@@ -1171,7 +1175,7 @@ function renderBlog(d,el){
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🏷️ 네이버 태그 <span class="r-badge">20개</span></div><button class="copy-btn" onclick="cp('${ts.replace(/'/g,"\\'")}',this)">전체 복사</button></div><div class="r-body"><div class="tag-wrap">${d.tags.map(t=>`<span class="tag">#${t}</span>`).join('')}</div></div></div>`;
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">📄 본문 초안</div><button class="copy-btn" onclick="cp(document.getElementById('blog-body').textContent,this)">복사</button></div><div class="r-body"><div class="body-text" id="blog-body">${convertBlogMarkdown(d.body||'')}</div><div class="r-actions"><button class="btn-edit" onclick="makeEditable(document.getElementById('blog-body'));this.textContent=document.getElementById('blog-body').contentEditable==='true'?'✅ 편집 완료':'✏️ 직접 편집'">✏️ 직접 편집</button><button class="btn-ai-edit" onclick="toggleAiBox('blog-body-aibox')">🤖 AI로 수정</button></div><div class="ai-edit-box" id="blog-body-aibox"><input class="ai-edit-input" placeholder="어떻게 수정할까요? 예: 더 전문적으로, 200자 줄여줘, 톤을 친근하게..."><button class="btn-ai-run" onclick="runAiEdit('blog-body','blog-body-aibox','사운드글룩 블로그 본문')">AI 수정하기</button><div class="edit-loading">🤖 수정 중...</div></div></div></div>`;
 
-  if(d.spec_table && d.spec_table.headers && d.spec_table.rows && d.spec_table.rows.length){
+  if(cType==='비교' && d.spec_table && d.spec_table.headers && d.spec_table.rows && d.spec_table.rows.length){
     let tbl=`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px">`;
     tbl+=`<thead><tr>${d.spec_table.headers.map(h=>`<th style="background:var(--teal);color:#fff;padding:10px 12px;text-align:center;font-weight:700;white-space:nowrap">${h}</th>`).join('')}</tr></thead>`;
     tbl+=`<tbody>${d.spec_table.rows.map((r,ri)=>`<tr style="background:${ri%2===0?'var(--teal-pale)':'var(--white)'}">${r.map((c,ci)=>`<td style="padding:9px 12px;text-align:center;border-bottom:1px solid var(--border);color:${ci===0?'var(--teal-d)':'var(--dark2)'};font-weight:${ci===0?'700':'400'};white-space:nowrap">${c}</td>`).join('')}</tr>`).join('')}</tbody>`;
@@ -1179,7 +1183,7 @@ function renderBlog(d,el){
     h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">📊 스펙 비교표</div><small style="font-size:11px;color:var(--gray)">스크린샷 → 블로그 삽입</small></div><div class="r-body">${tbl}</div></div>`;
   }
 
-  if(d.price_chart && d.price_chart.items && d.price_chart.items.length){
+  if(cType==='비교' && d.price_chart && d.price_chart.items && d.price_chart.items.length){
     const items=d.price_chart.items;
     const allPrices=items.flatMap(i=>[i.new_price,i.refurb_price].filter(Boolean));
     const maxP=Math.max(...allPrices)*1.15;
@@ -1243,7 +1247,7 @@ function renderBlog(d,el){
   }
 
   // ★ 경쟁 모델 비교표
-  if(d.spec_comparison && d.spec_comparison.length){
+  if(cType==='비교' && d.spec_comparison && d.spec_comparison.length){
     const competitors=[...new Set(d.spec_comparison.flatMap(r=>r.competitors.map(c=>c.model)))];
     const verdictColor={'유리':'#2e7d32','불리':'#c62828','동급':'#f57c00'};
     let scHtml=`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13px">`;
@@ -1399,7 +1403,7 @@ async function gen(t){
     const data=await res.json();
     const d=JSON.parse(data.content.map(i=>i.text||'').join('').replace(/```json|```/g,'').trim());
     stopL(t);lDiv.classList.add('hidden');rbDiv.classList.remove('hidden');
-    ({blog:renderBlog,press:renderPress,sns:renderSns,shorts:renderShorts,youtube:renderYoutube})[t](d,rbDiv);
+    ({blog:(d,el)=>renderBlog(d,el,cType),press:renderPress,sns:renderSns,shorts:renderShorts,youtube:renderYoutube})[t](d,rbDiv);
     rDiv.scrollIntoView({behavior:'smooth',block:'start'});
   }catch(e){
     stopL(t);lDiv.classList.add('hidden');eDiv.classList.remove('hidden');
