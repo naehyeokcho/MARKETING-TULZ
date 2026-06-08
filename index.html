@@ -762,14 +762,16 @@ body {
     <input class="field-input" id="sns-benefit-custom" placeholder="추가 혜택 직접 입력 (예: 스탠드+페달 풀세트 증정)">
   </div>
   <div class="form-card">
-    <div class="form-card-title">제품 이미지 업로드 <span style="font-size:11px;color:var(--gray);font-weight:400">(선택사항 — 카드뉴스 배경으로 사용)</span></div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px" id="sns-img-wrap">
-      <div class="img-slot" id="sns-img-slot-0">
-        <label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:90px;background:var(--teal-pale);border:1.5px dashed var(--teal);border-radius:10px;cursor:pointer;font-size:11px;color:var(--teal-d);font-weight:600;text-align:center">
-          📷 1번 슬라이드
-          <input type="file" accept="image/*" style="display:none" onchange="loadSnsImageSlot(this,0)">
-        </label>
-      </div>
+    <div class="form-card-title">제품 이미지 업로드 <span style="font-size:11px;color:var(--gray);font-weight:400">(선택사항)</span></div>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;padding:6px 12px;border-radius:20px;border:1.5px solid var(--border);color:var(--dark2)">
+        <input type="radio" name="sns-tpl" value="concept" checked onchange="snsTemplate=this.value"> 🎨 컨셉형 <span style="font-size:10px;color:var(--gray)">(배경 사진)</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;padding:6px 12px;border-radius:20px;border:1.5px solid var(--border);color:var(--dark2)">
+        <input type="radio" name="sns-tpl" value="product" onchange="snsTemplate=this.value"> 📦 제품형 <span style="font-size:10px;color:var(--gray)">(흰배경 제품사진)</span>
+      </label>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px" id="sns-img-wrap">
       <div class="img-slot" id="sns-img-slot-1">
         <label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:90px;background:var(--teal-pale);border:1.5px dashed var(--teal);border-radius:10px;cursor:pointer;font-size:11px;color:var(--teal-d);font-weight:600;text-align:center">
           📷 2번 슬라이드
@@ -789,7 +791,7 @@ body {
         </label>
       </div>
     </div>
-    <div style="margin-top:8px;font-size:11px;color:var(--gray)">슬라이드별 이미지 등록 (선택사항). 5번 CTA는 텍스트 배경 자동 적용. 탭 닫으면 사라집니다.</div>
+    <div style="margin-top:8px;font-size:11px;color:var(--gray)">2~4번 슬라이드 이미지 등록. 1번(훅)·5번(CTA)은 자동 생성. 탭 닫으면 사라집니다.</div>
   </div>
   <button class="gen-btn" onclick="gen('sns')">SNS 콘텐츠 생성하기 →</button>
   <div id="sns-result" class="hidden">
@@ -995,6 +997,67 @@ function goPage(id,el){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 let snsImages = [null, null, null, null];
+let snsTemplate = 'concept';
+
+function buildSlideHtml(tpl, img, texts){
+  const {title, sub, body, badge} = texts;
+  const imgTag = img ? `<img src="${img}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:${tpl==='concept'?'cover':'contain'};z-index:1${tpl==='product'?';padding:60px;background:#0a0a0a':''}">` : '';
+  if(tpl === 'concept'){
+    return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;position:relative;background:#111}</style></head><body>
+${imgTag}
+<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.15) 100%);z-index:2"></div>
+<div style="position:absolute;top:40px;left:48px;z-index:3;display:flex;align-items:center;gap:10px">
+  <span style="background:#c8ff00;color:#000;font-size:22px;font-weight:900;padding:6px 16px;border-radius:4px;letter-spacing:.05em">SOUNDGLÜCK</span>
+</div>
+${badge?`<div style="position:absolute;top:40px;right:48px;z-index:3;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:20px;padding:8px 18px;border-radius:6px;backdrop-filter:blur(4px)">${badge}</div>`:''}
+<div style="position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3">
+  ${sub?`<div style="color:#c8ff00;font-size:26px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px">${sub}</div>`:''}
+  <div style="color:#fff;font-size:${title&&title.length>12?'88':'108'}px;font-weight:900;line-height:1.05;margin-bottom:24px;text-shadow:0 2px 20px rgba(0,0,0,.5)">${title||''}</div>
+  ${body?`<div style="color:rgba(255,255,255,.85);font-size:30px;line-height:1.6;font-weight:400">${body}</div>`:''}
+</div>
+</body></html>`;
+  } else {
+    return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;background:#ffffff;display:flex;position:relative}</style></head><body>
+<div style="position:absolute;top:40px;left:48px;z-index:3">
+  <span style="background:#000;color:#c8ff00;font-size:22px;font-weight:900;padding:6px 16px;border-radius:4px;letter-spacing:.05em">SOUNDGLÜCK</span>
+</div>
+${badge?`<div style="position:absolute;top:40px;right:48px;z-index:3;background:#c8ff00;color:#000;font-size:20px;font-weight:700;padding:8px 18px;border-radius:6px">${badge}</div>`:''}
+<div style="position:absolute;left:0;bottom:0;width:48%;display:flex;flex-direction:column;justify-content:flex-end;padding:48px;z-index:2">
+  ${sub?`<div style="color:#666;font-size:24px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px">${sub}</div>`:''}
+  <div style="color:#111;font-size:${title&&title.length>10?'68':'84'}px;font-weight:900;line-height:1.05;margin-bottom:24px">${title||''}</div>
+  ${body?`<div style="color:#444;font-size:26px;line-height:1.7">${body}</div>`:''}
+  <div style="margin-top:32px;display:flex;align-items:center;gap:10px"><span style="font-size:18px;color:#999">GOPHERWOOD</span><span style="color:#ccc">|</span><span style="font-size:18px;color:#999">사운드글룩</span></div>
+</div>
+<div style="position:absolute;right:0;top:0;bottom:0;width:56%;display:flex;align-items:center;justify-content:center;padding:40px;z-index:1">
+  ${img?`<img src="${img}" style="max-width:100%;max-height:100%;object-fit:contain;">`:
+  `<div style="width:400px;height:400px;background:#f5f5f5;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:24px">이미지 없음</div>`}
+</div>
+<div style="position:absolute;bottom:0;left:0;right:0;height:5px;background:#000"></div>
+</body></html>`;
+  }
+}
+
+function buildCtaHtml(info){
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;background:#0a0a0a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}</style></head><body>
+<div style="text-align:center;margin-bottom:60px">
+  <div style="background:#c8ff00;color:#000;font-size:28px;font-weight:900;padding:10px 28px;border-radius:6px;display:inline-block;letter-spacing:.08em;margin-bottom:24px">SOUNDGLÜCK</div>
+  <div style="color:#fff;font-size:52px;font-weight:900;line-height:1.2;margin-bottom:16px">${info.title||'지금 바로 확인하세요'}</div>
+  <div style="color:rgba(255,255,255,.6);font-size:28px">${info.sub||''}</div>
+</div>
+<div style="background:#111;border:1px solid #222;border-radius:20px;padding:50px 70px;min-width:700px">
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div style="display:flex;align-items:flex-start;gap:20px"><span style="color:#c8ff00;font-size:28px">📌</span><div><div style="color:#fff;font-size:26px;font-weight:700;margin-bottom:8px">사운드글룩 공식 쇼핑몰</div><div style="color:#888;font-size:22px">soundgluck.com</div></div></div>
+    <div style="height:1px;background:#1e1e1e"></div>
+    <div style="display:flex;align-items:flex-start;gap:20px"><span style="color:#c8ff00;font-size:28px">📌</span><div><div style="color:#fff;font-size:26px;font-weight:700;margin-bottom:8px">네이버 스마트스토어</div><div style="color:#888;font-size:22px">smartstore.naver.com/soundgluck</div></div></div>
+    <div style="height:1px;background:#1e1e1e"></div>
+    <div style="display:flex;align-items:flex-start;gap:20px"><span style="color:#c8ff00;font-size:28px">📌</span><div><div style="color:#fff;font-size:26px;font-weight:700;margin-bottom:8px">카카오톡 채널</div><div style="color:#888;font-size:22px">카카오톡에서 '사운드글룩' 검색</div></div></div>
+    <div style="height:1px;background:#1e1e1e"></div>
+    <div style="display:flex;align-items:center;gap:20px"><span style="color:#c8ff00;font-size:28px">📞</span><div style="color:#fff;font-size:26px;font-weight:700">010-8369-2104 <span style="color:#555;font-size:20px;font-weight:400">(09:00~20:00)</span></div></div>
+  </div>
+</div>
+</body></html>`;
+}
+
 function loadSnsImageSlot(input, idx){
   const file = input.files[0];
   if(!file) return;
@@ -1254,8 +1317,7 @@ JSON만 출력 (백틱/마크다운 절대 금지, body 필드 내 큰따옴표 
       img ? `${i+1}번 슬라이드: 업로드 이미지 사용 — img 태그 src에 아래 base64 데이터 그대로 삽입, 오버레이(rgba(0,0,0,0.45)) 위에 텍스트\n[IMG${i+1}]:${img.substring(0,80)}...(전체사용)` : `${i+1}번 슬라이드: 이미지 없음 — 단색/도형 배경 사용`
     ).join('\n') : '';
     const imgNote = hasAnyImg ? `\n\n[슬라이드별 이미지 규칙]\n${imgSlotNotes}\n- 각 슬라이드 img 태그 src에 해당 슬라이드 base64 데이터 완전히 그대로 삽입 (절대 생략/수정 금지)\n- 5번 슬라이드(CTA)는 이미지 없이 브랜드 배경색 사용` : '';
-    return base+imgNote+`\n\n[SNS 콘텐츠 제작 지침]\n자동 적용 스킬: ${autoSkill}\n이미지 스타일: ${hasAnyImg ? '슬라이드별 업로드 이미지 사용 — 사진 위 텍스트 오버레이 스타일' : skillNote}\n사운드글룩 브랜드: 배경 #0a0a0a / 포인트 #c8ff00 / 텍스트 흰색\n\n[CTA 정보 — 5장 슬라이드에 전부 포함]\n📌 사운드글룩 공식 쇼핑몰: ${s.url}\n📌 네이버 스마트스토어: ${s.naver}\n📌 카카오톡 '사운드글룩' 채널 (09:00~20:00)\n📞 고객센터: ${s.tel} (09:00~20:00)\n\n[카드뉴스 5장 구성]\n1장: 훅 — 강렬한 한 줄 or 질문\n2~4장: 핵심 내용 (스펙/특장점/혜택)\n5장: CTA — 위 채널 정보 전부 포함한 구매 유도 슬라이드\n\n[각 슬라이드 HTML 생성 규칙]\n- 1080x1080px 고정\n- 이미지 슬롯이 있는 경우 해당 슬라이드 HTML에 <img src="IMAGE_SLOT_N" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;z-index:0"> 삽입 (N은 슬라이드 번호 1~4), 이미지 없는 슬롯은 단색 배경
-- 5번 슬라이드는 IMAGE_SLOT 사용 금지, 브랜드 배경색만 사용\n- 각 슬라이드 완성된 HTML 코드로 출력\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"detected_skill":"스킬명","caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"훅","desc":"부제","html":"완성된HTML"},{"slide":2,"title":"t","desc":"d","html":"완성된HTML"},{"slide":3,"title":"t","desc":"d","html":"완성된HTML"},{"slide":4,"title":"t","desc":"d","html":"완성된HTML"},{"slide":5,"title":"CTA","desc":"구매유도","html":"완성된HTML"}],"posting_tips":["팁1","팁2","팁3"]}`;
+    return base+imgNote+`\n\n[SNS 콘텐츠 제작 지침]\n자동 적용 스킬: ${autoSkill}\n이미지 스타일: ${hasAnyImg ? '슬라이드별 업로드 이미지 사용 — 사진 위 텍스트 오버레이 스타일' : skillNote}\n사운드글룩 브랜드: 배경 #0a0a0a / 포인트 #c8ff00 / 텍스트 흰색\n\n[카드뉴스 5장 구성]\n1장: 훅 — 강렬한 한 줄 or 질문\n2~4장: 핵심 내용 (스펙/특장점/혜택)\n5장: CTA — 위 채널 정보 전부 포함한 구매 유도 슬라이드\n\n[슬라이드 텍스트 작성 규칙]\n- title: 핵심 한 줄 (15자 이내)\n- subtitle: 브랜드명/카테고리/소제목 (10자 이내)\n- body: 부연 설명 1~2줄 (40자 이내)\n- badge: 강조 뱃지 (예: NEW, 특가, 추천) 없으면 빈 문자열\n- HTML 코드 생성 금지 — 텍스트 값만 출력\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"detected_skill":"스킬명","caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"메인 타이틀(짧게)","subtitle":"브랜드/카테고리","body":"한두줄 설명","badge":""},{"slide":2,"title":"핵심특징1","subtitle":"소제목","body":"설명 한두줄","badge":""},{"slide":3,"title":"핵심특징2","subtitle":"소제목","body":"설명 한두줄","badge":""},{"slide":4,"title":"핵심특징3","subtitle":"소제목","body":"설명 한두줄","badge":"특가"},{"slide":5,"title":"CTA 문구","desc":"구매 유도 한줄"}],"posting_tips":["팁1","팁2","팁3"]}`;
   }
   if(t==='shorts') return base+`\n60초이내 / AI아바타나레이션용 / 훅→본론→CTA\n\nJSON만 출력:\n{"title":"제목","hook":"첫3초훅","script":[{"time":"0~3초","text":"멘트","visual":"화면"},{"time":"3~15초","text":"멘트","visual":"화면"},{"time":"15~35초","text":"멘트","visual":"화면"},{"time":"35~50초","text":"멘트","visual":"화면"},{"time":"50~60초","text":"CTA","visual":"화면"}],"thumbnail_text":"썸네일문구","description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
   if(t==='youtube') return base+`\n7~10분 / AI아바타+슬라이드 / EGLOO스타일 / CTA: ${s.url}\n\nJSON만 출력:\n{"title":"제목","thumbnail":{"main_text":"메인","sub_text":"서브"},"structure":[{"section":"인트로","duration":"0~30초","script":"스크립트","visual":"화면"},{"section":"본론1","duration":"30초~3분","script":"스크립트","visual":"화면"},{"section":"본론2","duration":"3~6분","script":"스크립트","visual":"화면"},{"section":"비교/추천","duration":"6~8분","script":"스크립트","visual":"화면"},{"section":"CTA","duration":"8~10분","script":"사운드글룩구매유도","visual":"화면"}],"comparison_chart":{"headers":["항목","제품A","제품B","제품C"],"rows":[["가격","","",""],["건반","","",""],["음색수","","",""],["특징","","",""],["추천대상","","",""]]},"description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
@@ -1418,11 +1480,15 @@ function renderSns(d,el){
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🏷️ 해시태그 <span class="r-badge">30개</span></div><button class="copy-btn" onclick="cp('${hs.replace(/'/g,"\\'")}',this)">전체 복사</button></div><div class="r-body"><div class="tag-wrap">${(d.hashtags||[]).map(t=>`<span class="tag">#${t}</span>`).join('')}</div></div></div>`;
   if(d.slides&&d.slides.length){
     window._snsSlides=d.slides.map((s,i)=>{
-      let hCode=s.html||'';
-      // 플레이스홀더 → 실제 이미지 교체
-      if(snsImages&&snsImages[i]) hCode=hCode.replace(/IMAGE_SLOT_'+(i+1)+'/g,snsImages[i]).replace(new RegExp('IMAGE_SLOT_'+(i+1),'g'),snsImages[i]);
-      for(let k=0;k<4;k++){
-        if(snsImages&&snsImages[k]) hCode=hCode.replace(new RegExp('IMAGE_SLOT_'+(k+1),'g'),snsImages[k]);
+      let hCode;
+      if(i===4){
+        // 5번 CTA — 고정 템플릿
+        hCode=buildCtaHtml({title:s.title,sub:s.desc});
+      } else {
+        // 1~4번 — 선택된 템플릿 + 이미지 삽입
+        const texts={title:s.title,sub:s.subtitle||s.desc||'',body:s.body||s.content||'',badge:s.badge||''};
+        const useImg = (i===0) ? null : (snsImages[i]||null);
+        hCode=buildSlideHtml(snsTemplate||'concept', useImg, texts);
       }
       return {...s, html:hCode};
     });
