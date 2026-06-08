@@ -1154,13 +1154,13 @@ function cp(text,btn){navigator.clipboard.writeText(text).then(()=>{const o=btn.
 
 function convertBlogMarkdown(text){
   if(!text) return '';
-  return text
-    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-    .replace(/^## (.+)$/gm, '<h3 style="font-size:17px;font-weight:700;color:#222;margin:20px 0 8px;border-left:4px solid #c8ff00;padding-left:10px">$1</h3>')
-    .replace(/^# (.+)$/gm, '<h2 style="font-size:20px;font-weight:700;color:#111;margin:24px 0 10px">$1</h2>')
-    .replace(/^---+$/gm, '<hr style="border:none;border-top:1px solid #eee;margin:20px 0">')
-    .replace(/
-/g, '<br>');
+  var t=text;
+  t=t.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+  t=t.replace(/^## (.+)$/gm,'<h3 style="font-size:17px;font-weight:700;color:#222;margin:20px 0 8px;border-left:4px solid #c8ff00;padding-left:10px">$1</h3>');
+  t=t.replace(/^# (.+)$/gm,'<h2 style="font-size:20px;font-weight:700;color:#111;margin:24px 0 10px">$1</h2>');
+  t=t.replace(/^---+$/gm,'<hr style="border:none;border-top:1px solid #eee;margin:20px 0">');
+  t=t.replace(/\n/g,'<br>');
+  return t;
 }
 
 function renderBlog(d,el){
