@@ -1254,7 +1254,8 @@ JSON만 출력 (백틱/마크다운 절대 금지, body 필드 내 큰따옴표 
       img ? `${i+1}번 슬라이드: 업로드 이미지 사용 — img 태그 src에 아래 base64 데이터 그대로 삽입, 오버레이(rgba(0,0,0,0.45)) 위에 텍스트\n[IMG${i+1}]:${img.substring(0,80)}...(전체사용)` : `${i+1}번 슬라이드: 이미지 없음 — 단색/도형 배경 사용`
     ).join('\n') : '';
     const imgNote = hasAnyImg ? `\n\n[슬라이드별 이미지 규칙]\n${imgSlotNotes}\n- 각 슬라이드 img 태그 src에 해당 슬라이드 base64 데이터 완전히 그대로 삽입 (절대 생략/수정 금지)\n- 5번 슬라이드(CTA)는 이미지 없이 브랜드 배경색 사용` : '';
-    return base+imgNote+`\n\n[SNS 콘텐츠 제작 지침]\n자동 적용 스킬: ${autoSkill}\n이미지 스타일: ${hasAnyImg ? '슬라이드별 업로드 이미지 사용 — 사진 위 텍스트 오버레이 스타일' : skillNote}\n사운드글룩 브랜드: 배경 #0a0a0a / 포인트 #c8ff00 / 텍스트 흰색\n\n[CTA 정보 — 5장 슬라이드에 전부 포함]\n📌 사운드글룩 공식 쇼핑몰: ${s.url}\n📌 네이버 스마트스토어: ${s.naver}\n📌 카카오톡 '사운드글룩' 채널 (09:00~20:00)\n📞 고객센터: ${s.tel} (09:00~20:00)\n\n[카드뉴스 5장 구성]\n1장: 훅 — 강렬한 한 줄 or 질문\n2~4장: 핵심 내용 (스펙/특장점/혜택)\n5장: CTA — 위 채널 정보 전부 포함한 구매 유도 슬라이드\n\n[각 슬라이드 HTML 생성 규칙]\n- 1080x1080px 고정\n- 제품 이미지 없이 텍스트+색상+도형으로 완성\n- 각 슬라이드 완성된 HTML 코드로 출력\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"detected_skill":"스킬명","caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"훅","desc":"부제","html":"완성된HTML"},{"slide":2,"title":"t","desc":"d","html":"완성된HTML"},{"slide":3,"title":"t","desc":"d","html":"완성된HTML"},{"slide":4,"title":"t","desc":"d","html":"완성된HTML"},{"slide":5,"title":"CTA","desc":"구매유도","html":"완성된HTML"}],"posting_tips":["팁1","팁2","팁3"]}`;
+    return base+imgNote+`\n\n[SNS 콘텐츠 제작 지침]\n자동 적용 스킬: ${autoSkill}\n이미지 스타일: ${hasAnyImg ? '슬라이드별 업로드 이미지 사용 — 사진 위 텍스트 오버레이 스타일' : skillNote}\n사운드글룩 브랜드: 배경 #0a0a0a / 포인트 #c8ff00 / 텍스트 흰색\n\n[CTA 정보 — 5장 슬라이드에 전부 포함]\n📌 사운드글룩 공식 쇼핑몰: ${s.url}\n📌 네이버 스마트스토어: ${s.naver}\n📌 카카오톡 '사운드글룩' 채널 (09:00~20:00)\n📞 고객센터: ${s.tel} (09:00~20:00)\n\n[카드뉴스 5장 구성]\n1장: 훅 — 강렬한 한 줄 or 질문\n2~4장: 핵심 내용 (스펙/특장점/혜택)\n5장: CTA — 위 채널 정보 전부 포함한 구매 유도 슬라이드\n\n[각 슬라이드 HTML 생성 규칙]\n- 1080x1080px 고정\n- 이미지 슬롯이 있는 경우 해당 슬라이드 HTML에 <img src="IMAGE_SLOT_N" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;z-index:0"> 삽입 (N은 슬라이드 번호 1~4), 이미지 없는 슬롯은 단색 배경
+- 5번 슬라이드는 IMAGE_SLOT 사용 금지, 브랜드 배경색만 사용\n- 각 슬라이드 완성된 HTML 코드로 출력\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"detected_skill":"스킬명","caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"훅","desc":"부제","html":"완성된HTML"},{"slide":2,"title":"t","desc":"d","html":"완성된HTML"},{"slide":3,"title":"t","desc":"d","html":"완성된HTML"},{"slide":4,"title":"t","desc":"d","html":"완성된HTML"},{"slide":5,"title":"CTA","desc":"구매유도","html":"완성된HTML"}],"posting_tips":["팁1","팁2","팁3"]}`;
   }
   if(t==='shorts') return base+`\n60초이내 / AI아바타나레이션용 / 훅→본론→CTA\n\nJSON만 출력:\n{"title":"제목","hook":"첫3초훅","script":[{"time":"0~3초","text":"멘트","visual":"화면"},{"time":"3~15초","text":"멘트","visual":"화면"},{"time":"15~35초","text":"멘트","visual":"화면"},{"time":"35~50초","text":"멘트","visual":"화면"},{"time":"50~60초","text":"CTA","visual":"화면"}],"thumbnail_text":"썸네일문구","description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
   if(t==='youtube') return base+`\n7~10분 / AI아바타+슬라이드 / EGLOO스타일 / CTA: ${s.url}\n\nJSON만 출력:\n{"title":"제목","thumbnail":{"main_text":"메인","sub_text":"서브"},"structure":[{"section":"인트로","duration":"0~30초","script":"스크립트","visual":"화면"},{"section":"본론1","duration":"30초~3분","script":"스크립트","visual":"화면"},{"section":"본론2","duration":"3~6분","script":"스크립트","visual":"화면"},{"section":"비교/추천","duration":"6~8분","script":"스크립트","visual":"화면"},{"section":"CTA","duration":"8~10분","script":"사운드글룩구매유도","visual":"화면"}],"comparison_chart":{"headers":["항목","제품A","제품B","제품C"],"rows":[["가격","","",""],["건반","","",""],["음색수","","",""],["특징","","",""],["추천대상","","",""]]},"description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
@@ -1416,20 +1417,33 @@ function renderSns(d,el){
   const hs=(d.hashtags||[]).map(t=>'#'+t).join(' ');
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🏷️ 해시태그 <span class="r-badge">30개</span></div><button class="copy-btn" onclick="cp('${hs.replace(/'/g,"\\'")}',this)">전체 복사</button></div><div class="r-body"><div class="tag-wrap">${(d.hashtags||[]).map(t=>`<span class="tag">#${t}</span>`).join('')}</div></div></div>`;
   if(d.slides&&d.slides.length){
-    window._snsSlides=d.slides;
+    window._snsSlides=d.slides.map((s,i)=>{
+      let hCode=s.html||'';
+      // 플레이스홀더 → 실제 이미지 교체
+      if(snsImages&&snsImages[i]) hCode=hCode.replace(/IMAGE_SLOT_'+(i+1)+'/g,snsImages[i]).replace(new RegExp('IMAGE_SLOT_'+(i+1),'g'),snsImages[i]);
+      for(let k=0;k<4;k++){
+        if(snsImages&&snsImages[k]) hCode=hCode.replace(new RegExp('IMAGE_SLOT_'+(k+1),'g'),snsImages[k]);
+      }
+      return {...s, html:hCode};
+    });
     let sHtml='';
-    d.slides.forEach((s,i)=>{
+    window._snsSlides.forEach((s,i)=>{
       const hCode=s.html||'';
       const enc=hCode.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-      sHtml+=`<div style="margin-bottom:24px">`;
-      sHtml+=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><div style="background:var(--teal);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">${s.slide}</div><strong style="font-size:13px;color:var(--dark2)">${s.title}</strong><span style="font-size:11px;color:var(--gray)">${s.desc||''}</span></div>`;
+      const isCTA = i===4;
+      sHtml+=`<div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">`;
+      sHtml+=`<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--teal-pale);border-bottom:1px solid var(--border)">`;
+      sHtml+=`<div style="display:flex;align-items:center;gap:8px"><div style="background:${isCTA?'#f59e0b':'var(--teal)'};color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">${s.slide}</div><strong style="font-size:13px;color:var(--dark2)">${s.title}</strong><span style="font-size:11px;color:var(--gray)">${s.desc||''}</span></div>`;
+      sHtml+=`<button onclick="openSlide(${i})" style="padding:5px 12px;background:var(--teal);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-weight:700;white-space:nowrap">🔗 새 탭 열기</button>`;
+      sHtml+=`</div>`;
       if(hCode){
-        sHtml+=`<iframe srcdoc="${enc}" style="width:100%;height:320px;border:1px solid var(--border);border-radius:8px;background:#000" scrolling="no"></iframe>`;
-        sHtml+=`<div style="margin-top:6px"><button onclick="openSlide(${i})" style="padding:6px 14px;background:var(--teal);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-weight:700">🔗 새 탭 열기 (스크린샷용)</button></div>`;
+        sHtml+=`<div style="position:relative;width:100%;padding-bottom:100%;background:#000">`;
+        sHtml+=`<iframe srcdoc="${enc}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" scrolling="no"></iframe>`;
+        sHtml+=`</div>`;
       }
       sHtml+=`</div>`;
     });
-    h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🖼️ 카드뉴스 이미지 <span class="r-badge">5장</span></div><small style="font-size:11px;color:var(--gray)">새 탭 열기 → 스크린샷 → 인스타그램</small></div><div class="r-body">${sHtml}</div></div>`;
+    h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🖼️ 카드뉴스 <span class="r-badge">5장</span></div><small style="font-size:11px;color:var(--gray)">새 탭 열기 → 스크린샷 → 인스타그램</small></div><div class="r-body">${sHtml}</div></div>`;
   }
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">💡 포스팅 팁</div></div><div class="r-body">${(d.posting_tips||[]).map(t=>`<div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"></div><span>${t}</span></div>`).join('')}</div></div>`;
   el.innerHTML=h;
