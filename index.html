@@ -1406,16 +1406,7 @@ async function gen(t){
     try{
       d=JSON.parse(rawText);
     }catch(e1){
-      // body 필드 내 줄바꿈/따옴표 이스케이프 보정 후 재시도
-      const fixed=rawText
-        .replace(/("body"\s*:\s*")([\s\S]*?)(",\s*"(?:spec_table|price_chart|image_guide|spec_summary|spec_comparison|youtube_queries|keywords|titles|tags|detected_skill|caption_versions|hashtags|slides|posting_tips|headline|structure|description))/g,
-          (m,p1,p2,p3)=>p1+p2.replace(/
-/g,'\\n').replace(/(?<!\\)"/g,'\\"')+p3);
-      try{
-        d=JSON.parse(fixed);
-      }catch(e2){
-        throw new Error('JSON 파싱 실패: 생성된 내용에 특수문자가 포함됐습니다. 다시 시도해주세요.');
-      }
+      throw new Error('JSON 파싱 오류: 다시 시도해주세요. ('+e1.message+')');
     }
     stopL(t);lDiv.classList.add('hidden');rbDiv.classList.remove('hidden');
     ({blog:(d,el)=>renderBlog(d,el,cType),press:renderPress,sns:renderSns,shorts:renderShorts,youtube:renderYoutube})[t](d,rbDiv);
