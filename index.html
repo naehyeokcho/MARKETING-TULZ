@@ -1003,7 +1003,8 @@ function buildSlideHtml(tpl, img, texts){
   const {title, sub, body, badge} = texts;
   const imgTag = img ? `<img src="${img}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:${tpl==='concept'?'cover':'contain'};z-index:1${tpl==='product'?';padding:60px;background:#0a0a0a':''}">` : '';
   if(tpl === 'concept'){
-    return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;position:relative;background:#111}</style></head><body>
+    const bgStyle = img ? '' : 'background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%)';
+    return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;position:relative;background:#111;${bgStyle}}</style></head><body>
 ${imgTag}
 <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.15) 100%);z-index:2"></div>
 <div style="position:absolute;top:40px;left:48px;z-index:3;display:flex;align-items:center;gap:10px">
@@ -1017,22 +1018,25 @@ ${badge?`<div style="position:absolute;top:40px;right:48px;z-index:3;background:
 </div>
 </body></html>`;
   } else {
-    return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;background:#ffffff;display:flex;position:relative}</style></head><body>
-<div style="position:absolute;top:40px;left:48px;z-index:3">
-  <span style="background:#000;color:#c8ff00;font-size:22px;font-weight:900;padding:6px 16px;border-radius:4px;letter-spacing:.05em">SOUNDGLÜCK</span>
+    return `<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;background:#fff;display:flex;flex-direction:column;border:1px solid #e8e8e8}
+</style></head><body>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:36px 48px 0;flex-shrink:0">
+  <span style="background:#000;color:#c8ff00;font-size:20px;font-weight:900;padding:5px 14px;border-radius:3px;letter-spacing:.06em">SOUNDGLÜCK</span>
+  ${badge?`<span style="background:#c8ff00;color:#000;font-size:18px;font-weight:900;padding:5px 16px;border-radius:3px">${badge}</span>`:''}
 </div>
-${badge?`<div style="position:absolute;top:40px;right:48px;z-index:3;background:#c8ff00;color:#000;font-size:20px;font-weight:700;padding:8px 18px;border-radius:6px">${badge}</div>`:''}
-<div style="position:absolute;left:0;bottom:0;width:48%;display:flex;flex-direction:column;justify-content:flex-end;padding:48px;z-index:2">
-  ${sub?`<div style="color:#666;font-size:24px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px">${sub}</div>`:''}
-  <div style="color:#111;font-size:${title&&title.length>10?'68':'84'}px;font-weight:900;line-height:1.05;margin-bottom:24px">${title||''}</div>
-  ${body?`<div style="color:#444;font-size:26px;line-height:1.7">${body}</div>`:''}
-  <div style="margin-top:32px;display:flex;align-items:center;gap:10px"><span style="font-size:18px;color:#999">GOPHERWOOD</span><span style="color:#ccc">|</span><span style="font-size:18px;color:#999">사운드글룩</span></div>
+<div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px 60px 0;min-height:0">
+  ${img
+    ?`<img src="${img}" style="max-width:100%;max-height:100%;object-fit:contain;">`
+    :`<div style="width:360px;height:360px;background:#f8f8f8;border-radius:12px"></div>`}
 </div>
-<div style="position:absolute;right:0;top:0;bottom:0;width:56%;display:flex;align-items:center;justify-content:center;padding:40px;z-index:1">
-  ${img?`<img src="${img}" style="max-width:100%;max-height:100%;object-fit:contain;">`:
-  `<div style="width:400px;height:400px;background:#f5f5f5;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:24px">이미지 없음</div>`}
+<div style="padding:28px 48px 44px;flex-shrink:0;border-top:2px solid #000;margin-top:20px">
+  ${sub?`<div style="font-size:20px;font-weight:600;color:#888;letter-spacing:.04em;margin-bottom:10px">${sub}</div>`:''}
+  <div style="font-size:${title&&title.length>8?'74':'88'}px;font-weight:900;line-height:1.05;color:#111;margin-bottom:${body?'16':'0'}px;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${title||''}</div>
+  ${body?`<div style="font-size:24px;color:#555;line-height:1.6;word-break:keep-all">${body}</div>`:''}
 </div>
-<div style="position:absolute;bottom:0;left:0;right:0;height:5px;background:#000"></div>
 </body></html>`;
   }
 }
@@ -1317,7 +1321,7 @@ JSON만 출력 (백틱/마크다운 절대 금지, body 필드 내 큰따옴표 
       img ? `${i+1}번 슬라이드: 업로드 이미지 사용 — img 태그 src에 아래 base64 데이터 그대로 삽입, 오버레이(rgba(0,0,0,0.45)) 위에 텍스트\n[IMG${i+1}]:${img.substring(0,80)}...(전체사용)` : `${i+1}번 슬라이드: 이미지 없음 — 단색/도형 배경 사용`
     ).join('\n') : '';
     const imgNote = hasAnyImg ? `\n\n[슬라이드별 이미지 규칙]\n${imgSlotNotes}\n- 각 슬라이드 img 태그 src에 해당 슬라이드 base64 데이터 완전히 그대로 삽입 (절대 생략/수정 금지)\n- 5번 슬라이드(CTA)는 이미지 없이 브랜드 배경색 사용` : '';
-    return base+imgNote+`\n\n[SNS 콘텐츠 제작 지침]\n자동 적용 스킬: ${autoSkill}\n이미지 스타일: ${hasAnyImg ? '슬라이드별 업로드 이미지 사용 — 사진 위 텍스트 오버레이 스타일' : skillNote}\n사운드글룩 브랜드: 배경 #0a0a0a / 포인트 #c8ff00 / 텍스트 흰색\n\n[카드뉴스 5장 구성]\n1장: 훅 — 강렬한 한 줄 or 질문\n2~4장: 핵심 내용 (스펙/특장점/혜택)\n5장: CTA — 위 채널 정보 전부 포함한 구매 유도 슬라이드\n\n[슬라이드 텍스트 작성 규칙]\n- title: 핵심 한 줄 (15자 이내)\n- subtitle: 브랜드명/카테고리/소제목 (10자 이내)\n- body: 부연 설명 1~2줄 (40자 이내)\n- badge: 강조 뱃지 (예: NEW, 특가, 추천) 없으면 빈 문자열\n- HTML 코드 생성 금지 — 텍스트 값만 출력\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"detected_skill":"스킬명","caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"메인 타이틀(짧게)","subtitle":"브랜드/카테고리","body":"한두줄 설명","badge":""},{"slide":2,"title":"핵심특징1","subtitle":"소제목","body":"설명 한두줄","badge":""},{"slide":3,"title":"핵심특징2","subtitle":"소제목","body":"설명 한두줄","badge":""},{"slide":4,"title":"핵심특징3","subtitle":"소제목","body":"설명 한두줄","badge":"특가"},{"slide":5,"title":"CTA 문구","desc":"구매 유도 한줄"}],"posting_tips":["팁1","팁2","팁3"]}`;
+    return base+imgNote+`\n\n[SNS 콘텐츠 제작 지침]\n자동 적용 스킬: ${autoSkill}\n이미지 스타일: ${hasAnyImg ? '슬라이드별 업로드 이미지 사용 — 사진 위 텍스트 오버레이 스타일' : skillNote}\n사운드글룩 브랜드: 배경 #0a0a0a / 포인트 #c8ff00 / 텍스트 흰색\n\n[카드뉴스 5장 구성]\n1장: 훅 — 강렬한 한 줄 or 질문\n2~4장: 핵심 내용 (스펙/특장점/혜택)\n5장: CTA — 위 채널 정보 전부 포함한 구매 유도 슬라이드\n\n[슬라이드 텍스트 작성 규칙]\n- title: 핵심 한 줄 (15자 이내, 영문 용어 번역 금지 — Wood Shell→Wood Shell 그대로, Acoustic→Acoustic 그대로)\n- subtitle: 브랜드명/카테고리/소제목 (10자 이내)\n- body: 부연 설명 1~2줄 (40자 이내)\n- badge: 강조 뱃지 (예: NEW, 특가, 추천) 없으면 빈 문자열\n- HTML 코드 생성 금지 — 텍스트 값만 출력\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"detected_skill":"스킬명","caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"메인 타이틀(짧게)","subtitle":"브랜드/카테고리","body":"한두줄 설명","badge":""},{"slide":2,"title":"핵심특징1","subtitle":"소제목","body":"설명 한두줄","badge":""},{"slide":3,"title":"핵심특징2","subtitle":"소제목","body":"설명 한두줄","badge":""},{"slide":4,"title":"핵심특징3","subtitle":"소제목","body":"설명 한두줄","badge":"특가"},{"slide":5,"title":"CTA 문구","desc":"구매 유도 한줄"}],"posting_tips":["팁1","팁2","팁3"]}`;
   }
   if(t==='shorts') return base+`\n60초이내 / AI아바타나레이션용 / 훅→본론→CTA\n\nJSON만 출력:\n{"title":"제목","hook":"첫3초훅","script":[{"time":"0~3초","text":"멘트","visual":"화면"},{"time":"3~15초","text":"멘트","visual":"화면"},{"time":"15~35초","text":"멘트","visual":"화면"},{"time":"35~50초","text":"멘트","visual":"화면"},{"time":"50~60초","text":"CTA","visual":"화면"}],"thumbnail_text":"썸네일문구","description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
   if(t==='youtube') return base+`\n7~10분 / AI아바타+슬라이드 / EGLOO스타일 / CTA: ${s.url}\n\nJSON만 출력:\n{"title":"제목","thumbnail":{"main_text":"메인","sub_text":"서브"},"structure":[{"section":"인트로","duration":"0~30초","script":"스크립트","visual":"화면"},{"section":"본론1","duration":"30초~3분","script":"스크립트","visual":"화면"},{"section":"본론2","duration":"3~6분","script":"스크립트","visual":"화면"},{"section":"비교/추천","duration":"6~8분","script":"스크립트","visual":"화면"},{"section":"CTA","duration":"8~10분","script":"사운드글룩구매유도","visual":"화면"}],"comparison_chart":{"headers":["항목","제품A","제품B","제품C"],"rows":[["가격","","",""],["건반","","",""],["음색수","","",""],["특징","","",""],["추천대상","","",""]]},"description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
