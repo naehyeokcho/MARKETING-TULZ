@@ -706,26 +706,29 @@ body {
   <!-- 디자인 컨셉 선택 -->
   <div class="form-card">
     <div class="form-card-title">디자인 컨셉</div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px" id="sns-concept-grid">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px" id="sns-concept-grid">
       <div class="concept-card active" onclick="selConcept(this,'A')" id="concept-card-A">
         <div style="background:#0a0a0a;height:90px;border-radius:8px;margin-bottom:10px;position:relative;overflow:hidden">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(80,0,180,.7) 0%,transparent 60%)"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(80,0,180,.7),transparent 60%)"></div>
           <div style="position:absolute;top:8px;left:10px;color:#fff;font-size:7px;font-weight:900;letter-spacing:.1em">KURZWEIL</div>
-          <div style="position:absolute;bottom:10px;left:10px"><div style="color:#fff;font-size:13px;font-weight:900;line-height:1.1">SP7</div><div style="color:#a855f7;font-size:11px;font-weight:900">GRAND</div></div>
-          <div style="position:absolute;top:8px;right:10px;color:rgba(255,255,255,.5);font-size:8px">01 / 04</div>
+          <div style="position:absolute;bottom:10px;left:10px"><div style="color:#fff;font-size:13px;font-weight:900">SP7</div><div style="color:#a855f7;font-size:11px;font-weight:900">GRAND</div></div>
+          <div style="position:absolute;top:8px;right:10px;color:rgba(255,255,255,.5);font-size:8px">01/04</div>
         </div>
         <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 A — SP7 Grand 스타일</div>
         <div style="font-size:10px;color:var(--gray);margin-top:2px">퍼플 포인트 · 영문 대형 타이포</div>
       </div>
       <div class="concept-card" onclick="selConcept(this,'B')" id="concept-card-B">
         <div style="background:#111;height:90px;border-radius:8px;margin-bottom:10px;position:relative;overflow:hidden">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 55%)"></div>
-          <div style="position:absolute;top:8px;left:8px;background:#c8ff00;color:#000;font-size:7px;font-weight:900;padding:2px 6px;border-radius:2px;letter-spacing:.05em">SOUNDGLÜCK</div>
-          <div style="position:absolute;bottom:8px;left:10px;right:10px"><div style="color:#c8ff00;font-size:7px;font-weight:700;margin-bottom:3px">본사 인증 S급 리퍼</div><div style="color:#fff;font-size:10px;font-weight:900;margin-bottom:5px">커즈와일 디지털 피아노</div><div style="display:flex;gap:3px"><div style="border:1px solid rgba(255,255,255,.5);border-radius:10px;padding:1px 6px;font-size:6px;color:#fff">#본사검수</div><div style="border:1px solid rgba(255,255,255,.4);border-radius:10px;padding:1px 6px;font-size:6px;color:#fff">#AS보증</div></div></div>
-          <div style="position:absolute;bottom:8px;right:10px;color:rgba(255,255,255,.35);font-size:6px">@SOUNDGLÜCK</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85),transparent 55%)"></div>
+          <div style="position:absolute;top:8px;left:8px;background:#c8ff00;color:#000;font-size:7px;font-weight:900;padding:2px 6px;border-radius:2px">SOUNDGLÜCK</div>
+          <div style="position:absolute;bottom:8px;left:10px;right:10px">
+            <div style="color:#c8ff00;font-size:7px;font-weight:700;margin-bottom:3px">본사 인증 S급 리퍼</div>
+            <div style="color:#fff;font-size:10px;font-weight:900;margin-bottom:4px">커즈와일 디지털 피아노</div>
+            <div style="display:flex;gap:3px"><span style="border:1px solid rgba(255,255,255,.5);border-radius:10px;padding:1px 5px;font-size:6px;color:#fff">#본사검수</span><span style="border:1px solid rgba(255,255,255,.4);border-radius:10px;padding:1px 5px;font-size:6px;color:#fff">#AS보증</span></div>
+          </div>
         </div>
         <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 B — 사운드글룩 스타일</div>
-        <div style="font-size:10px;color:var(--gray);margin-top:2px">사진 배경 · 해시태그 배지 · 오버레이</div>
+        <div style="font-size:10px;color:var(--gray);margin-top:2px">사진 배경 · 해시태그 배지 · @SOUNDGLÜCK</div>
       </div>
     </div>
   </div>
@@ -1090,174 +1093,147 @@ document.addEventListener('DOMContentLoaded', function(){ updateImgSlots(1); });
 
 let snsTemplate = 'concept';
 
-// ══ 슬라이드 역할 배열 ══
-function getSlideRoles(cnt){
-  if(cnt===1) return ['hero'];
-  if(cnt===2) return ['hero','cta'];
-  if(cnt===3) return ['hero','feature','cta'];
-  if(cnt===4) return ['hero','feature','tech','cta'];
-  return ['hero','feature','tech','price','cta'];
-}
-
-// ══ 컨셉A: SP7 Grand 스타일 ══
-function buildSlide_A(role, img, texts){
-  var t=texts, n=t.totalSlides||4;
-  var imgTag=img?'<img src="'+img+'" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1">':'';
-  var bg=img?'':'background:linear-gradient(135deg,#0a0a0a 0%,#1a0a2e 100%)';
-  var head='<!DOCTYPE html><html><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:Montserrat,sans-serif;position:relative;background:#0a0a0a;'+bg+'}</style></head><body>';
-  var foot='</body></html>';
-  var slideNum=role==='hero'?1:role==='feature'?2:role==='tech'?3:4;
-  var counter='<div style="position:absolute;top:48px;right:56px;z-index:3;color:rgba(255,255,255,.5);font-size:18px;font-weight:400;letter-spacing:.05em">0'+slideNum+' / 0'+n+'</div>';
-  var overlay='<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.4) 50%,rgba(0,0,0,.15) 100%);z-index:2"></div>';
-
-  if(role==='hero'){
-    var feats=t.features||[];
-    return head+imgTag+overlay
-      +'<div style="position:absolute;top:48px;left:56px;z-index:3;display:flex;align-items:center;gap:12px"><span style="color:#fff;font-size:18px;font-weight:700;letter-spacing:.18em;opacity:.9">'+(t.sub||'SOUNDGLÜCK')+'</span><span style="width:6px;height:6px;background:#a855f7;border-radius:50%;display:inline-block"></span></div>'
-      +counter
-      +'<div style="position:absolute;bottom:0;left:0;right:0;padding:56px;z-index:3">'
-      +(t.badge?'<div style="color:#a855f7;font-size:22px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px">'+t.badge+'</div>':'')
-      +'<div style="color:#fff;font-size:'+(t.title&&t.title.length>6?'110':'130')+'px;font-weight:900;line-height:1;margin-bottom:16px;font-family:Montserrat,sans-serif;text-transform:uppercase">'+(t.title||'')+'</div>'
-      +(t.body?'<div style="color:#a855f7;font-size:48px;font-weight:900;line-height:1.1;margin-bottom:28px;font-family:Montserrat,sans-serif">'+t.body+'</div>':'')
-      +(t.desc?'<div style="color:rgba(255,255,255,.75);font-size:28px;line-height:1.6;font-family:Noto Sans KR,sans-serif;font-weight:400">'+t.desc+'</div>':'')
-      +'</div>'+foot;
-  }
-  if(role==='feature'){
-    var feats=t.features||[];
-    var icons=['♩','♪','♫'];
-    var featHtml=feats.slice(0,3).map(function(f,i){return '<div style="display:flex;align-items:flex-start;gap:24px"><div style="background:rgba(168,85,247,.2);border:1px solid rgba(168,85,247,.5);border-radius:16px;width:72px;height:72px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="color:#a855f7;font-size:28px">'+icons[i]+'</span></div><div><div style="color:#fff;font-size:38px;font-weight:700;line-height:1.2;margin-bottom:8px">'+(f.name||'')+'</div><div style="color:rgba(255,255,255,.65);font-size:24px;line-height:1.5">'+(f.desc||'')+'</div></div></div>';}).join('');
-    return head+imgTag+'<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.2) 100%);z-index:2"></div>'
-      +'<div style="position:absolute;top:48px;left:56px;z-index:3"><span style="color:rgba(255,255,255,.6);font-size:20px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">'+(t.title||'')+' — 특장점</span></div>'
-      +counter
-      +'<div style="position:absolute;bottom:0;left:0;right:0;padding:56px;z-index:3;display:flex;flex-direction:column;gap:32px">'+featHtml+'</div>'+foot;
-  }
-  if(role==='tech'){
-    var feats=t.features||[];
-    var techHtml=feats.slice(0,2).map(function(f,i){return '<div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:40px 36px"><div style="color:#a855f7;font-size:48px;font-weight:900;margin-bottom:16px;font-family:Montserrat,sans-serif">0'+(i+1)+'</div><div style="color:#fff;font-size:34px;font-weight:700;line-height:1.2;margin-bottom:14px">'+(f.name||'')+'</div><div style="color:rgba(255,255,255,.6);font-size:22px;line-height:1.6">'+(f.desc||'')+'</div></div>';}).join('');
-    return head+imgTag+'<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.93) 0%,rgba(0,0,0,.6) 50%,rgba(0,0,0,.25) 100%);z-index:2"></div>'
-      +'<div style="position:absolute;top:48px;left:56px;z-index:3"><span style="color:#a855f7;font-size:20px;font-weight:700;letter-spacing:.18em;text-transform:uppercase">프 로 를 위 한 기 술</span></div>'
-      +counter
-      +'<div style="position:absolute;bottom:56px;left:56px;right:56px;z-index:3;display:grid;grid-template-columns:1fr 1fr;gap:24px">'+techHtml+'</div>'+foot;
-  }
-  if(role==='price'){
-    var bens=t.features||[];
-    var benHtml=bens.length?'<div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">'+bens.map(function(b){return '<div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:10px 28px;color:#fff;font-size:22px;font-weight:700">'+(b.name||b)+'</div>';}).join('')+'</div>':'';
-    return head+imgTag+'<div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(60,0,120,.75) 0%,rgba(0,0,0,.85) 60%);z-index:2"></div>'
-      +'<div style="position:absolute;top:48px;left:56px;z-index:3;color:rgba(255,255,255,.6);font-size:20px;font-weight:700;letter-spacing:.1em">공 식 판 매 점</div>'
-      +counter
-      +'<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:3;padding:56px"><div style="text-align:center;margin-bottom:48px"><div style="color:#fff;font-size:64px;font-weight:900;line-height:1.1;font-family:Montserrat,sans-serif">'+(t.title||'')+'</div><div style="color:#a855f7;font-size:52px;font-weight:900;margin-top:8px">지금 만나보세요</div></div><div style="color:rgba(255,255,255,.7);font-size:24px;line-height:1.9;text-align:center;margin-bottom:40px">'+(t.body||'합리적인 가격, 공식 AS 보증<br>사운드글룩 공식 쇼핑몰에서 구매하실 수 있습니다.')+'</div>'+benHtml+'<div style="margin-top:48px;color:#fff;font-size:28px;font-weight:900;letter-spacing:.08em;font-family:Montserrat,sans-serif">SOUNDGLÜCK</div></div>'+foot;
-  }
-  return '';
-}
-
-// ══ 컨셉B: 사운드글룩 자체 스타일 ══
-function buildSlide_B(role, img, texts){
-  var t=texts, n=t.totalSlides||4;
-  var imgTag=img?'<img src="'+img+'" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1">':'';
-  var bg=img?'':'background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%)';
-  var head='<!DOCTYPE html><html><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:Noto Sans KR,sans-serif;position:relative;background:#0a0a0a;'+bg+'}</style></head><body>';
-  var foot='</body></html>';
-  var slideNum=role==='hero'?1:role==='feature'?2:role==='tech'?3:4;
-  var sgBadge='<div style="position:absolute;top:40px;left:48px;z-index:3"><div style="background:#c8ff00;color:#000;font-size:20px;font-weight:900;padding:6px 18px;border-radius:4px;letter-spacing:.06em;display:inline-block">SOUNDGLÜCK</div></div>';
-  var counter='<div style="position:absolute;top:40px;right:48px;z-index:3;color:rgba(255,255,255,.4);font-size:16px;letter-spacing:.05em">'+slideNum+' / '+n+'</div>';
-  var credit='<div style="display:flex;align-items:center;gap:16px;margin-top:24px"><span style="color:rgba(255,255,255,.35);font-size:16px;letter-spacing:.08em">@SOUNDGLÜCK</span><div style="flex:1;height:1px;background:rgba(255,255,255,.15)"></div></div>';
-
-  if(role==='hero'){
-    var hts=t.hashtags||[];
-    var htHtml=hts.length?'<div style="display:flex;gap:10px;flex-wrap:wrap">'+hts.slice(0,3).map(function(h){return '<span style="border:1.5px solid rgba(255,255,255,.6);border-radius:40px;padding:8px 22px;color:#fff;font-size:20px;font-weight:500">#'+h+'</span>';}).join('')+'</div>':'';
-    return head+imgTag+'<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.1) 100%);z-index:2"></div>'
-      +sgBadge+counter
-      +'<div style="position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3">'
-      +(t.badge?'<div style="color:#c8ff00;font-size:22px;font-weight:700;letter-spacing:.06em;margin-bottom:16px">'+t.badge+'</div>':'')
-      +'<div style="color:#fff;font-size:'+(t.title&&t.title.length>10?'80':'96')+'px;font-weight:900;line-height:1.05;margin-bottom:20px">'+(t.title||'')+'</div>'
-      +(t.body?'<div style="color:rgba(255,255,255,.8);font-size:28px;line-height:1.7;margin-bottom:28px">'+t.body+'</div>':'')
-      +htHtml+credit+'</div>'+foot;
-  }
-  if(role==='feature'){
-    var feats=t.features||[];
-    var featHtml=feats.slice(0,3).map(function(f){return '<div style="display:flex;align-items:flex-start;gap:20px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:24px"><div style="background:rgba(200,255,0,.15);border:1px solid rgba(200,255,0,.3);border-radius:12px;padding:10px 16px;flex-shrink:0"><span style="color:#c8ff00;font-size:22px;font-weight:900">✦</span></div><div><div style="color:#fff;font-size:36px;font-weight:700;line-height:1.2;margin-bottom:6px">'+(f.name||'')+'</div><div style="color:rgba(255,255,255,.6);font-size:22px;line-height:1.5">'+(f.desc||'')+'</div></div></div>';}).join('');
-    return head+imgTag+'<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.93) 0%,rgba(0,0,0,.5) 50%,rgba(0,0,0,.15) 100%);z-index:2"></div>'
-      +sgBadge+counter
-      +'<div style="position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3"><div style="color:#c8ff00;font-size:20px;font-weight:700;letter-spacing:.1em;margin-bottom:28px;text-transform:uppercase">'+(t.title||'')+' — 특장점</div><div style="display:flex;flex-direction:column;gap:28px">'+featHtml+'</div>'+credit+'</div>'+foot;
-  }
-  if(role==='tech'){
-    var feats=t.features||[];
-    var techHtml=feats.slice(0,2).map(function(f,i){return '<div style="background:rgba(200,255,0,.07);border:1px solid rgba(200,255,0,.2);border-radius:16px;padding:36px 32px"><div style="color:#c8ff00;font-size:40px;font-weight:900;margin-bottom:14px;font-family:Montserrat,sans-serif">0'+(i+1)+'</div><div style="color:#fff;font-size:32px;font-weight:700;line-height:1.2;margin-bottom:12px">'+(f.name||'')+'</div><div style="color:rgba(255,255,255,.55);font-size:20px;line-height:1.6">'+(f.desc||'')+'</div></div>';}).join('');
-    return head+imgTag+'<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.93) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.2) 100%);z-index:2"></div>'
-      +sgBadge+counter
-      +'<div style="position:absolute;bottom:56px;left:48px;right:48px;z-index:3;display:grid;grid-template-columns:1fr 1fr;gap:20px">'+techHtml+'</div>'
-      +'<div style="position:absolute;bottom:24px;left:48px;right:48px;z-index:3;display:flex;align-items:center;gap:16px"><span style="color:rgba(255,255,255,.35);font-size:16px;letter-spacing:.08em">@SOUNDGLÜCK</span><div style="flex:1;height:1px;background:rgba(255,255,255,.15)"></div></div>'+foot;
-  }
-  if(role==='price'){
-    var bens=t.features||[];
-    var benHtml=bens.length?'<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px">'+bens.map(function(b){return '<span style="border:1.5px solid rgba(255,255,255,.55);border-radius:40px;padding:10px 28px;color:#fff;font-size:22px;font-weight:600">'+(b.name||b)+'</span>';}).join('')+'</div>':'';
-    return head+imgTag+'<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.5) 50%,rgba(0,0,0,.15) 100%);z-index:2"></div>'
-      +sgBadge+counter
-      +'<div style="position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3">'
-      +(t.badge?'<div style="display:inline-block;background:#c8ff00;color:#000;font-size:20px;font-weight:900;padding:8px 24px;border-radius:6px;margin-bottom:24px">'+t.badge+'</div>':'')
-      +'<div style="color:#fff;font-size:'+(t.title&&t.title.length>12?'64':'76')+'px;font-weight:900;line-height:1.1;margin-bottom:16px">'+(t.title||'')+'</div>'
-      +(t.body?'<div style="color:rgba(255,255,255,.7);font-size:26px;line-height:1.7;margin-bottom:28px">'+t.body+'</div>':'')
-      +benHtml+credit+'</div>'+foot;
-  }
-  return '';
-}
-
-// ══ 역할+컨셉으로 슬라이드 빌드 ══
-function buildSlideByRole(role, img, texts, concept){
-  if(role==='cta') return buildCtaHtml({title:texts.title,sub:texts.desc});
-  return concept==='A' ? buildSlide_A(role,img,texts) : buildSlide_B(role,img,texts);
-}
-
-
-
 function buildSlideHtml(tpl, img, texts){
-  const {title, sub, body, badge} = texts;
-  const imgTag = img ? `<img src="${img}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:${tpl==='concept'?'cover':'contain'};z-index:1${tpl==='product'?';padding:60px;background:#0a0a0a':''}">` : '';
+  var concept = (typeof snsConceptStyle !== 'undefined') ? snsConceptStyle : 'A';
+  if(concept === 'B') return buildSlideHtml_B(tpl, img, texts);
+  return buildSlideHtml_A(tpl, img, texts);
+}
+
+/* ── 컨셉A: SP7 Grand 스타일 ── */
+function buildSlideHtml_A(tpl, img, texts){
+  var t = texts;
+  var wbStyle = 'word-break:keep-all;word-wrap:break-word;';
+  var imgTag = img ? '<img src="'+img+'" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1">' : '';
+  var noBg = img ? '' : 'background:linear-gradient(135deg,#0a0a0a 0%,#1a0a2e 100%)';
+  var H = '<!DOCTYPE html><html><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">'
+        + '<style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:"Noto Sans KR",sans-serif;position:relative;background:#0a0a0a;'+noBg+'}</style>'
+        + '</head><body>';
+  var F = '</body></html>';
+
   if(tpl === 'concept'){
-    const bgStyle = img ? '' : 'background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%)';
-    return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;position:relative;background:#111;${bgStyle}}</style></head><body>
-${imgTag}
-<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.15) 100%);z-index:2"></div>
-<div style="position:absolute;top:40px;left:48px;z-index:3;display:flex;align-items:center;gap:10px">
-  <span style="background:#c8ff00;color:#000;font-size:22px;font-weight:900;padding:6px 16px;border-radius:4px;letter-spacing:.05em">SOUNDGLÜCK</span>
-</div>
-${badge?`<div style="position:absolute;top:40px;right:48px;z-index:3;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:20px;padding:8px 18px;border-radius:6px;backdrop-filter:blur(4px)">${badge}</div>`:''}
-<div style="position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3">
-  ${sub?`<div style="color:#c8ff00;font-size:26px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px">${sub}</div>`:''}
-  <div style="color:#fff;font-size:${title&&title.length>12?'88':'108'}px;font-weight:900;line-height:1.05;margin-bottom:24px;text-shadow:0 2px 20px rgba(0,0,0,.5)">${title||''}</div>
-  ${body?`<div style="color:rgba(255,255,255,.85);font-size:30px;line-height:1.6;font-weight:400">${body}</div>`:''}
-</div>
-</body></html>`;
+    // 1번 히어로 슬라이드
+    var titleSize = (t.title && t.title.length > 10) ? '88px' : '108px';
+    return H + imgTag
+      + '<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.4) 50%,rgba(0,0,0,.15) 100%);z-index:2"></div>'
+      + '<div style="position:absolute;top:48px;left:56px;z-index:3;display:flex;align-items:center;gap:12px">'
+      +   '<span style="color:#fff;font-size:18px;font-weight:700;letter-spacing:.15em;opacity:.9;'+wbStyle+'">'+(t.sub||'SOUNDGLÜCK')+'</span>'
+      +   '<span style="width:6px;height:6px;background:#a855f7;border-radius:50%;display:inline-block;flex-shrink:0"></span>'
+      + '</div>'
+      + '<div style="position:absolute;bottom:0;left:0;right:0;padding:56px;z-index:3">'
+      +   (t.badge ? '<div style="color:#a855f7;font-size:22px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px;'+wbStyle+'">'+t.badge+'</div>' : '')
+      +   '<div style="color:#fff;font-size:'+titleSize+';font-weight:900;line-height:1.05;margin-bottom:16px;font-family:Montserrat,sans-serif;text-transform:uppercase;'+wbStyle+'">'+(t.title||'')+'</div>'
+      +   (t.body ? '<div style="color:#a855f7;font-size:44px;font-weight:900;line-height:1.15;margin-bottom:24px;'+wbStyle+'">'+t.body+'</div>' : '')
+      + '</div>'
+      + F;
+  }
+
+  // 2~4번 product 슬라이드
+  var specItems = [];
+  if(t.s1_name) specItems.push({name:t.s1_name, desc:t.s1_desc||''});
+  if(t.s2_name) specItems.push({name:t.s2_name, desc:t.s2_desc||''});
+  if(t.s3_name) specItems.push({name:t.s3_name, desc:t.s3_desc||''});
+
+  var specHtml = '';
+  if(specItems.length){
+    specHtml = specItems.map(function(sp){
+      return '<div style="margin-bottom:14px">'
+           + '<div style="font-size:40px;font-weight:900;color:#a855f7;line-height:1.1;'+wbStyle+'">'+sp.name+'</div>'
+           + (sp.desc ? '<div style="font-size:20px;color:rgba(255,255,255,.65);margin-top:4px;line-height:1.5;'+wbStyle+'">'+sp.desc+'</div>' : '')
+           + '</div>';
+    }).join('<div style="height:1px;background:#1a1a1a;margin:4px 0"></div>');
   } else {
-    return `<!DOCTYPE html><html><head><meta charset="UTF-8">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;background:#fff;display:flex;flex-direction:column;border:1px solid #e8e8e8}
-</style></head><body>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:32px 44px 0;flex-shrink:0">
-  <span style="background:#000;color:#c8ff00;font-size:18px;font-weight:900;padding:4px 12px;border-radius:3px;letter-spacing:.06em">SOUNDGLÜCK</span>
-  ${badge?`<span style="background:#c8ff00;color:#000;font-size:16px;font-weight:900;padding:4px 14px;border-radius:3px">${badge}</span>`:''}
-</div>
-<div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px 60px 0;min-height:0">
-  ${img
-    ?`<img src="${img}" style="max-width:100%;max-height:100%;object-fit:contain;">`
-    :`<div style="width:360px;height:360px;background:#f8f8f8;border-radius:12px"></div>`}
-</div>
-<div style="padding:24px 44px 36px;flex-shrink:0;background:#0a0a0a;margin-top:16px">
-  ${(()=>{
-    const specItems=[];
-    if(texts.s1_name) specItems.push({name:texts.s1_name,desc:texts.s1_desc||''});
-    if(texts.s2_name) specItems.push({name:texts.s2_name,desc:texts.s2_desc||''});
-    if(texts.s3_name) specItems.push({name:texts.s3_name,desc:texts.s3_desc||''});
-    if(specItems.length){
-      return specItems.map(sp=>`<div style="margin-bottom:12px"><div style="font-size:46px;font-weight:900;color:#c8ff00;line-height:1.1;word-break:keep-all">${sp.name}</div><div style="font-size:21px;color:rgba(255,255,255,.65);margin-top:4px;line-height:1.4;word-break:keep-all">${sp.desc}</div></div>`).join('<div style="height:1px;background:#1a1a1a;margin:2px 0"></div>');
-    }
-    return `<div style="font-size:${title&&title.length>8?'64':'78'}px;font-weight:900;color:#fff;word-break:keep-all">${title||''}</div>${body?`<div style="font-size:22px;color:rgba(255,255,255,.7);margin-top:12px;word-break:keep-all">${body}</div>`:''}`;
-  })()
+    specHtml = '<div style="font-size:64px;font-weight:900;color:#fff;'+wbStyle+'">'+(t.title||'')+'</div>'
+             + (t.body ? '<div style="font-size:22px;color:rgba(255,255,255,.7);margin-top:12px;'+wbStyle+'">'+t.body+'</div>' : '');
   }
-</div>
-</body></html>`;
+
+  var productImgStyle = img
+    ? 'max-width:100%;max-height:100%;object-fit:contain;'
+    : 'width:320px;height:320px;background:#f8f8f8;border-radius:12px';
+
+  return H
+    + '<div style="display:flex;justify-content:space-between;align-items:center;padding:32px 44px 0;flex-shrink:0">'
+    +   '<span style="background:#000;color:#a855f7;font-size:18px;font-weight:900;padding:4px 12px;border-radius:3px;letter-spacing:.06em;font-family:Montserrat,sans-serif">SOUNDGLÜCK</span>'
+    +   (t.badge ? '<span style="background:#a855f7;color:#fff;font-size:16px;font-weight:900;padding:4px 14px;border-radius:3px">'+t.badge+'</span>' : '')
+    + '</div>'
+    + '<div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px 60px 0;min-height:0">'
+    +   (img ? '<img src="'+img+'" style="'+productImgStyle+'">' : '<div style="'+productImgStyle+'"></div>')
+    + '</div>'
+    + '<div style="padding:24px 44px 36px;flex-shrink:0;background:#0a0a0a;margin-top:16px">'
+    +   specHtml
+    + '</div>'
+    + F;
+}
+
+/* ── 컨셉B: 사운드글룩 자체 스타일 ── */
+function buildSlideHtml_B(tpl, img, texts){
+  var t = texts;
+  var wbStyle = 'word-break:keep-all;word-wrap:break-word;';
+  var imgTag = img ? '<img src="'+img+'" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1">' : '';
+  var noBg = img ? '' : 'background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%)';
+  var H = '<!DOCTYPE html><html><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">'
+        + '<style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:"Noto Sans KR",sans-serif;position:relative;background:#0a0a0a;'+noBg+'}</style>'
+        + '</head><body>';
+  var F = '</body></html>';
+  var sgBadge = '<div style="position:absolute;top:40px;left:48px;z-index:3"><div style="background:#c8ff00;color:#000;font-size:20px;font-weight:900;padding:6px 18px;border-radius:4px;letter-spacing:.06em;display:inline-block">SOUNDGLÜCK</div></div>';
+  var credit  = '<div style="display:flex;align-items:center;gap:16px;margin-top:28px">'
+              + '<span style="color:rgba(255,255,255,.35);font-size:16px;letter-spacing:.08em">@SOUNDGLÜCK</span>'
+              + '<div style="flex:1;height:1px;background:rgba(255,255,255,.15)"></div>'
+              + '</div>';
+
+  if(tpl === 'concept'){
+    // 1번 히어로 슬라이드
+    var titleSize = (t.title && t.title.length > 12) ? '72px' : '88px';
+    var hts = (t.hashtags || []).slice(0, 3);
+    var htHtml = hts.length
+      ? '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:4px">'
+        + hts.map(function(h){ return '<span style="border:1.5px solid rgba(255,255,255,.6);border-radius:40px;padding:8px 22px;color:#fff;font-size:20px;font-weight:500;'+wbStyle+'">#'+h+'</span>'; }).join('')
+        + '</div>'
+      : '';
+    return H + imgTag
+      + '<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.1) 100%);z-index:2"></div>'
+      + sgBadge
+      + '<div style="position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3">'
+      +   (t.badge ? '<div style="color:#c8ff00;font-size:22px;font-weight:700;letter-spacing:.06em;margin-bottom:16px;'+wbStyle+'">'+t.badge+'</div>' : '')
+      +   '<div style="color:#fff;font-size:'+titleSize+';font-weight:900;line-height:1.1;margin-bottom:18px;'+wbStyle+'">'+(t.title||'')+'</div>'
+      +   (t.body ? '<div style="color:rgba(255,255,255,.8);font-size:26px;line-height:1.7;margin-bottom:24px;'+wbStyle+'">'+t.body+'</div>' : '')
+      +   htHtml
+      +   credit
+      + '</div>'
+      + F;
   }
+
+  // 2~4번 product 슬라이드
+  var specItems = [];
+  if(t.s1_name) specItems.push({name:t.s1_name, desc:t.s1_desc||''});
+  if(t.s2_name) specItems.push({name:t.s2_name, desc:t.s2_desc||''});
+  if(t.s3_name) specItems.push({name:t.s3_name, desc:t.s3_desc||''});
+
+  var specHtml = '';
+  if(specItems.length){
+    specHtml = specItems.map(function(sp){
+      return '<div style="display:flex;align-items:flex-start;gap:16px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.08)">'
+           + '<span style="color:#c8ff00;font-size:22px;font-weight:900;flex-shrink:0;margin-top:2px">✦</span>'
+           + '<div>'
+           +   '<div style="font-size:36px;font-weight:700;color:#fff;line-height:1.2;'+wbStyle+'">'+sp.name+'</div>'
+           +   (sp.desc ? '<div style="font-size:20px;color:rgba(255,255,255,.6);margin-top:4px;line-height:1.5;'+wbStyle+'">'+sp.desc+'</div>' : '')
+           + '</div>'
+           + '</div>';
+    }).join('');
+  } else {
+    specHtml = '<div style="font-size:60px;font-weight:900;color:#fff;'+wbStyle+'">'+(t.title||'')+'</div>'
+             + (t.body ? '<div style="font-size:22px;color:rgba(255,255,255,.7);margin-top:12px;'+wbStyle+'">'+t.body+'</div>' : '');
+  }
+
+  return H + imgTag
+    + '<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.93) 0%,rgba(0,0,0,.5) 50%,rgba(0,0,0,.15) 100%);z-index:2"></div>'
+    + sgBadge
+    + (t.badge ? '<div style="position:absolute;top:40px;right:48px;z-index:3;background:rgba(200,255,0,.15);border:1px solid rgba(200,255,0,.4);color:#c8ff00;font-size:16px;font-weight:700;padding:6px 16px;border-radius:6px">'+t.badge+'</div>' : '')
+    + '<div style="position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3">'
+    +   (t.sub ? '<div style="color:#c8ff00;font-size:18px;font-weight:700;letter-spacing:.08em;margin-bottom:20px;text-transform:uppercase;'+wbStyle+'">'+t.sub+' — 특장점</div>' : '')
+    +   '<div style="display:flex;flex-direction:column;gap:0">'+specHtml+'</div>'
+    +   credit
+    + '</div>'
+    + F;
 }
 
 function buildCtaHtml(info){
@@ -1539,18 +1515,34 @@ JSON만 출력 (백틱/마크다운 절대 금지, body 필드 내 큰따옴표 
   }
   if(t==='press') return base+`\n역피라미드기사형식 / 크몽대행사전달용 / CTA: 네이버에서 '사운드글룩' 검색 또는 ${s.url} / 문의: ${s.tel}\n\nJSON만 출력:\n{"headline":"h","sub_headline":"sh","lead":"리드2~3문장","body":"본문800~1000자","quote":{"text":"인용","speaker":"사운드글룩 관계자"},"boilerplate":"회사소개3~4문장","image_guides":[{"num":1,"label":"메인","desc":"설명"},{"num":2,"label":"제품상세","desc":"설명"},{"num":3,"label":"브랜드로고","desc":"설명"},{"num":4,"label":"사용환경","desc":"설명"}],"contact":"문의정보"}`;
   if(t==='sns'){
-    var concept=(typeof snsConceptStyle!=='undefined')?snsConceptStyle:'A';
-    var slideCnt=(typeof snsSlideCnt!=='undefined')?snsSlideCnt:1;
-    var roles=getSlideRoles(slideCnt);
-    var contentRoles=roles.filter(function(r){return r!=='cta';});
-    var conceptNote=concept==='A'?'[디자인 컨셉 A — SP7 Grand 스타일]: 퍼플(#a855f7) 포인트, 영문 대형 타이포, 다크 배경':'[디자인 컨셉 B — 사운드글룩 스타일]: #c8ff00 포인트, 사진 배경+오버레이, 해시태그 배지, @SOUNDGLÜCK 크레딧';
-    var roleDescs={hero:'1번(히어로): 강렬한 제품 타이틀. title=제품/브랜드 핵심문구, subtitle=브랜드/모델명, tagline=짧은 카피, badge=카테고리, desc=부연설명(선택). hashtags=대표 해시태그 3개(#없이).',feature:'특장점 슬라이드: 제품 핵심 특장점 3가지. label=모델명. features=[{name:특장점명,desc:한줄설명},...].',tech:'기술/스펙 슬라이드: 핵심 기술 2가지. label=섹션제목. features=[{name:기술명,desc:설명},...].',price:'가격·혜택 슬라이드: title=혜택 핵심문구, body=1~2줄설명, badge=특가, benefits=[베네핏1,베네핏2,...](선택된 항목만).',cta:'CTA: title=문구(예:지금 바로 만나보세요), desc=비워도됨.'};
-    var slideInstructions=contentRoles.map(function(r,i){return (i+1)+'번 슬라이드 — '+roleDescs[r];}).join('\n');
-    var ctaNote=slideCnt>=2?'\n'+slideCnt+'번 슬라이드 — '+roleDescs['cta']:'';
-    var imgInfos=contentRoles.map(function(r,i){return (i+1)+'번: '+((snsImages&&snsImages[i])?'이미지 업로드됨':'이미지 없음');});
-    var jsonSlides=contentRoles.map(function(r,i){if(r==='hero')return '{"slide":'+(i+1)+',"role":"hero","title":"제품핵심문구","subtitle":"브랜드/모델명","tagline":"한줄카피","badge":"카테고리","desc":"부연설명"}';if(r==='feature')return '{"slide":'+(i+1)+',"role":"feature","label":"모델명","features":[{"name":"특장점1","desc":"설명"},{"name":"특장점2","desc":"설명"},{"name":"특장점3","desc":"설명"}]}';if(r==='tech')return '{"slide":'+(i+1)+',"role":"tech","label":"섹션제목","features":[{"name":"기술1","desc":"설명"},{"name":"기술2","desc":"설명"}]}';if(r==='price')return '{"slide":'+(i+1)+',"role":"price","title":"혜택문구","body":"설명","badge":"특가","benefits":["베네핏1","베네핏2"]}';return '';}).filter(Boolean);
-    if(slideCnt>=2) jsonSlides.push('{"slide":'+slideCnt+',"role":"cta","title":"CTA문구","desc":""}');
-    return base+'\n\n'+conceptNote+'\n\n[슬라이드 구성: '+slideCnt+'장]\n'+slideInstructions+ctaNote+'\n\n[이미지 정보]: '+imgInfos.join(' / ')+'\n\n[작성 규칙]\n- AI는 텍스트만 생성. HTML/CSS 출력 절대 금지.\n- 특장점/기술은 실제 스펙 기반. 추측 금지.\n- 영문 용어 번역 금지 (VAST, KB3 등).\n- 혜택 슬라이드: 입력된 베네핏만 사용.\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":['+jsonSlides.join(',')+']}';
+    const concept = (typeof snsConceptStyle!=='undefined') ? snsConceptStyle : 'A';
+    const slideCnt = (typeof snsSlideCnt!=='undefined') ? snsSlideCnt : 1;
+    const contentSlides = slideCnt===1 ? 1 : slideCnt-1;
+    const conceptNote = concept==='A'
+      ? '[디자인 컨셉 A — SP7 Grand 스타일] 퍼플(#a855f7) 포인트, 영문 대형 타이포, 다크 배경'
+      : '[디자인 컨셉 B — 사운드글룩 스타일] #c8ff00 포인트, 사진 배경+오버레이, 해시태그 배지, @SOUNDGLÜCK';
+
+    const imgInfos = [];
+    for(let i=0;i<contentSlides;i++){
+      imgInfos.push((i+1)+'번: '+(snsImages&&snsImages[i]?'이미지 업로드됨':'이미지 없음'));
+    }
+
+    const benefitList = benefits&&benefits.length ? benefits.join(', ') : '없음';
+
+    return base+'\n\n'+conceptNote
+      +'\n\n[제품 정보] 브랜드:'+brand+' / 품목:'+item+(model?' / 모델:'+model:'')
+      +'\n\n[이미지 정보] '+imgInfos.join(' / ')
+      +'\n\n[선택된 베네핏] '+benefitList
+      +'\n\n[슬라이드 구성: '+slideCnt+'장]'
+      +'\n\n★ 슬라이드별 작성 규칙 (필수)\n'
+      +'각 슬라이드는 서로 다른 내용을 다뤄야 합니다. 같은 특장점을 여러 슬라이드에 반복하면 절대 안 됩니다.\n\n'
+      +'1번(히어로): 제품 전체를 대표하는 강렬한 한 줄 카피. title=영문 대문자 슬로건(예: THE STAGE IS YOURS), subtitle=품목명 그대로(예: '+item+'), body=한국어 부제(브랜드+모델+품목), badge=품목 카테고리. hashtags=대표 해시태그 3개(#없이).\n\n'
+      +'2번(특장점): 제품의 핵심 특장점 중 첫번째 그룹 3가지. s1_name/s1_desc, s2_name/s2_desc, s3_name/s3_desc. 가격/혜택 내용 절대 금지.\n\n'
+      +'3번(특장점): 2번과 완전히 다른 특장점 3가지. 2번에서 언급한 내용 반복 절대 금지. 가격/혜택 내용 절대 금지.\n\n'
+      +'4번(혜택): 특장점/스펙 내용 절대 금지. title=혜택 핵심 문구. b1/b2/b3=[선택된 베네핏: '+benefitList+']. badge=특가.\n\n'
+      +'5번(CTA): title=구매 유도 문구, desc=짧은 설명.\n\n'
+      +'JSON만 출력 (백틱/마크다운 절대 금지):\n'
+      +'{"detected_skill":"product-feature-sns-image","caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"영문대문자슬로건","subtitle":"'+item+'","body":"한국어부제","badge":"'+item+'","hashtags":["태그1","태그2","태그3"]},{"slide":2,"s1_name":"특장점1","s1_desc":"설명","s2_name":"특장점2","s2_desc":"설명","s3_name":"특장점3","s3_desc":"설명","badge":""},{"slide":3,"s1_name":"특장점4","s1_desc":"설명","s2_name":"특장점5","s2_desc":"설명","s3_name":"특장점6","s3_desc":"설명","badge":""},{"slide":4,"title":"혜택핵심문구","b1":"베네핏1","b2":"베네핏2","b3":"베네핏3","badge":"특가"},{"slide":5,"title":"지금 바로 만나보세요","desc":""}],"posting_tips":["팁1","팁2","팁3"]}';
   }
     if(t==='shorts') return base+`\n60초이내 / AI아바타나레이션용 / 훅→본론→CTA\n\nJSON만 출력:\n{"title":"제목","hook":"첫3초훅","script":[{"time":"0~3초","text":"멘트","visual":"화면"},{"time":"3~15초","text":"멘트","visual":"화면"},{"time":"15~35초","text":"멘트","visual":"화면"},{"time":"35~50초","text":"멘트","visual":"화면"},{"time":"50~60초","text":"CTA","visual":"화면"}],"thumbnail_text":"썸네일문구","description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
   if(t==='youtube') return base+`\n7~10분 / AI아바타+슬라이드 / EGLOO스타일 / CTA: ${s.url}\n\nJSON만 출력:\n{"title":"제목","thumbnail":{"main_text":"메인","sub_text":"서브"},"structure":[{"section":"인트로","duration":"0~30초","script":"스크립트","visual":"화면"},{"section":"본론1","duration":"30초~3분","script":"스크립트","visual":"화면"},{"section":"본론2","duration":"3~6분","script":"스크립트","visual":"화면"},{"section":"비교/추천","duration":"6~8분","script":"스크립트","visual":"화면"},{"section":"CTA","duration":"8~10분","script":"사운드글룩구매유도","visual":"화면"}],"comparison_chart":{"headers":["항목","제품A","제품B","제품C"],"rows":[["가격","","",""],["건반","","",""],["음색수","","",""],["특징","","",""],["추천대상","","",""]]},"description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
@@ -1704,47 +1696,109 @@ function renderPress(d,el){
 }
 
 function renderSns(d,el){
-  var h='';
-  var concept=(typeof snsConceptStyle!=='undefined')?snsConceptStyle:'A';
-  var roles=getSlideRoles(snsSlideCnt||1);
-  var skillNames={'promo-sns-image':'프로모션','product-lineup-sns-image':'라인업','product-feature-sns-image':'특장점'};
-  // 캡션
-  h+='<div class="r-card"><div class="r-head"><div class="r-head-title">✍️ 캡션 3가지 버전</div></div><div class="r-body">'+(d.caption_versions||[]).map(function(v,i){return '<div class="prompt-item" style="margin-bottom:12px"><div class="prompt-label">'+v.label+'</div><div class="prompt-text" id="sns-cap-'+i+'">'+v.text+'</div><div class="r-actions" style="margin-top:8px"><button class="prompt-copy" onclick="cp(document.getElementById(\'sns-cap-'+i+'\').innerText,this)">캡션 복사</button><button class="btn-edit" onclick="makeEditable(document.getElementById(\'sns-cap-'+i+'\'))">✏️ 직접 편집</button><button class="btn-ai-edit" onclick="toggleAiBox(\'sns-cap-aibox-'+i+'\')">🤖 AI로 수정</button></div><div class="ai-edit-box" id="sns-cap-aibox-'+i+'"><input class="ai-edit-input" placeholder="예: 더 재미있게, 이모지 더 넣어, 짧게 줄여줘..."><button class="btn-ai-run" onclick="runAiEdit(\'sns-cap-'+i+'\',\'sns-cap-aibox-'+i+'\',\'인스타그램 캡션\')">AI 수정하기</button><div class="edit-loading">🤖 수정 중...</div></div></div>';}).join('')+'</div></div>';
-  // 해시태그
-  var hs=(d.hashtags||[]).map(function(t){return '#'+t;}).join(' ');
-  h+='<div class="r-card"><div class="r-head"><div class="r-head-title">🏷️ 해시태그 <span class="r-badge">30개</span></div><button class="copy-btn" onclick="cp(\''+hs.replace(/'/g,"\\'")+'\',this)">전체 복사</button></div><div class="r-body"><div class="tag-wrap">'+(d.hashtags||[]).map(function(t){return '<span class="tag">#'+t+'</span>';}).join('')+'</div></div></div>';
-  // 카드뉴스
+  let h='';
+  const concept = (typeof snsConceptStyle!=='undefined') ? snsConceptStyle : 'A';
+  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">✍️ 캡션 3가지 버전</div></div><div class="r-body">${(d.caption_versions||[]).map((v,i)=>`<div class="prompt-item" style="margin-bottom:12px"><div class="prompt-label">${v.label}</div><div class="prompt-text" id="sns-cap-${i}">${v.text}</div><div class="r-actions" style="margin-top:8px"><button class="prompt-copy" onclick="cp(document.getElementById('sns-cap-${i}').innerText,this)">캡션 복사</button><button class="btn-edit" onclick="makeEditable(document.getElementById('sns-cap-${i}'))">✏️ 직접 편집</button><button class="btn-ai-edit" onclick="toggleAiBox('sns-cap-aibox-${i}')">🤖 AI로 수정</button></div><div class="ai-edit-box" id="sns-cap-aibox-${i}"><input class="ai-edit-input" placeholder="예: 더 재미있게, 이모지 더 넣어, 짧게 줄여줘..."><button class="btn-ai-run" onclick="runAiEdit('sns-cap-${i}','sns-cap-aibox-${i}','인스타그램 캡션')">AI 수정하기</button><div class="edit-loading">🤖 수정 중...</div></div></div>`).join('')}</div></div>`;
+  const hs=(d.hashtags||[]).map(t=>'#'+t).join(' ');
+  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🏷️ 해시태그 <span class="r-badge">30개</span></div><button class="copy-btn" onclick="cp('${hs.replace(/'/g,"\\'")}',this)">전체 복사</button></div><div class="r-body"><div class="tag-wrap">${(d.hashtags||[]).map(t=>`<span class="tag">#${t}</span>`).join('')}</div></div></div>`;
   if(d.slides&&d.slides.length){
-    var totalSlides=roles.length;
-    window._snsSlides=[];
-    var sHtml='';
-    var roleLabels={hero:'히어로',feature:'특장점',tech:'기술/스펙',price:'가격·혜택',cta:'CTA'};
-    var roleColors={hero:'#a855f7',feature:'#3b82f6',tech:'#10b981',price:'#f59e0b',cta:'#5B9EA0'};
-    roles.forEach(function(role,i){
-      var s=d.slides[i]||{};
-      var img=snsImages[i]||null;
-      var texts={totalSlides:totalSlides};
-      if(role==='hero') texts={title:s.title||'',sub:s.subtitle||s.brand||'',body:s.tagline||'',badge:s.badge||'',desc:s.desc||'',hashtags:d.hashtags||[],totalSlides:totalSlides};
-      else if(role==='feature') texts={title:s.label||'',features:(s.features||[]).map(function(f){return {name:f.name||f,desc:f.desc||''};}).slice(0,3),totalSlides:totalSlides};
-      else if(role==='tech') texts={title:s.label||'',features:(s.features||[]).map(function(f){return {name:f.name||f,desc:f.desc||''};}).slice(0,2),totalSlides:totalSlides};
-      else if(role==='price') texts={title:s.title||'',body:s.body||'',badge:s.badge||'특가',features:(s.benefits||[]).map(function(b){return {name:b};}),totalSlides:totalSlides};
-      else if(role==='cta') texts={title:s.title||'지금 바로 만나보세요',desc:s.desc||''};
-      var hCode=buildSlideByRole(role,img,texts,concept);
-      window._snsSlides.push({role:role,html:hCode,texts:texts,rawSlide:s});
-      var enc=hCode.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-      sHtml+='<div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">';
-      sHtml+='<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--teal-pale);border-bottom:1px solid var(--border)">';
-      sHtml+='<div style="display:flex;align-items:center;gap:8px"><div style="background:'+(roleColors[role]||'#888')+';color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">'+(i+1)+'</div><strong style="font-size:13px;color:var(--dark2)">'+(i+1)+'번 — '+(roleLabels[role]||role)+'</strong></div>';
-      sHtml+='<button onclick="openSlide('+i+')" style="padding:5px 12px;background:var(--teal);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-weight:700;white-space:nowrap">🔗 새 탭 열기</button>';
-      sHtml+='</div>';
-      sHtml+='<div style="position:relative;width:100%;padding-bottom:100%;background:#000"><iframe id="sf-'+i+'" srcdoc="'+enc+'" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" scrolling="no"></iframe></div>';
-      sHtml+='<div style="padding:12px 14px;border-top:1px solid var(--border);background:var(--bg)"><div style="font-size:11px;font-weight:700;color:var(--teal-d);margin-bottom:8px">✏️ 이미지 교체</div>';
-      if(role!=='cta') sHtml+='<div style="margin-bottom:8px"><label style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--teal-pale);border:1px dashed var(--teal);border-radius:6px;cursor:pointer;font-size:11px;color:var(--teal-d);font-weight:600">📷 이미지 교체<input type="file" accept="image/*" style="display:none" onchange="replaceSlideImg(this,'+i+')"></label></div>';
-      sHtml+='<button onclick="applySlideEdit('+i+')" style="padding:6px 18px;background:var(--teal);color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;font-weight:700">↻ 반영</button></div></div>';
+    window._snsSlides=d.slides.map((s,i)=>{
+      let hCode;
+      if(i===4){
+        // 5번 CTA — 고정 템플릿
+        hCode=buildCtaHtml({title:s.title,sub:s.desc});
+      } else if(i===0){
+        // 1번 — AI HTML 그대로 사용
+        hCode=buildSlideHtml('concept',null,{title:s.title,sub:s.subtitle||'',body:s.body||'',badge:s.badge||'',hashtags:s.hashtags||[]});
+      } else {
+        // 2~4번 — 제품형 템플릿 + 이미지
+        let texts;
+        if(i===3){
+          // 4번 — 혜택 슬라이드 (b1/b2/b3 → specs 형식으로 변환)
+          const benItems=[];
+          if(s.b1) benItems.push({name:s.b1, desc:''});
+          if(s.b2) benItems.push({name:s.b2, desc:''});
+          if(s.b3) benItems.push({name:s.b3, desc:''});
+          texts={title:s.title||'사운드글룩 단독 혜택', sub:'SOUNDGLÜCK ONLY', body:'에누리 게시판 이용 시 추가 특가 및 사은품 제안 가능', badge:s.badge||'특가', s1_name:s.b1||'', s1_desc:'', s2_name:s.b2||'', s2_desc:'', s3_name:s.b3||'', s3_desc:''};
+        } else {
+          texts={title:s.title,sub:s.subtitle||s.desc||'',body:s.body||'',badge:s.badge||'',s1_name:s.s1_name||'',s1_desc:s.s1_desc||'',s2_name:s.s2_name||'',s2_desc:s.s2_desc||'',s3_name:s.s3_name||'',s3_desc:s.s3_desc||''};
+        }
+        hCode=buildSlideHtml('product', snsImages[i]||null, texts);
+      }
+      return {...s, html:hCode};
     });
-    h+='<div class="r-card"><div class="r-head"><div class="r-head-title">🖼️ 카드뉴스 <span class="r-badge">'+totalSlides+'장</span></div><small style="font-size:11px;color:var(--gray)">새 탭 열기 → 스크린샷 → 인스타그램</small></div><div class="r-body">'+sHtml+'</div></div>';
+    let sHtml='';
+    window._snsSlides.forEach((s,i)=>{
+      const hCode=s.html||'';
+      const enc=hCode.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+      const isCTA = i===4;
+      const slideColor = isCTA?'#f59e0b':'var(--teal)';
+
+      // 슬라이드별 편집 필드 생성
+      let editFields='';
+      if(i===0){
+        // 1번: 제목/부제/설명
+        editFields+=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
+          <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="제목" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
+          <input id="se-${i}-sub" value="${(s.subtitle||s.sub||'').replace(/"/g,'&quot;')}" placeholder="부제 (브랜드/모델)" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
+          <input id="se-${i}-body" value="${(s.body||'').replace(/"/g,'&quot;')}" placeholder="설명" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
+          <input id="se-${i}-badge" value="${(s.badge||'').replace(/"/g,'&quot;')}" placeholder="뱃지 (예: NEW)" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
+        </div>`;
+      } else if(i===1||i===2){
+        // 2~3번: 특장점 항목
+        editFields+=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">`;
+        ['1','2','3'].forEach(n=>{
+          const nm = s['s'+n+'_name']||'';
+          const dc = s['s'+n+'_desc']||'';
+          editFields+=`<div style="display:flex;gap:6px">
+            <input id="se-${i}-s${n}n" value="${nm.replace(/"/g,'&quot;')}" placeholder="특장점${n} 사양명 (녹색)" style="flex:1;padding:6px 10px;border:1px solid #c8ff00;border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
+            <input id="se-${i}-s${n}d" value="${dc.replace(/"/g,'&quot;')}" placeholder="설명 (흰색)" style="flex:2;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
+          </div>`;
+        });
+        editFields+=`<input id="se-${i}-badge" value="${(s.badge||'').replace(/"/g,'&quot;')}" placeholder="뱃지" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">`;
+        editFields+=`</div>`;
+      } else if(i===3){
+        // 4번: 혜택 항목
+        editFields+=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
+          <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="혜택 핵심 문구" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
+          <input id="se-${i}-b1" value="${(s.b1||'').replace(/"/g,'&quot;')}" placeholder="혜택1 (녹색)" style="padding:6px 10px;border:1px solid #c8ff00;border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
+          <input id="se-${i}-b2" value="${(s.b2||'').replace(/"/g,'&quot;')}" placeholder="혜택2 (녹색)" style="padding:6px 10px;border:1px solid #c8ff00;border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
+          <input id="se-${i}-b3" value="${(s.b3||'').replace(/"/g,'&quot;')}" placeholder="혜택3 (녹색)" style="padding:6px 10px;border:1px solid #c8ff00;border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
+        </div>`;
+      } else if(i===4){
+        // 5번: 타이틀
+        editFields+=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
+          <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="CTA 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
+        </div>`;
+      }
+
+      sHtml+=`<div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">`;
+      // 헤더
+      sHtml+=`<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--teal-pale);border-bottom:1px solid var(--border)">`;
+      sHtml+=`<div style="display:flex;align-items:center;gap:8px"><div style="background:${slideColor};color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">${s.slide}</div><strong style="font-size:13px;color:var(--dark2)">${s.title||''}</strong></div>`;
+      sHtml+=`<button onclick="openSlide(${i})" style="padding:5px 12px;background:var(--teal);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-weight:700;white-space:nowrap">🔗 새 탭 열기</button>`;
+      sHtml+=`</div>`;
+      // 미리보기
+      if(hCode){
+        sHtml+=`<div style="position:relative;width:100%;padding-bottom:100%;background:#000">`;
+        sHtml+=`<iframe id="sf-${i}" srcdoc="${enc}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" scrolling="no"></iframe>`;
+        sHtml+=`</div>`;
+      }
+      // 편집 패널
+      sHtml+=`<div style="padding:12px 14px;border-top:1px solid var(--border);background:var(--bg)">`;
+      sHtml+=`<div style="font-size:11px;font-weight:700;color:var(--teal-d);margin-bottom:8px">✏️ 편집</div>`;
+      // 이미지 교체 (1번/5번 제외)
+      if(i>0 && i<4){
+        sHtml+=`<div style="margin-bottom:8px"><label style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--teal-pale);border:1px dashed var(--teal);border-radius:6px;cursor:pointer;font-size:11px;color:var(--teal-d);font-weight:600">📷 이미지 교체<input type="file" accept="image/*" style="display:none" onchange="replaceSlideImg(this,${i})"></label></div>`;
+      }
+      sHtml+=editFields;
+      sHtml+=`<button onclick="applySlideEdit(${i})" style="padding:6px 18px;background:var(--teal);color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;font-weight:700">적용</button>`;
+      sHtml+=`</div>`;
+      sHtml+=`</div>`;
+    });
+    h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🖼️ 카드뉴스 <span class="r-badge">5장</span></div><small style="font-size:11px;color:var(--gray)">새 탭 열기 → 스크린샷 → 인스타그램</small></div><div class="r-body">${sHtml}</div></div>`;
   }
-  h+='<div class="r-card"><div class="r-head"><div class="r-head-title">💡 포스팅 팁</div></div><div class="r-body">'+(d.posting_tips||[]).map(function(t){return '<div class="check-item" onclick="this.classList.toggle(\'done\')"><div class="check-box"></div><span>'+t+'</span></div>';}).join('')+'</div></div>';
+  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">💡 포스팅 팁</div></div><div class="r-body">${(d.posting_tips||[]).map(t=>`<div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"></div><span>${t}</span></div>`).join('')}</div></div>`;
   el.innerHTML=h;
 }
 
@@ -1760,15 +1814,27 @@ function replaceSlideImg(input, idx){
 }
 
 function applySlideEdit(i){
-  var s=window._snsSlides[i];
+  const s = window._snsSlides[i];
   if(!s) return;
-  var concept=(typeof snsConceptStyle!=='undefined')?snsConceptStyle:'A';
-  var img=snsImages[i]||null;
-  var newHtml=buildSlideByRole(s.role,img,s.texts,concept);
-  window._snsSlides[i]=Object.assign({},s,{html:newHtml});
-  var enc=newHtml.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-  var iframe=document.getElementById('sf-'+i);
-  if(iframe) iframe.setAttribute('srcdoc',enc);
+  // 입력값 읽기
+  const g = (id)=>{ const el=document.getElementById('se-'+i+'-'+id); return el?el.value.trim():''; };
+  let newHtml;
+  if(i===0){
+    const texts={title:g('title'),sub:g('sub'),body:g('body'),badge:g('badge'),hashtags:(window._snsSlides[i]&&window._snsSlides[i].hashtags)||[]};
+    newHtml = buildSlideHtml('concept', null, texts);
+  } else if(i===1||i===2){
+    const texts={title:g('s1n'),sub:'',body:'',badge:g('badge'),s1_name:g('s1n'),s1_desc:g('s1d'),s2_name:g('s2n'),s2_desc:g('s2d'),s3_name:g('s3n'),s3_desc:g('s3d')};
+    newHtml = buildSlideHtml('product', snsImages[i]||null, texts);
+  } else if(i===3){
+    const texts={title:g('title'),sub:'SOUNDGLÜCK ONLY',body:'에누리 게시판 이용 시 추가 특가 및 사은품 제안 가능',badge:g('badge')||'특가',s1_name:g('b1'),s1_desc:'',s2_name:g('b2'),s2_desc:'',s3_name:g('b3'),s3_desc:''};
+    newHtml = buildSlideHtml('product', snsImages[i]||null, texts);
+  } else if(i===4){
+    newHtml = buildCtaHtml({title:g('title'),sub:''});
+  }
+  window._snsSlides[i] = {...s, html:newHtml};
+  const enc = newHtml.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+  const iframe = document.getElementById('sf-'+i);
+  if(iframe) iframe.setAttribute('srcdoc', enc);
 }
 
 function openSlide(i){
