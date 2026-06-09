@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOUNDGLÜCK · A.I MARKETING TULZ v4.7</title>
+<title>SOUNDGLÜCK · A.I MARKETING TULZ v4.6</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -706,34 +706,60 @@ body {
   <!-- 디자인 컨셉 선택 -->
   <div class="form-card">
     <div class="form-card-title">디자인 컨셉</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px" id="sns-concept-grid">
-      <div class="concept-card active" onclick="selConcept(this,'A')" id="concept-card-A">
-        <div style="background:#0a0a0a;height:90px;border-radius:8px;margin-bottom:10px;position:relative;overflow:hidden">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(80,0,180,.7),transparent 60%)"></div>
-          <div style="position:absolute;top:8px;left:10px;color:#fff;font-size:7px;font-weight:900;letter-spacing:.1em">KURZWEIL</div>
-          <div style="position:absolute;bottom:10px;left:10px"><div style="color:#fff;font-size:13px;font-weight:900">SP7</div><div style="color:#a855f7;font-size:11px;font-weight:900">GRAND</div></div>
-          <div style="position:absolute;top:8px;right:10px;color:rgba(255,255,255,.5);font-size:8px">01/04</div>
-        </div>
-        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 A — SP7 Grand 스타일</div>
-        <div style="font-size:10px;color:var(--gray);margin-top:2px">퍼플 포인트 · 영문 대형 타이포</div>
-      </div>
-      <div class="concept-card" onclick="selConcept(this,'B')" id="concept-card-B">
-        <div style="background:#111;height:90px;border-radius:8px;margin-bottom:10px;position:relative;overflow:hidden">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85),transparent 55%)"></div>
-          <div style="position:absolute;top:8px;left:8px;background:#c8ff00;color:#000;font-size:7px;font-weight:900;padding:2px 6px;border-radius:2px">SOUNDGLÜCK</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px" id="sns-concept-grid">
+      <div class="concept-card active" onclick="selConcept(this,'1')" id="concept-card-1">
+        <div class="concept-preview" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);height:80px;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;position:relative;overflow:hidden">
           <div style="position:absolute;bottom:8px;left:10px;right:10px">
-            <div style="color:#c8ff00;font-size:7px;font-weight:700;margin-bottom:3px">본사 인증 S급 리퍼</div>
-            <div style="color:#fff;font-size:10px;font-weight:900;margin-bottom:4px">커즈와일 디지털 피아노</div>
-            <div style="display:flex;gap:3px"><span style="border:1px solid rgba(255,255,255,.5);border-radius:10px;padding:1px 5px;font-size:6px;color:#fff">#본사검수</span><span style="border:1px solid rgba(255,255,255,.4);border-radius:10px;padding:1px 5px;font-size:6px;color:#fff">#AS보증</span></div>
+            <div style="background:#c8ff00;height:3px;width:40%;margin-bottom:4px;border-radius:2px"></div>
+            <div style="background:rgba(255,255,255,.9);height:8px;width:80%;border-radius:2px;margin-bottom:3px"></div>
+            <div style="background:rgba(255,255,255,.4);height:5px;width:60%;border-radius:2px"></div>
           </div>
         </div>
-        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 B — 사운드글룩 스타일</div>
-        <div style="font-size:10px;color:var(--gray);margin-top:2px">사진 배경 · 해시태그 배지 · @SOUNDGLÜCK</div>
+        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 1 — 프로모션</div>
+        <div style="font-size:10px;color:var(--gray);margin-top:2px">이벤트·할인·특가 강조</div>
+      </div>
+      <div class="concept-card" onclick="selConcept(this,'2')" id="concept-card-2">
+        <div class="concept-preview" style="background:linear-gradient(135deg,#0d0d0d,#1a1a2e);height:80px;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;position:relative;overflow:hidden">
+          <div style="position:absolute;top:8px;left:10px">
+            <div style="background:#c8ff00;height:3px;width:20px;border-radius:2px;margin-bottom:6px"></div>
+          </div>
+          <div style="position:absolute;bottom:8px;left:10px;right:10px">
+            <div style="background:rgba(255,255,255,.9);height:10px;width:70%;border-radius:2px;margin-bottom:4px"></div>
+            <div style="background:rgba(200,255,0,.7);height:5px;width:45%;border-radius:2px"></div>
+          </div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 2 — 제품 특장점</div>
+        <div style="font-size:10px;color:var(--gray);margin-top:2px">핵심 스펙·기능 부각</div>
+      </div>
+      <div class="concept-card" onclick="selConcept(this,'3')" id="concept-card-3">
+        <div class="concept-preview" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a);height:80px;border-radius:6px;display:flex;align-items:flex-end;padding:8px 10px;margin-bottom:8px;gap:4px">
+          <div style="flex:1;background:rgba(200,255,0,.3);border-radius:3px;height:50px;border:1px solid rgba(200,255,0,.5)"></div>
+          <div style="flex:1;background:rgba(200,255,0,.5);border-radius:3px;height:60px;border:1px solid rgba(200,255,0,.7)"></div>
+          <div style="flex:1;background:rgba(200,255,0,.2);border-radius:3px;height:40px;border:1px solid rgba(200,255,0,.3)"></div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 3 — 라인업/비교</div>
+        <div style="font-size:10px;color:var(--gray);margin-top:2px">모델 비교·가격 비교</div>
+      </div>
+      <div class="concept-card" onclick="selConcept(this,'4')" id="concept-card-4">
+        <div class="concept-preview" style="background:#111;height:80px;border-radius:6px;overflow:hidden;margin-bottom:8px;position:relative">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 60%)"></div>
+          <div style="position:absolute;top:8px;left:8px;background:#c8ff00;color:#000;font-size:8px;font-weight:900;padding:2px 6px;border-radius:2px">SOUNDGLÜCK</div>
+          <div style="position:absolute;bottom:8px;left:10px;right:10px">
+            <div style="color:rgba(200,255,0,.9);font-size:7px;font-weight:700;margin-bottom:3px">본사 인증 S급 리퍼</div>
+            <div style="background:rgba(255,255,255,.9);height:9px;width:75%;border-radius:2px;margin-bottom:4px"></div>
+            <div style="display:flex;gap:4px">
+              <div style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);border-radius:10px;height:8px;width:30%"></div>
+              <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);border-radius:10px;height:8px;width:30%"></div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 4 — 사운드글룩 스타일</div>
+        <div style="font-size:10px;color:var(--gray);margin-top:2px">배경 사진 + 텍스트 오버레이</div>
       </div>
     </div>
   </div>
 
-    <!-- 슬라이드 수 선택 -->
+  <!-- 슬라이드 수 선택 -->
   <div class="form-card">
     <div class="form-card-title">슬라이드 수</div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -1022,15 +1048,13 @@ function goPage(id,el){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 let snsImages = [null, null, null, null, null];
-let snsConceptNum = 'A';
-let snsConceptStyle = 'A';
+let snsConceptNum = '1';
 let snsSlideCnt = 1;
 
 function selConcept(el, num){
   document.querySelectorAll('.concept-card').forEach(c=>c.classList.remove('active'));
   el.classList.add('active');
   snsConceptNum = num;
-  snsConceptStyle = num;
 }
 
 function selSlideCnt(el, cnt){
@@ -1094,146 +1118,53 @@ document.addEventListener('DOMContentLoaded', function(){ updateImgSlots(1); });
 let snsTemplate = 'concept';
 
 function buildSlideHtml(tpl, img, texts){
-  var concept = (typeof snsConceptStyle !== 'undefined') ? snsConceptStyle : 'A';
-  if(concept === 'B') return buildSlideHtml_B(tpl, img, texts);
-  return buildSlideHtml_A(tpl, img, texts);
-}
-
-/* ── 컨셉A: SP7 Grand 스타일 ── */
-function buildSlideHtml_A(tpl, img, texts){
-  var t = texts;
-  var wbStyle = 'word-break:keep-all;word-wrap:break-word;';
-  var imgTag = img ? '<img src="'+img+'" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1">' : '';
-  var noBg = img ? '' : 'background:linear-gradient(135deg,#0a0a0a 0%,#1a0a2e 100%)';
-  var H = '<!DOCTYPE html><html><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">'
-        + '<style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:"Noto Sans KR",sans-serif;position:relative;background:#0a0a0a;'+noBg+'}</style>'
-        + '</head><body>';
-  var F = '</body></html>';
-
+  const {title, sub, body, badge} = texts;
+  const imgTag = img ? `<img src="${img}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:${tpl==='concept'?'cover':'contain'};z-index:1${tpl==='product'?';padding:60px;background:#0a0a0a':''}">` : '';
   if(tpl === 'concept'){
-    // 1번 히어로 슬라이드
-    var titleSize = (t.title && t.title.length > 10) ? '88px' : '108px';
-    return H + imgTag
-      + '<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.4) 50%,rgba(0,0,0,.15) 100%);z-index:2"></div>'
-      + '<div style="position:absolute;top:48px;left:56px;z-index:3;display:flex;align-items:center;gap:12px">'
-      +   '<span style="color:#fff;font-size:18px;font-weight:700;letter-spacing:.15em;opacity:.9;'+wbStyle+'">'+(t.sub||'SOUNDGLÜCK')+'</span>'
-      +   '<span style="width:6px;height:6px;background:#a855f7;border-radius:50%;display:inline-block;flex-shrink:0"></span>'
-      + '</div>'
-      + '<div style="position:absolute;bottom:0;left:0;right:0;padding:56px;z-index:3">'
-      +   (t.badge ? '<div style="color:#a855f7;font-size:22px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px;'+wbStyle+'">'+t.badge+'</div>' : '')
-      +   '<div style="color:#fff;font-size:'+titleSize+';font-weight:900;line-height:1.05;margin-bottom:16px;font-family:Montserrat,sans-serif;text-transform:uppercase;'+wbStyle+'">'+(t.title||'')+'</div>'
-      +   (t.body ? '<div style="color:#a855f7;font-size:44px;font-weight:900;line-height:1.15;margin-bottom:24px;'+wbStyle+'">'+t.body+'</div>' : '')
-      + '</div>'
-      + F;
-  }
-
-  // 2~4번 product 슬라이드
-  var specItems = [];
-  if(t.s1_name) specItems.push({name:t.s1_name, desc:t.s1_desc||''});
-  if(t.s2_name) specItems.push({name:t.s2_name, desc:t.s2_desc||''});
-  if(t.s3_name) specItems.push({name:t.s3_name, desc:t.s3_desc||''});
-
-  var specHtml = '';
-  if(specItems.length){
-    specHtml = specItems.map(function(sp){
-      return '<div style="margin-bottom:14px">'
-           + '<div style="font-size:40px;font-weight:900;color:#a855f7;line-height:1.1;'+wbStyle+'">'+sp.name+'</div>'
-           + (sp.desc ? '<div style="font-size:20px;color:rgba(255,255,255,.65);margin-top:4px;line-height:1.5;'+wbStyle+'">'+sp.desc+'</div>' : '')
-           + '</div>';
-    }).join('<div style="height:1px;background:#1a1a1a;margin:4px 0"></div>');
+    const bgStyle = img ? '' : 'background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%)';
+    return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;position:relative;background:#111;${bgStyle}}</style></head><body>
+${imgTag}
+<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.15) 100%);z-index:2"></div>
+<div style="position:absolute;top:40px;left:48px;z-index:3;display:flex;align-items:center;gap:10px">
+  <span style="background:#c8ff00;color:#000;font-size:22px;font-weight:900;padding:6px 16px;border-radius:4px;letter-spacing:.05em">SOUNDGLÜCK</span>
+</div>
+${badge?`<div style="position:absolute;top:40px;right:48px;z-index:3;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:20px;padding:8px 18px;border-radius:6px;backdrop-filter:blur(4px)">${badge}</div>`:''}
+<div style="position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3">
+  ${sub?`<div style="color:#c8ff00;font-size:26px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px">${sub}</div>`:''}
+  <div style="color:#fff;font-size:${title&&title.length>12?'88':'108'}px;font-weight:900;line-height:1.05;margin-bottom:24px;text-shadow:0 2px 20px rgba(0,0,0,.5);word-break:keep-all">${title||''}</div>
+  ${body?`<div style="color:rgba(255,255,255,.85);font-size:30px;line-height:1.6;font-weight:400;word-break:keep-all">${body}</div>`:''}
+</div>
+</body></html>`;
   } else {
-    specHtml = '<div style="font-size:64px;font-weight:900;color:#fff;'+wbStyle+'">'+(t.title||'')+'</div>'
-             + (t.body ? '<div style="font-size:22px;color:rgba(255,255,255,.7);margin-top:12px;'+wbStyle+'">'+t.body+'</div>' : '');
+    return `<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;background:#fff;display:flex;flex-direction:column;border:1px solid #e8e8e8}
+</style></head><body>
+<div style="display:flex;justify-content:space-between;align-items:center;padding:32px 44px 0;flex-shrink:0">
+  <span style="background:#000;color:#c8ff00;font-size:18px;font-weight:900;padding:4px 12px;border-radius:3px;letter-spacing:.06em">SOUNDGLÜCK</span>
+  ${badge?`<span style="background:#c8ff00;color:#000;font-size:16px;font-weight:900;padding:4px 14px;border-radius:3px">${badge}</span>`:''}
+</div>
+<div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px 60px 0;min-height:0">
+  ${img
+    ?`<img src="${img}" style="max-width:100%;max-height:100%;object-fit:contain;">`
+    :`<div style="width:360px;height:360px;background:#f8f8f8;border-radius:12px"></div>`}
+</div>
+<div style="padding:24px 44px 36px;flex-shrink:0;background:#0a0a0a;margin-top:16px">
+  ${(()=>{
+    const specItems=[];
+    if(texts.s1_name) specItems.push({name:texts.s1_name,desc:texts.s1_desc||''});
+    if(texts.s2_name) specItems.push({name:texts.s2_name,desc:texts.s2_desc||''});
+    if(texts.s3_name) specItems.push({name:texts.s3_name,desc:texts.s3_desc||''});
+    if(specItems.length){
+      return specItems.map(sp=>`<div style="margin-bottom:12px"><div style="font-size:46px;font-weight:900;color:#c8ff00;line-height:1.1;word-break:keep-all">${sp.name}</div><div style="font-size:21px;color:rgba(255,255,255,.65);margin-top:4px;line-height:1.4;word-break:keep-all">${sp.desc}</div></div>`).join('<div style="height:1px;background:#1a1a1a;margin:2px 0"></div>');
+    }
+    return `<div style="font-size:${title&&title.length>8?'64':'78'}px;font-weight:900;color:#fff;word-break:keep-all">${title||''}</div>${body?`<div style="font-size:22px;color:rgba(255,255,255,.7);margin-top:12px;word-break:keep-all">${body}</div>`:''}`;
+  })()
   }
-
-  var productImgStyle = img
-    ? 'max-width:100%;max-height:100%;object-fit:contain;'
-    : 'width:320px;height:320px;background:#f8f8f8;border-radius:12px';
-
-  return H
-    + '<div style="display:flex;justify-content:space-between;align-items:center;padding:32px 44px 0;flex-shrink:0">'
-    +   '<span style="background:#000;color:#a855f7;font-size:18px;font-weight:900;padding:4px 12px;border-radius:3px;letter-spacing:.06em;font-family:Montserrat,sans-serif">SOUNDGLÜCK</span>'
-    +   (t.badge ? '<span style="background:#a855f7;color:#fff;font-size:16px;font-weight:900;padding:4px 14px;border-radius:3px">'+t.badge+'</span>' : '')
-    + '</div>'
-    + '<div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px 60px 0;min-height:0">'
-    +   (img ? '<img src="'+img+'" style="'+productImgStyle+'">' : '<div style="'+productImgStyle+'"></div>')
-    + '</div>'
-    + '<div style="padding:24px 44px 36px;flex-shrink:0;background:#0a0a0a;margin-top:16px">'
-    +   specHtml
-    + '</div>'
-    + F;
-}
-
-/* ── 컨셉B: 사운드글룩 자체 스타일 ── */
-function buildSlideHtml_B(tpl, img, texts){
-  var t = texts;
-  var wbStyle = 'word-break:keep-all;word-wrap:break-word;';
-  var imgTag = img ? '<img src="'+img+'" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1">' : '';
-  var noBg = img ? '' : 'background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%)';
-  var H = '<!DOCTYPE html><html><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">'
-        + '<style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:"Noto Sans KR",sans-serif;position:relative;background:#0a0a0a;'+noBg+'}</style>'
-        + '</head><body>';
-  var F = '</body></html>';
-  var sgBadge = '<div style="position:absolute;top:40px;left:48px;z-index:3"><div style="background:#c8ff00;color:#000;font-size:20px;font-weight:900;padding:6px 18px;border-radius:4px;letter-spacing:.06em;display:inline-block">SOUNDGLÜCK</div></div>';
-  var credit  = '<div style="display:flex;align-items:center;gap:16px;margin-top:28px">'
-              + '<span style="color:rgba(255,255,255,.35);font-size:16px;letter-spacing:.08em">@SOUNDGLÜCK</span>'
-              + '<div style="flex:1;height:1px;background:rgba(255,255,255,.15)"></div>'
-              + '</div>';
-
-  if(tpl === 'concept'){
-    // 1번 히어로 슬라이드
-    var titleSize = (t.title && t.title.length > 12) ? '72px' : '88px';
-    var hts = (t.hashtags || []).slice(0, 3);
-    var htHtml = hts.length
-      ? '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:4px">'
-        + hts.map(function(h){ return '<span style="border:1.5px solid rgba(255,255,255,.6);border-radius:40px;padding:8px 22px;color:#fff;font-size:20px;font-weight:500;'+wbStyle+'">#'+h+'</span>'; }).join('')
-        + '</div>'
-      : '';
-    return H + imgTag
-      + '<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.1) 100%);z-index:2"></div>'
-      + sgBadge
-      + '<div style="position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3">'
-      +   (t.badge ? '<div style="color:#c8ff00;font-size:22px;font-weight:700;letter-spacing:.06em;margin-bottom:16px;'+wbStyle+'">'+t.badge+'</div>' : '')
-      +   '<div style="color:#fff;font-size:'+titleSize+';font-weight:900;line-height:1.1;margin-bottom:18px;'+wbStyle+'">'+(t.title||'')+'</div>'
-      +   (t.body ? '<div style="color:rgba(255,255,255,.8);font-size:26px;line-height:1.7;margin-bottom:24px;'+wbStyle+'">'+t.body+'</div>' : '')
-      +   htHtml
-      +   credit
-      + '</div>'
-      + F;
+</div>
+</body></html>`;
   }
-
-  // 2~4번 product 슬라이드
-  var specItems = [];
-  if(t.s1_name) specItems.push({name:t.s1_name, desc:t.s1_desc||''});
-  if(t.s2_name) specItems.push({name:t.s2_name, desc:t.s2_desc||''});
-  if(t.s3_name) specItems.push({name:t.s3_name, desc:t.s3_desc||''});
-
-  var specHtml = '';
-  if(specItems.length){
-    specHtml = specItems.map(function(sp){
-      return '<div style="display:flex;align-items:flex-start;gap:16px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.08)">'
-           + '<span style="color:#c8ff00;font-size:22px;font-weight:900;flex-shrink:0;margin-top:2px">✦</span>'
-           + '<div>'
-           +   '<div style="font-size:36px;font-weight:700;color:#fff;line-height:1.2;'+wbStyle+'">'+sp.name+'</div>'
-           +   (sp.desc ? '<div style="font-size:20px;color:rgba(255,255,255,.6);margin-top:4px;line-height:1.5;'+wbStyle+'">'+sp.desc+'</div>' : '')
-           + '</div>'
-           + '</div>';
-    }).join('');
-  } else {
-    specHtml = '<div style="font-size:60px;font-weight:900;color:#fff;'+wbStyle+'">'+(t.title||'')+'</div>'
-             + (t.body ? '<div style="font-size:22px;color:rgba(255,255,255,.7);margin-top:12px;'+wbStyle+'">'+t.body+'</div>' : '');
-  }
-
-  return H + imgTag
-    + '<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.93) 0%,rgba(0,0,0,.5) 50%,rgba(0,0,0,.15) 100%);z-index:2"></div>'
-    + sgBadge
-    + (t.badge ? '<div style="position:absolute;top:40px;right:48px;z-index:3;background:rgba(200,255,0,.15);border:1px solid rgba(200,255,0,.4);color:#c8ff00;font-size:16px;font-weight:700;padding:6px 16px;border-radius:6px">'+t.badge+'</div>' : '')
-    + '<div style="position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3">'
-    +   (t.sub ? '<div style="color:#c8ff00;font-size:18px;font-weight:700;letter-spacing:.08em;margin-bottom:20px;text-transform:uppercase;'+wbStyle+'">'+t.sub+' — 특장점</div>' : '')
-    +   '<div style="display:flex;flex-direction:column;gap:0">'+specHtml+'</div>'
-    +   credit
-    + '</div>'
-    + F;
 }
 
 function buildCtaHtml(info){
@@ -1515,36 +1446,36 @@ JSON만 출력 (백틱/마크다운 절대 금지, body 필드 내 큰따옴표 
   }
   if(t==='press') return base+`\n역피라미드기사형식 / 크몽대행사전달용 / CTA: 네이버에서 '사운드글룩' 검색 또는 ${s.url} / 문의: ${s.tel}\n\nJSON만 출력:\n{"headline":"h","sub_headline":"sh","lead":"리드2~3문장","body":"본문800~1000자","quote":{"text":"인용","speaker":"사운드글룩 관계자"},"boilerplate":"회사소개3~4문장","image_guides":[{"num":1,"label":"메인","desc":"설명"},{"num":2,"label":"제품상세","desc":"설명"},{"num":3,"label":"브랜드로고","desc":"설명"},{"num":4,"label":"사용환경","desc":"설명"}],"contact":"문의정보"}`;
   if(t==='sns'){
-    const concept = (typeof snsConceptStyle!=='undefined') ? snsConceptStyle : 'A';
+    const concept = (typeof snsConceptNum!=='undefined') ? snsConceptNum : '1';
     const slideCnt = (typeof snsSlideCnt!=='undefined') ? snsSlideCnt : 1;
     const contentSlides = slideCnt===1 ? 1 : slideCnt-1;
-    const conceptNote = concept==='A'
-      ? '[디자인 컨셉 A — SP7 Grand 스타일] 퍼플(#a855f7) 포인트, 영문 대형 타이포, 다크 배경'
-      : '[디자인 컨셉 B — 사운드글룩 스타일] #c8ff00 포인트, 사진 배경+오버레이, 해시태그 배지, @SOUNDGLÜCK';
-
+    
+    // 컨셉별 스킬 지침
+    const conceptGuides = {
+      '1': '[디자인 컨셉 1 — 프로모션 스타일]\n배경: 딥 블루/네이비 그라디언트 (#1a1a2e→#0f3460)\n포인트: #c8ff00 — 이벤트 타이틀/혜택 강조\n레이아웃: 중앙 정렬, 이벤트 타이틀 크게, 혜택 박스/배지\n분위기: 긴박감, 할인/특가 강조',
+      '2': '[디자인 컨셉 2 — 제품 특장점 스타일]\n배경: 다크 (#0d0d0d→#1a1a2e)\n포인트: #c8ff00 — 번호 배지, 특장점 제목\n레이아웃: 좌상단 번호+브랜드, 중앙 강조 카피, 하단 스펙 3가지 이내\n분위기: 전문적, 기술적, 신뢰감',
+      '3': '[디자인 컨셉 3 — 라인업/비교 스타일]\n배경: 완전 다크 (#0a0a0a)\n포인트: #c8ff00 — 강조 모델, 가격 배지\n레이아웃: 모델별 카드 교차 배치, 가격 배지, 핵심 스펙 비교표\n분위기: 비교, 선택, 가이드',
+      '4': '[디자인 컨셉 4 — 사운드글룩 자체 스타일]\n배경: 사진 있으면 전체 배경, 없으면 다크 #0a0a0a\n오버레이: linear-gradient(to top, rgba(0,0,0,.85), transparent)\n상단: SOUNDGLÜCK 배지 (#c8ff00 배경, #000 텍스트, 좌상단) + 우상단 카테고리 뱃지\n하단: 소제목(#c8ff00) → 메인타이틀(흰색 크게) → 설명(흰색 반투명)\n최하단: @SOUNDGLÜCK 크레딧 + 수평선\n해시태그: 둥근 테두리 배지형\n분위기: 고급 브랜드 감성, 잡지 광고 스타일'
+    };
+    
+    const conceptGuide = conceptGuides[concept] || conceptGuides['1'];
+    
+    // 슬라이드 수에 따른 구성
+    const slideStructure = slideCnt===1
+      ? `[슬라이드 구성: 1장]\n1장: 메인 카드 — 핵심 메시지 + 제품 정보 압축. CTA는 캡션에 포함.`
+      : `[슬라이드 구성: ${slideCnt}장]\n${Array.from({length:contentSlides},(_,i)=>`${i+1}장: 콘텐츠 슬라이드`).join('\n')}\n${slideCnt}장: CTA 고정 — 사운드글룩 채널 정보`;
+    
+    // 이미지 정보
     const imgInfos = [];
     for(let i=0;i<contentSlides;i++){
-      imgInfos.push((i+1)+'번: '+(snsImages&&snsImages[i]?'이미지 업로드됨':'이미지 없음'));
+      if(snsImages&&snsImages[i]) imgInfos.push(`${i+1}번 슬라이드: 업로드 이미지 있음 — 배경으로 활용`);
+      else imgInfos.push(`${i+1}번 슬라이드: 이미지 없음 — 컨셉 색상/도형으로 생성`);
     }
-
-    const benefitList = benefits&&benefits.length ? benefits.join(', ') : '없음';
-
-    return base+'\n\n'+conceptNote
-      +'\n\n[제품 정보] 브랜드:'+brand+' / 품목:'+item+(model?' / 모델:'+model:'')
-      +'\n\n[이미지 정보] '+imgInfos.join(' / ')
-      +'\n\n[선택된 베네핏] '+benefitList
-      +'\n\n[슬라이드 구성: '+slideCnt+'장]'
-      +'\n\n★ 슬라이드별 작성 규칙 (필수)\n'
-      +'각 슬라이드는 서로 다른 내용을 다뤄야 합니다. 같은 특장점을 여러 슬라이드에 반복하면 절대 안 됩니다.\n\n'
-      +'1번(히어로): 제품 전체를 대표하는 강렬한 한 줄 카피. title=영문 대문자 슬로건(예: THE STAGE IS YOURS), subtitle=품목명 그대로(예: '+item+'), body=한국어 부제(브랜드+모델+품목), badge=품목 카테고리. hashtags=대표 해시태그 3개(#없이).\n\n'
-      +'2번(특장점): 제품의 핵심 특장점 중 첫번째 그룹 3가지. s1_name/s1_desc, s2_name/s2_desc, s3_name/s3_desc. 가격/혜택 내용 절대 금지.\n\n'
-      +'3번(특장점): 2번과 완전히 다른 특장점 3가지. 2번에서 언급한 내용 반복 절대 금지. 가격/혜택 내용 절대 금지.\n\n'
-      +'4번(혜택): 특장점/스펙 내용 절대 금지. title=혜택 핵심 문구. b1/b2/b3=[선택된 베네핏: '+benefitList+']. badge=특가.\n\n'
-      +'5번(CTA): title=구매 유도 문구, desc=짧은 설명.\n\n'
-      +'JSON만 출력 (백틱/마크다운 절대 금지):\n'
-      +'{"detected_skill":"product-feature-sns-image","caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"영문대문자슬로건","subtitle":"'+item+'","body":"한국어부제","badge":"'+item+'","hashtags":["태그1","태그2","태그3"]},{"slide":2,"s1_name":"특장점1","s1_desc":"설명","s2_name":"특장점2","s2_desc":"설명","s3_name":"특장점3","s3_desc":"설명","badge":""},{"slide":3,"s1_name":"특장점4","s1_desc":"설명","s2_name":"특장점5","s2_desc":"설명","s3_name":"특장점6","s3_desc":"설명","badge":""},{"slide":4,"title":"혜택핵심문구","b1":"베네핏1","b2":"베네핏2","b3":"베네핏3","badge":"특가"},{"slide":5,"title":"지금 바로 만나보세요","desc":""}],"posting_tips":["팁1","팁2","팁3"]}';
+    
+        const benefitStr = benefits&&benefits.length ? benefits.join(', ') : '없음';
+        return base+`\n\n[제품 정보] 브랜드: ${brand} / 품목: ${item}${model?' / 모델: '+model:''}\n\n[SNS 콘텐츠 제작 지침]\n${conceptGuide}\n\n${slideStructure}\n\n[슬라이드별 이미지]: ${imgInfos.join(' / ')}\n\n[선택된 구매 베네핏]: ${benefitStr}\n\n사운드글룩 브랜드: 배경 #0a0a0a / 포인트 #c8ff00 / 텍스트 흰색\n\n[카드뉴스 5장 구성]\n1장: 훅 — 제품명·품목(${item})을 대표하는 강렬한 한 줄. subtitle은 반드시 "${item}"으로.\n2장: 핵심 특장점 첫번째 그룹 3가지. 3번 슬라이드와 내용 중복 절대 금지.\n3장: 핵심 특장점 두번째 그룹 3가지. 2번 슬라이드에서 쓴 내용 반복 절대 금지.\n4장: 가격/혜택/베네핏 — 위 [선택된 구매 베네핏] 항목만 사용. 임의 추가 금지.\n5장: CTA 고정 템플릿\n\n[슬라이드 텍스트 작성 규칙]\n[슬라이드별 출력 규칙]\n\n1번(훅): html 필드에 완성 HTML 출력 (1080x1080, 다크 #0a0a0a, 포인트 #c8ff00). title/subtitle/body/badge도 출력.\n\n2번·3번(특장점): 제품 핵심 스펙/기술만. 가격/패키지/혜택 절대 금지. 영문 용어 번역 금지. s1_name/s1_desc/s2_name/s2_desc/s3_name/s3_desc 출력 (없으면 빈 문자열). html 출력 금지.\n\n4번(혜택): 특장점/스펙 절대 금지. title은 혜택 핵심 문구. b1/b2/b3은 [선택된 구매 베네핏] 항목만 그대로 (자동추가 절대 금지). badge는 특가. html 출력 금지.\n\n5번(CTA): title/desc만 출력.\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"detected_skill":"스킬명","caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"슬라이드1 핵심 문구","subtitle":"${item}","body":"한줄 설명","badge":"${item}"},{"slide":2,"s1_name":"특장점1명","s1_desc":"설명","s2_name":"특장점2명","s2_desc":"설명","s3_name":"특장점3명","s3_desc":"설명","badge":""},{"slide":3,"s1_name":"2번과다른특장점","s1_desc":"설명","s2_name":"특장점명","s2_desc":"설명","s3_name":"","s3_desc":"","badge":""},{"slide":4,"title":"혜택 문구","b1":"베네핏1","b2":"베네핏2","b3":"베네핏3","badge":"특가"},{"slide":5,"title":"CTA","desc":""}],"posting_tips":["팁1","팁2","팁3"]}`;
   }
-    if(t==='shorts') return base+`\n60초이내 / AI아바타나레이션용 / 훅→본론→CTA\n\nJSON만 출력:\n{"title":"제목","hook":"첫3초훅","script":[{"time":"0~3초","text":"멘트","visual":"화면"},{"time":"3~15초","text":"멘트","visual":"화면"},{"time":"15~35초","text":"멘트","visual":"화면"},{"time":"35~50초","text":"멘트","visual":"화면"},{"time":"50~60초","text":"CTA","visual":"화면"}],"thumbnail_text":"썸네일문구","description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
+  if(t==='shorts') return base+`\n60초이내 / AI아바타나레이션용 / 훅→본론→CTA\n\nJSON만 출력:\n{"title":"제목","hook":"첫3초훅","script":[{"time":"0~3초","text":"멘트","visual":"화면"},{"time":"3~15초","text":"멘트","visual":"화면"},{"time":"15~35초","text":"멘트","visual":"화면"},{"time":"35~50초","text":"멘트","visual":"화면"},{"time":"50~60초","text":"CTA","visual":"화면"}],"thumbnail_text":"썸네일문구","description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
   if(t==='youtube') return base+`\n7~10분 / AI아바타+슬라이드 / EGLOO스타일 / CTA: ${s.url}\n\nJSON만 출력:\n{"title":"제목","thumbnail":{"main_text":"메인","sub_text":"서브"},"structure":[{"section":"인트로","duration":"0~30초","script":"스크립트","visual":"화면"},{"section":"본론1","duration":"30초~3분","script":"스크립트","visual":"화면"},{"section":"본론2","duration":"3~6분","script":"스크립트","visual":"화면"},{"section":"비교/추천","duration":"6~8분","script":"스크립트","visual":"화면"},{"section":"CTA","duration":"8~10분","script":"사운드글룩구매유도","visual":"화면"}],"comparison_chart":{"headers":["항목","제품A","제품B","제품C"],"rows":[["가격","","",""],["건반","","",""],["음색수","","",""],["특징","","",""],["추천대상","","",""]]},"description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
 }
 
@@ -1697,7 +1628,9 @@ function renderPress(d,el){
 
 function renderSns(d,el){
   let h='';
-  const concept = (typeof snsConceptStyle!=='undefined') ? snsConceptStyle : 'A';
+  const skillNames={'promo-sns-image':'프로모션 이미지','product-lineup-sns-image':'라인업/비교 이미지','product-feature-sns-image':'특장점 이미지'};
+  const usedSkill=d.detected_skill||'product-feature-sns-image';
+  h+=`<div class="r-card" style="border-left:3px solid var(--teal)"><div class="r-head"><div class="r-head-title">📱 적용 스킬: ${skillNames[usedSkill]||usedSkill}</div></div><div class="r-body"><div style="font-size:12px;color:var(--gray)">콘텐츠 유형에 맞게 자동 선택됨</div></div></div>`;
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">✍️ 캡션 3가지 버전</div></div><div class="r-body">${(d.caption_versions||[]).map((v,i)=>`<div class="prompt-item" style="margin-bottom:12px"><div class="prompt-label">${v.label}</div><div class="prompt-text" id="sns-cap-${i}">${v.text}</div><div class="r-actions" style="margin-top:8px"><button class="prompt-copy" onclick="cp(document.getElementById('sns-cap-${i}').innerText,this)">캡션 복사</button><button class="btn-edit" onclick="makeEditable(document.getElementById('sns-cap-${i}'))">✏️ 직접 편집</button><button class="btn-ai-edit" onclick="toggleAiBox('sns-cap-aibox-${i}')">🤖 AI로 수정</button></div><div class="ai-edit-box" id="sns-cap-aibox-${i}"><input class="ai-edit-input" placeholder="예: 더 재미있게, 이모지 더 넣어, 짧게 줄여줘..."><button class="btn-ai-run" onclick="runAiEdit('sns-cap-${i}','sns-cap-aibox-${i}','인스타그램 캡션')">AI 수정하기</button><div class="edit-loading">🤖 수정 중...</div></div></div>`).join('')}</div></div>`;
   const hs=(d.hashtags||[]).map(t=>'#'+t).join(' ');
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🏷️ 해시태그 <span class="r-badge">30개</span></div><button class="copy-btn" onclick="cp('${hs.replace(/'/g,"\\'")}',this)">전체 복사</button></div><div class="r-body"><div class="tag-wrap">${(d.hashtags||[]).map(t=>`<span class="tag">#${t}</span>`).join('')}</div></div></div>`;
@@ -1709,7 +1642,7 @@ function renderSns(d,el){
         hCode=buildCtaHtml({title:s.title,sub:s.desc});
       } else if(i===0){
         // 1번 — AI HTML 그대로 사용
-        hCode=buildSlideHtml('concept',null,{title:s.title,sub:s.subtitle||'',body:s.body||'',badge:s.badge||'',hashtags:s.hashtags||[]});
+        hCode=s.html||buildSlideHtml('concept',null,{title:s.title,sub:s.subtitle||'',body:s.body||'',badge:s.badge||''});
       } else {
         // 2~4번 — 제품형 템플릿 + 이미지
         let texts;
@@ -1820,7 +1753,9 @@ function applySlideEdit(i){
   const g = (id)=>{ const el=document.getElementById('se-'+i+'-'+id); return el?el.value.trim():''; };
   let newHtml;
   if(i===0){
-    const texts={title:g('title'),sub:g('sub'),body:g('body'),badge:g('badge'),hashtags:(window._snsSlides[i]&&window._snsSlides[i].hashtags)||[]};
+    const texts={title:g('title'),sub:g('sub'),body:g('body'),badge:g('badge'),s1_name:'',s1_desc:'',s2_name:'',s2_desc:'',s3_name:'',s3_desc:''};
+    newHtml = s.html ? s.html : buildSlideHtml('concept', null, texts);
+    // 1번은 AI HTML 있으면 그대로, 텍스트만 반영 어려우므로 concept으로 재빌드
     newHtml = buildSlideHtml('concept', null, texts);
   } else if(i===1||i===2){
     const texts={title:g('s1n'),sub:'',body:'',badge:g('badge'),s1_name:g('s1n'),s1_desc:g('s1d'),s2_name:g('s2n'),s2_desc:g('s2d'),s3_name:g('s3n'),s3_desc:g('s3d')};
