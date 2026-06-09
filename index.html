@@ -706,55 +706,25 @@ body {
   <!-- 디자인 컨셉 선택 -->
   <div class="form-card">
     <div class="form-card-title">디자인 컨셉</div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px" id="sns-concept-grid">
-      <div class="concept-card active" onclick="selConcept(this,'1')" id="concept-card-1">
-        <div class="concept-preview" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);height:80px;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;position:relative;overflow:hidden">
-          <div style="position:absolute;bottom:8px;left:10px;right:10px">
-            <div style="background:#c8ff00;height:3px;width:40%;margin-bottom:4px;border-radius:2px"></div>
-            <div style="background:rgba(255,255,255,.9);height:8px;width:80%;border-radius:2px;margin-bottom:3px"></div>
-            <div style="background:rgba(255,255,255,.4);height:5px;width:60%;border-radius:2px"></div>
-          </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px" id="sns-concept-grid">
+      <div class="concept-card active" onclick="selConcept(this,'A')" id="concept-card-A">
+        <div style="background:#0a0a0a;height:90px;border-radius:8px;margin-bottom:10px;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(80,0,180,.7),transparent 60%)"></div>
+          <div style="position:absolute;top:8px;left:10px;color:#fff;font-size:7px;font-weight:900;letter-spacing:.1em">KURZWEIL</div>
+          <div style="position:absolute;bottom:10px;left:10px"><div style="color:#fff;font-size:13px;font-weight:900">SP7</div><div style="color:#a855f7;font-size:11px;font-weight:900">GRAND</div></div>
+          <div style="position:absolute;top:8px;right:10px;color:rgba(255,255,255,.5);font-size:8px">01/04</div>
         </div>
-        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 1 — 프로모션</div>
-        <div style="font-size:10px;color:var(--gray);margin-top:2px">이벤트·할인·특가 강조</div>
+        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 A — SP7 Grand 스타일</div>
+        <div style="font-size:10px;color:var(--gray);margin-top:2px">퍼플 포인트 · 영문 대형 타이포</div>
       </div>
-      <div class="concept-card" onclick="selConcept(this,'2')" id="concept-card-2">
-        <div class="concept-preview" style="background:linear-gradient(135deg,#0d0d0d,#1a1a2e);height:80px;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;position:relative;overflow:hidden">
-          <div style="position:absolute;top:8px;left:10px">
-            <div style="background:#c8ff00;height:3px;width:20px;border-radius:2px;margin-bottom:6px"></div>
-          </div>
-          <div style="position:absolute;bottom:8px;left:10px;right:10px">
-            <div style="background:rgba(255,255,255,.9);height:10px;width:70%;border-radius:2px;margin-bottom:4px"></div>
-            <div style="background:rgba(200,255,0,.7);height:5px;width:45%;border-radius:2px"></div>
-          </div>
+      <div class="concept-card" onclick="selConcept(this,'B')" id="concept-card-B">
+        <div style="background:#111;height:90px;border-radius:8px;margin-bottom:10px;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85),transparent 55%)"></div>
+          <div style="position:absolute;top:8px;left:8px;background:#c8ff00;color:#000;font-size:7px;font-weight:900;padding:2px 6px;border-radius:2px">SOUNDGLÜCK</div>
+          <div style="position:absolute;bottom:8px;left:10px;right:10px"><div style="color:#c8ff00;font-size:7px;font-weight:700;margin-bottom:2px">본사 인증 S급 리퍼</div><div style="color:#fff;font-size:9px;font-weight:900;margin-bottom:4px">커즈와일 디지털 피아노</div><div style="display:flex;gap:3px"><span style="border:1px solid rgba(255,255,255,.5);border-radius:10px;padding:1px 5px;font-size:6px;color:#fff">#본사검수</span><span style="border:1px solid rgba(255,255,255,.4);border-radius:10px;padding:1px 5px;font-size:6px;color:#fff">#AS보증</span></div></div>
         </div>
-        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 2 — 제품 특장점</div>
-        <div style="font-size:10px;color:var(--gray);margin-top:2px">핵심 스펙·기능 부각</div>
-      </div>
-      <div class="concept-card" onclick="selConcept(this,'3')" id="concept-card-3">
-        <div class="concept-preview" style="background:linear-gradient(135deg,#0a0a0a,#1a1a1a);height:80px;border-radius:6px;display:flex;align-items:flex-end;padding:8px 10px;margin-bottom:8px;gap:4px">
-          <div style="flex:1;background:rgba(200,255,0,.3);border-radius:3px;height:50px;border:1px solid rgba(200,255,0,.5)"></div>
-          <div style="flex:1;background:rgba(200,255,0,.5);border-radius:3px;height:60px;border:1px solid rgba(200,255,0,.7)"></div>
-          <div style="flex:1;background:rgba(200,255,0,.2);border-radius:3px;height:40px;border:1px solid rgba(200,255,0,.3)"></div>
-        </div>
-        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 3 — 라인업/비교</div>
-        <div style="font-size:10px;color:var(--gray);margin-top:2px">모델 비교·가격 비교</div>
-      </div>
-      <div class="concept-card" onclick="selConcept(this,'4')" id="concept-card-4">
-        <div class="concept-preview" style="background:#111;height:80px;border-radius:6px;overflow:hidden;margin-bottom:8px;position:relative">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 60%)"></div>
-          <div style="position:absolute;top:8px;left:8px;background:#c8ff00;color:#000;font-size:8px;font-weight:900;padding:2px 6px;border-radius:2px">SOUNDGLÜCK</div>
-          <div style="position:absolute;bottom:8px;left:10px;right:10px">
-            <div style="color:rgba(200,255,0,.9);font-size:7px;font-weight:700;margin-bottom:3px">본사 인증 S급 리퍼</div>
-            <div style="background:rgba(255,255,255,.9);height:9px;width:75%;border-radius:2px;margin-bottom:4px"></div>
-            <div style="display:flex;gap:4px">
-              <div style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);border-radius:10px;height:8px;width:30%"></div>
-              <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);border-radius:10px;height:8px;width:30%"></div>
-            </div>
-          </div>
-        </div>
-        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 4 — 사운드글룩 스타일</div>
-        <div style="font-size:10px;color:var(--gray);margin-top:2px">배경 사진 + 텍스트 오버레이</div>
+        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 B — 사운드글룩 스타일</div>
+        <div style="font-size:10px;color:var(--gray);margin-top:2px">사진 배경 · 해시태그 배지 · @SOUNDGLÜCK</div>
       </div>
     </div>
   </div>
@@ -1048,13 +1018,15 @@ function goPage(id,el){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 let snsImages = [null, null, null, null, null];
-let snsConceptNum = '1';
+let snsConceptNum = 'A';
+let snsConceptStyle = 'A';
 let snsSlideCnt = 1;
 
 function selConcept(el, num){
   document.querySelectorAll('.concept-card').forEach(c=>c.classList.remove('active'));
   el.classList.add('active');
   snsConceptNum = num;
+  snsConceptStyle = num;
 }
 
 function selSlideCnt(el, cnt){
@@ -1118,6 +1090,16 @@ document.addEventListener('DOMContentLoaded', function(){ updateImgSlots(1); });
 let snsTemplate = 'concept';
 
 function buildSlideHtml(tpl, img, texts){
+  var _concept = (typeof snsConceptStyle !== 'undefined') ? snsConceptStyle : 'A';
+  var _accent  = _concept === 'A' ? '#a855f7' : '#c8ff00';
+  var _accentTxt = _concept === 'A' ? '#a855f7' : '#c8ff00';
+  var _logoBg  = _concept === 'A' ? '#000' : '#c8ff00';
+  var _logoTxt = _concept === 'A' ? '#a855f7' : '#000';
+  // 원본 함수에 컨셉 변수 주입 후 동작
+  var _orig = _buildSlideHtml_orig(tpl, img, texts, _accent, _logoBg, _logoTxt, _concept);
+  return _orig;
+}
+function _buildSlideHtml_orig(tpl, img, texts, _accent, _logoBg, _logoTxt, _concept){
   const {title, sub, body, badge} = texts;
   const imgTag = img ? `<img src="${img}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:${tpl==='concept'?'cover':'contain'};z-index:1${tpl==='product'?';padding:60px;background:#0a0a0a':''}">` : '';
   if(tpl === 'concept'){
@@ -1126,13 +1108,14 @@ function buildSlideHtml(tpl, img, texts){
 ${imgTag}
 <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.15) 100%);z-index:2"></div>
 <div style="position:absolute;top:40px;left:48px;z-index:3;display:flex;align-items:center;gap:10px">
-  <span style="background:#c8ff00;color:#000;font-size:22px;font-weight:900;padding:6px 16px;border-radius:4px;letter-spacing:.05em">SOUNDGLÜCK</span>
+  <span style="background:${_logoBg};color:${_logoTxt};font-size:22px;font-weight:900;padding:6px 16px;border-radius:4px;letter-spacing:.05em">SOUNDGLÜCK</span>
 </div>
 ${badge?`<div style="position:absolute;top:40px;right:48px;z-index:3;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:20px;padding:8px 18px;border-radius:6px;backdrop-filter:blur(4px)">${badge}</div>`:''}
 <div style="position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3">
-  ${sub?`<div style="color:#c8ff00;font-size:26px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px">${sub}</div>`:''}
+  ${sub?`<div style="color:${_accent};font-size:26px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px">${sub}</div>`:''}
   <div style="color:#fff;font-size:${title&&title.length>12?'88':'108'}px;font-weight:900;line-height:1.05;margin-bottom:24px;text-shadow:0 2px 20px rgba(0,0,0,.5);word-break:keep-all">${title||''}</div>
   ${body?`<div style="color:rgba(255,255,255,.85);font-size:30px;line-height:1.6;font-weight:400;word-break:keep-all">${body}</div>`:''}
+  ${_concept==='B'?`<div style="display:flex;align-items:center;gap:16px;margin-top:20px"><span style="color:rgba(255,255,255,.4);font-size:16px;letter-spacing:.08em">@SOUNDGLÜCK</span><div style="flex:1;height:1px;background:rgba(255,255,255,.2)"></div></div>`:''}
 </div>
 </body></html>`;
   } else {
@@ -1142,8 +1125,8 @@ ${badge?`<div style="position:absolute;top:40px;right:48px;z-index:3;background:
 body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;background:#fff;display:flex;flex-direction:column;border:1px solid #e8e8e8}
 </style></head><body>
 <div style="display:flex;justify-content:space-between;align-items:center;padding:32px 44px 0;flex-shrink:0">
-  <span style="background:#000;color:#c8ff00;font-size:18px;font-weight:900;padding:4px 12px;border-radius:3px;letter-spacing:.06em">SOUNDGLÜCK</span>
-  ${badge?`<span style="background:#c8ff00;color:#000;font-size:16px;font-weight:900;padding:4px 14px;border-radius:3px">${badge}</span>`:''}
+  <span style="background:${_logoBg};color:${_logoTxt};font-size:18px;font-weight:900;padding:4px 12px;border-radius:3px;letter-spacing:.06em">SOUNDGLÜCK</span>
+  ${badge?`<span style="background:${_accent};color:#000;font-size:16px;font-weight:900;padding:4px 14px;border-radius:3px">${badge}</span>`:''}
 </div>
 <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px 60px 0;min-height:0">
   ${img
@@ -1157,7 +1140,7 @@ body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-
     if(texts.s2_name) specItems.push({name:texts.s2_name,desc:texts.s2_desc||''});
     if(texts.s3_name) specItems.push({name:texts.s3_name,desc:texts.s3_desc||''});
     if(specItems.length){
-      return specItems.map(sp=>`<div style="margin-bottom:12px"><div style="font-size:46px;font-weight:900;color:#c8ff00;line-height:1.1;word-break:keep-all">${sp.name}</div><div style="font-size:21px;color:rgba(255,255,255,.65);margin-top:4px;line-height:1.4;word-break:keep-all">${sp.desc}</div></div>`).join('<div style="height:1px;background:#1a1a1a;margin:2px 0"></div>');
+      return specItems.map(sp=>`<div style="margin-bottom:12px"><div style="font-size:46px;font-weight:900;color:${_accent};line-height:1.1;word-break:keep-all">${sp.name}</div><div style="font-size:21px;color:rgba(255,255,255,.65);margin-top:4px;line-height:1.4;word-break:keep-all">${sp.desc}</div></div>`).join('<div style="height:1px;background:#1a1a1a;margin:2px 0"></div>');
     }
     return `<div style="font-size:${title&&title.length>8?'64':'78'}px;font-weight:900;color:#fff;word-break:keep-all">${title||''}</div>${body?`<div style="font-size:22px;color:rgba(255,255,255,.7);margin-top:12px;word-break:keep-all">${body}</div>`:''}`;
   })()
@@ -1472,8 +1455,8 @@ JSON만 출력 (백틱/마크다운 절대 금지, body 필드 내 큰따옴표 
       else imgInfos.push(`${i+1}번 슬라이드: 이미지 없음 — 컨셉 색상/도형으로 생성`);
     }
     
-        const benefitStr = benefits&&benefits.length ? benefits.join(', ') : '없음';
-        return base+`\n\n[제품 정보] 브랜드: ${brand} / 품목: ${item}${model?' / 모델: '+model:''}\n\n[SNS 콘텐츠 제작 지침]\n${conceptGuide}\n\n${slideStructure}\n\n[슬라이드별 이미지]: ${imgInfos.join(' / ')}\n\n[선택된 구매 베네핏]: ${benefitStr}\n\n사운드글룩 브랜드: 배경 #0a0a0a / 포인트 #c8ff00 / 텍스트 흰색\n\n[카드뉴스 5장 구성]\n1장: 훅 — 제품명·품목(${item})을 대표하는 강렬한 한 줄. subtitle은 반드시 "${item}"으로.\n2장: 핵심 특장점 첫번째 그룹 3가지. 3번 슬라이드와 내용 중복 절대 금지.\n3장: 핵심 특장점 두번째 그룹 3가지. 2번 슬라이드에서 쓴 내용 반복 절대 금지.\n4장: 가격/혜택/베네핏 — 위 [선택된 구매 베네핏] 항목만 사용. 임의 추가 금지.\n5장: CTA 고정 템플릿\n\n[슬라이드 텍스트 작성 규칙]\n[슬라이드별 출력 규칙]\n\n1번(훅): html 필드에 완성 HTML 출력 (1080x1080, 다크 #0a0a0a, 포인트 #c8ff00). title/subtitle/body/badge도 출력.\n\n2번·3번(특장점): 제품 핵심 스펙/기술만. 가격/패키지/혜택 절대 금지. 영문 용어 번역 금지. s1_name/s1_desc/s2_name/s2_desc/s3_name/s3_desc 출력 (없으면 빈 문자열). html 출력 금지.\n\n4번(혜택): 특장점/스펙 절대 금지. title은 혜택 핵심 문구. b1/b2/b3은 [선택된 구매 베네핏] 항목만 그대로 (자동추가 절대 금지). badge는 특가. html 출력 금지.\n\n5번(CTA): title/desc만 출력.\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"detected_skill":"스킬명","caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"슬라이드1 핵심 문구","subtitle":"${item}","body":"한줄 설명","badge":"${item}"},{"slide":2,"s1_name":"특장점1명","s1_desc":"설명","s2_name":"특장점2명","s2_desc":"설명","s3_name":"특장점3명","s3_desc":"설명","badge":""},{"slide":3,"s1_name":"2번과다른특장점","s1_desc":"설명","s2_name":"특장점명","s2_desc":"설명","s3_name":"","s3_desc":"","badge":""},{"slide":4,"title":"혜택 문구","b1":"베네핏1","b2":"베네핏2","b3":"베네핏3","badge":"특가"},{"slide":5,"title":"CTA","desc":""}],"posting_tips":["팁1","팁2","팁3"]}`;
+        const _benefitStr = benefits&&benefits.length ? benefits.join(', ') : '없음';
+        return base+`\n\n[제품정보] 브랜드:${brand} / 품목:${item}${model?' / 모델:'+model:''}\n[선택된 베네핏]: ${_benefitStr}\n\n[SNS 콘텐츠 제작 지침]\n${conceptGuide}\n\n${slideStructure}\n\n[슬라이드별 이미지]: ${imgInfos.join(' / ')}\n사운드글룩 브랜드: 배경 #0a0a0a / 포인트 #c8ff00 / 텍스트 흰색\n\n[카드뉴스 5장 구성]\n1장: 훅 — 품목(${item})을 대표하는 강렬한 한 줄. subtitle 반드시 "${item}" 그대로.\n2장: 핵심 특장점 첫번째 그룹 3가지. 3번과 내용 절대 중복 금지.\n3장: 핵심 특장점 두번째 그룹 3가지. 2번에서 쓴 내용 반복 절대 금지.\n4장: 가격/혜택 — [선택된 베네핏] 항목만 사용. 임의추가 절대 금지.\n5장: CTA 고정 템플릿\n\n[슬라이드별 출력 규칙]\n\n1번(훅): html 필드에 완성 HTML 출력 (1080x1080, 다크 #0a0a0a, 포인트 #c8ff00). title/subtitle/body/badge도 출력.\n\n2번·3번(특장점): 제품 핵심 스펙/기술만. 가격/패키지/혜택 절대 금지. 영문 용어 번역 금지. s1_name/s1_desc/s2_name/s2_desc/s3_name/s3_desc 출력 (없으면 빈 문자열). html 출력 금지.\n\n4번(혜택): 특장점/스펙 절대 금지. title은 혜택 핵심 문구. b1/b2/b3은 [선택된 베네핏] 항목만 그대로 (자동추가 절대 금지). badge는 특가. html 출력 금지.\n\n5번(CTA): title/desc만 출력.\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"detected_skill":"스킬명","caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"슬라이드1 핵심 문구","subtitle":"${item}","body":"한줄 설명","badge":"${item}"},{"slide":2,"s1_name":"특장점1명","s1_desc":"설명","s2_name":"특장점2명","s2_desc":"설명","s3_name":"특장점3명","s3_desc":"설명","badge":""},{"slide":3,"s1_name":"2번과다른특장점","s1_desc":"설명","s2_name":"특장점명","s2_desc":"설명","s3_name":"","s3_desc":"","badge":""},{"slide":4,"title":"혜택 문구","b1":"베네핏1","b2":"베네핏2","b3":"베네핏3","badge":"특가"},{"slide":5,"title":"CTA","desc":""}],"posting_tips":["팁1","팁2","팁3"]}`;
   }
   if(t==='shorts') return base+`\n60초이내 / AI아바타나레이션용 / 훅→본론→CTA\n\nJSON만 출력:\n{"title":"제목","hook":"첫3초훅","script":[{"time":"0~3초","text":"멘트","visual":"화면"},{"time":"3~15초","text":"멘트","visual":"화면"},{"time":"15~35초","text":"멘트","visual":"화면"},{"time":"35~50초","text":"멘트","visual":"화면"},{"time":"50~60초","text":"CTA","visual":"화면"}],"thumbnail_text":"썸네일문구","description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
   if(t==='youtube') return base+`\n7~10분 / AI아바타+슬라이드 / EGLOO스타일 / CTA: ${s.url}\n\nJSON만 출력:\n{"title":"제목","thumbnail":{"main_text":"메인","sub_text":"서브"},"structure":[{"section":"인트로","duration":"0~30초","script":"스크립트","visual":"화면"},{"section":"본론1","duration":"30초~3분","script":"스크립트","visual":"화면"},{"section":"본론2","duration":"3~6분","script":"스크립트","visual":"화면"},{"section":"비교/추천","duration":"6~8분","script":"스크립트","visual":"화면"},{"section":"CTA","duration":"8~10분","script":"사운드글룩구매유도","visual":"화면"}],"comparison_chart":{"headers":["항목","제품A","제품B","제품C"],"rows":[["가격","","",""],["건반","","",""],["음색수","","",""],["특징","","",""],["추천대상","","",""]]},"description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
