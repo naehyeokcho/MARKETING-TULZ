@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOUNDGLÜCK · A.I MARKETING TULZ v4.6</title>
+<title>SOUNDGLÜCK · A.I MARKETING TULZ v4.7</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -462,15 +462,9 @@ body {
   padding: 8px 12px; background: var(--teal-dim); border-radius: 8px;
 }
 
-.benefit-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--teal-pale);border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--dark2);cursor:pointer;transition:all .2s;user-select:none}
-.benefit-chip:hover{border-color:var(--teal)}
-.benefit-chip input[type=checkbox]{accent-color:var(--teal);width:13px;height:13px}
 .concept-card{padding:12px;border:2px solid var(--border);border-radius:12px;cursor:pointer;transition:all .2s;background:var(--bg)}
 .concept-card:hover{border-color:var(--teal)}
 .concept-card.active{border-color:var(--teal);background:var(--teal-pale)}
-.slide-cnt-chip{padding:8px 18px;border:1.5px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;color:var(--dark2);transition:all .2s}
-.slide-cnt-chip:hover{border-color:var(--teal)}
-.slide-cnt-chip.active{background:var(--teal);color:#fff;border-color:var(--teal)}
 </style>
 </head>
 <body>
@@ -480,7 +474,7 @@ body {
   <div class="logo">
     <div>
       <span class="logo-name">SOUNDGLÜCK</span>
-      <span class="logo-ver">v4.6</span>
+      <span class="logo-ver">v4.7</span>
     </div>
   </div>
   <button class="api-btn" onclick="openApi()">
@@ -729,24 +723,13 @@ body {
     </div>
   </div>
 
-  <!-- 슬라이드 수 선택 -->
-  <div class="form-card">
-    <div class="form-card-title">슬라이드 수</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <div class="slide-cnt-chip active" onclick="selSlideCnt(this,1)">1장</div>
-      <div class="slide-cnt-chip" onclick="selSlideCnt(this,2)">2장</div>
-      <div class="slide-cnt-chip" onclick="selSlideCnt(this,3)">3장</div>
-      <div class="slide-cnt-chip" onclick="selSlideCnt(this,4)">4장</div>
-      <div class="slide-cnt-chip" onclick="selSlideCnt(this,5)">5장</div>
-    </div>
-    <div style="margin-top:8px;font-size:11px;color:var(--gray)">2장 이상 시 마지막 장은 사운드글룩 CTA 자동 생성</div>
-  </div>
 
-  <!-- 이미지 업로드 (슬라이드 수 기반 동적 생성) -->
+
+  <!-- 이미지 업로드 (1~3번 슬라이드 고정) -->
   <div class="form-card">
     <div class="form-card-title">이미지 업로드 <span style="font-size:11px;color:var(--gray);font-weight:400">(선택사항 — 슬라이드 배경으로 사용)</span></div>
-    <div id="sns-img-wrap" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px"></div>
-    <div style="margin-top:8px;font-size:11px;color:var(--gray)">탭 닫으면 사라집니다. 업로드 없으면 텍스트+색상으로 자동 생성.</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px" id="sns-img-wrap"></div>
+    <div style="margin-top:8px;font-size:11px;color:var(--gray)">탭 닫으면 사라집니다. 업로드 없으면 다크 배경으로 자동 생성.</div>
   </div>
 
   <div class="form-card">
@@ -802,18 +785,7 @@ body {
     <div class="form-card-title">모델명 / 핵심 메시지 (선택사항)</div>
     <input class="field-input" id="sns-model" placeholder="예: SP7 Grand, 여름 한정 프로모션...">
   </div>
-  <div class="form-card">
-    <div class="form-card-title">베네핏 / 구매 혜택 <span style="font-size:11px;color:var(--gray);font-weight:400">(CTA 슬라이드에 자동 반영)</span></div>
-    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px" id="sns-benefit-chips">
-      <label class="benefit-chip"><input type="checkbox" value="특별한 가격 구성" checked> 특별한 가격 구성</label>
-      <label class="benefit-chip"><input type="checkbox" value="풀패키지 구성품 100% 증정" checked> 풀패키지 구성품 100% 증정</label>
-      <label class="benefit-chip"><input type="checkbox" value="사은품 증정"> 사은품 증정</label>
-      <label class="benefit-chip"><input type="checkbox" value="무이자 할부"> 무이자 할부</label>
-      <label class="benefit-chip"><input type="checkbox" value="당일 출고"> 당일 출고</label>
-      <label class="benefit-chip"><input type="checkbox" value="리퍼 특가 (S급 리퍼)"> 리퍼 특가 (S급 리퍼)</label>
-    </div>
-    <input class="field-input" id="sns-benefit-custom" placeholder="추가 혜택 직접 입력 (예: 스탠드+페달 풀세트 증정)">
-  </div>
+
   <button class="gen-btn" onclick="gen('sns')">SNS 콘텐츠 생성하기 →</button>
   <div id="sns-result" class="hidden">
     <hr class="divider">
@@ -1020,7 +992,7 @@ function goPage(id,el){
 let snsImages = [null, null, null, null, null];
 let snsConceptNum = 'A';
 let snsConceptStyle = 'A';
-let snsSlideCnt = 1;
+const snsSlideCnt = 4; // 4장 고정
 
 function selConcept(el, num){
   document.querySelectorAll('.concept-card').forEach(c=>c.classList.remove('active'));
@@ -1029,25 +1001,16 @@ function selConcept(el, num){
   snsConceptStyle = num;
 }
 
-function selSlideCnt(el, cnt){
-  document.querySelectorAll('.slide-cnt-chip').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
-  snsSlideCnt = cnt;
-  updateImgSlots(cnt);
-}
-
-function updateImgSlots(cnt){
+function updateImgSlots(){
   const wrap = document.getElementById('sns-img-wrap');
   if(!wrap) return;
-  // 이미지 슬롯: 1장이면 1개, 2장 이상이면 (cnt-1)개 (마지막CTA 제외)
-  const slotCnt = cnt === 1 ? 1 : cnt - 1;
   let html = '';
-  for(let i=0;i<slotCnt;i++){
-    const label = cnt===1 ? '메인 슬라이드' : (i+1)+'번 슬라이드';
+  const labels = ['1번 슬라이드 (메인)', '2번 슬라이드 (특장점1)', '3번 슬라이드 (특장점2)'];
+  for(let i=0;i<3;i++){
     if(snsImages[i]){
-      html+=`<div class="img-slot" id="sns-img-slot-${i}"><div style="position:relative;height:90px"><img src="${snsImages[i]}" style="width:100%;height:90px;object-fit:cover;border-radius:10px;border:1.5px solid var(--teal)"><button onclick="clearSnsSlot(${i})" style="position:absolute;top:4px;right:4px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:11px;cursor:pointer">✕</button><div style="position:absolute;bottom:4px;left:6px;font-size:10px;color:#fff;font-weight:700;text-shadow:0 1px 3px rgba(0,0,0,.8)">${label}</div></div></div>`;
+      html+=`<div class="img-slot" id="sns-img-slot-${i}"><div style="position:relative;height:90px"><img src="${snsImages[i]}" style="width:100%;height:90px;object-fit:cover;border-radius:10px;border:1.5px solid var(--teal)"><button onclick="clearSnsSlot(${i})" style="position:absolute;top:4px;right:4px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:11px;cursor:pointer">✕</button><div style="position:absolute;bottom:4px;left:6px;font-size:10px;color:#fff;font-weight:700;text-shadow:0 1px 3px rgba(0,0,0,.8)">${labels[i]}</div></div></div>`;
     } else {
-      html+=`<div class="img-slot" id="sns-img-slot-${i}"><label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:90px;background:var(--teal-pale);border:1.5px dashed var(--teal);border-radius:10px;cursor:pointer;font-size:11px;color:var(--teal-d);font-weight:600;text-align:center">📷 ${label}<input type="file" accept="image/*" style="display:none" onchange="loadSnsSlot(this,${i})"></label></div>`;
+      html+=`<div class="img-slot" id="sns-img-slot-${i}"><label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:90px;background:var(--teal-pale);border:1.5px dashed var(--teal);border-radius:10px;cursor:pointer;font-size:11px;color:var(--teal-d);font-weight:600;text-align:center">📷 ${labels[i]}<input type="file" accept="image/*" style="display:none" onchange="loadSnsSlot(this,${i})"></label></div>`;
     }
   }
   wrap.innerHTML = html;
@@ -1072,7 +1035,7 @@ function loadSnsSlot(input, idx){
       canvas.getContext('2d').drawImage(img, 0, 0, w, h);
       const compressed = canvas.toDataURL('image/jpeg', 0.85);
       snsImages[idx] = compressed;
-      updateImgSlots(snsSlideCnt);
+      updateImgSlots();
     };
     img.src = e.target.result;
   };
@@ -1081,11 +1044,11 @@ function loadSnsSlot(input, idx){
 
 function clearSnsSlot(idx){
   snsImages[idx] = null;
-  updateImgSlots(snsSlideCnt);
+  updateImgSlots();
 }
 
 // 초기 슬롯 생성
-document.addEventListener('DOMContentLoaded', function(){ updateImgSlots(1); });
+document.addEventListener('DOMContentLoaded', function(){ updateImgSlots(); });
 
 let snsTemplate = 'concept';
 
@@ -1101,53 +1064,45 @@ function buildSlideHtml(tpl, img, texts){
 }
 function _buildSlideHtml_orig(tpl, img, texts, _accent, _logoBg, _logoTxt, _concept){
   const {title, sub, body, badge} = texts;
-  const imgTag = img ? `<img src="${img}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:${tpl==='concept'?'cover':'contain'};z-index:1${tpl==='product'?';padding:60px;background:#0a0a0a':''}">` : '';
-  if(tpl === 'concept'){
-    const bgStyle = img ? '' : 'background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%)';
-    return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;position:relative;background:#111;${bgStyle}}</style></head><body>
+  const bgStyle = img ? '' : 'background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%)';
+  const imgTag = img ? `<img src="${img}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1">` : '';
+
+  // 특장점 항목 (s1_name/s2_name/s3_name)
+  const specItems=[];
+  if(texts.s1_name) specItems.push({name:texts.s1_name, desc:texts.s1_desc||''});
+  if(texts.s2_name) specItems.push({name:texts.s2_name, desc:texts.s2_desc||''});
+  if(texts.s3_name) specItems.push({name:texts.s3_name, desc:texts.s3_desc||''});
+
+  const specHtml = specItems.length
+    ? specItems.map(sp=>`
+        <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:18px">
+          <div style="min-width:36px;height:36px;background:${_accent};border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <span style="color:#000;font-size:16px;font-weight:900">♪</span>
+          </div>
+          <div>
+            <div style="color:#fff;font-size:28px;font-weight:900;line-height:1.1;word-break:keep-all;overflow-wrap:break-word">${sp.name}</div>
+            ${sp.desc?`<div style="color:rgba(255,255,255,.7);font-size:20px;margin-top:4px;line-height:1.4;word-break:keep-all;overflow-wrap:break-word">${sp.desc}</div>`:''}
+          </div>
+        </div>`).join('')
+    : '';
+
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;position:relative;background:#111;${bgStyle}}</style></head><body>
 ${imgTag}
-<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.15) 100%);z-index:2"></div>
+<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.15) 100%);z-index:2"></div>
 <div style="position:absolute;top:40px;left:48px;z-index:3;display:flex;align-items:center;gap:10px">
   <span style="background:${_logoBg};color:${_logoTxt};font-size:22px;font-weight:900;padding:6px 16px;border-radius:4px;letter-spacing:.05em">SOUNDGLÜCK</span>
 </div>
-${badge?`<div style="position:absolute;top:40px;right:48px;z-index:3;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:20px;padding:8px 18px;border-radius:6px;backdrop-filter:blur(4px)">${badge}</div>`:''}
+${badge?`<div style="position:absolute;top:40px;right:48px;z-index:3;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:20px;padding:8px 18px;border-radius:6px;backdrop-filter:blur(4px)">${badge}</div>`:''} 
 <div style="position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3">
-  ${sub?`<div style="color:${_accent};font-size:26px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px">${sub}</div>`:''}
-  <div style="color:#fff;font-size:${title&&title.length>12?'88':'108'}px;font-weight:900;line-height:1.05;margin-bottom:24px;text-shadow:0 2px 20px rgba(0,0,0,.5);word-break:keep-all">${title||''}</div>
-  ${body?`<div style="color:rgba(255,255,255,.85);font-size:30px;line-height:1.6;font-weight:400;word-break:keep-all">${body}</div>`:''}
+  ${sub?`<div style="color:${_accent};font-size:26px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;word-break:keep-all;overflow-wrap:break-word">${sub}</div>`:''}
+  ${specItems.length
+    ? `<div style="margin-bottom:0">${specHtml}</div>`
+    : `<div style="color:#fff;font-size:${title&&title.length>12?'88':'108'}px;font-weight:900;line-height:1.05;margin-bottom:24px;text-shadow:0 2px 20px rgba(0,0,0,.5);word-break:keep-all;overflow-wrap:break-word">${title||''}</div>
+       ${body?`<div style="color:rgba(255,255,255,.85);font-size:30px;line-height:1.6;font-weight:400;word-break:keep-all;overflow-wrap:break-word">${body}</div>`:''}`
+  }
   ${_concept==='B'?`<div style="display:flex;align-items:center;gap:16px;margin-top:20px"><span style="color:rgba(255,255,255,.4);font-size:16px;letter-spacing:.08em">@SOUNDGLÜCK</span><div style="flex:1;height:1px;background:rgba(255,255,255,.2)"></div></div>`:''}
 </div>
 </body></html>`;
-  } else {
-    return `<!DOCTYPE html><html><head><meta charset="UTF-8">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;background:#fff;display:flex;flex-direction:column;border:1px solid #e8e8e8}
-</style></head><body>
-<div style="display:flex;justify-content:space-between;align-items:center;padding:32px 44px 0;flex-shrink:0">
-  <span style="background:${_logoBg};color:${_logoTxt};font-size:18px;font-weight:900;padding:4px 12px;border-radius:3px;letter-spacing:.06em">SOUNDGLÜCK</span>
-  ${badge?`<span style="background:${_accent};color:#000;font-size:16px;font-weight:900;padding:4px 14px;border-radius:3px">${badge}</span>`:''}
-</div>
-<div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px 60px 0;min-height:0">
-  ${img
-    ?`<img src="${img}" style="max-width:100%;max-height:100%;object-fit:contain;">`
-    :`<div style="width:360px;height:360px;background:#f8f8f8;border-radius:12px"></div>`}
-</div>
-<div style="padding:24px 44px 36px;flex-shrink:0;background:#0a0a0a;margin-top:16px">
-  ${(()=>{
-    const specItems=[];
-    if(texts.s1_name) specItems.push({name:texts.s1_name,desc:texts.s1_desc||''});
-    if(texts.s2_name) specItems.push({name:texts.s2_name,desc:texts.s2_desc||''});
-    if(texts.s3_name) specItems.push({name:texts.s3_name,desc:texts.s3_desc||''});
-    if(specItems.length){
-      return specItems.map(sp=>`<div style="margin-bottom:12px"><div style="font-size:46px;font-weight:900;color:${_accent};line-height:1.1;word-break:keep-all">${sp.name}</div><div style="font-size:21px;color:rgba(255,255,255,.65);margin-top:4px;line-height:1.4;word-break:keep-all">${sp.desc}</div></div>`).join('<div style="height:1px;background:#1a1a1a;margin:2px 0"></div>');
-    }
-    return `<div style="font-size:${title&&title.length>8?'64':'78'}px;font-weight:900;color:#fff;word-break:keep-all">${title||''}</div>${body?`<div style="font-size:22px;color:rgba(255,255,255,.7);margin-top:12px;word-break:keep-all">${body}</div>`:''}`;
-  })()
-  }
-</div>
-</body></html>`;
-  }
 }
 
 function buildCtaHtml(info){
@@ -1192,13 +1147,6 @@ function clearSnsImageSlot(idx){
     '<label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:90px;background:var(--teal-pale);border:1.5px dashed var(--teal);border-radius:10px;cursor:pointer;font-size:11px;color:var(--teal-d);font-weight:600;text-align:center">'
     +'📷 '+labels[idx]+'<input type="file" accept="image/*" style="display:none" onchange="loadSnsImageSlot(this,'+idx+')">'
     +'</label>';
-}
-function getBenefits(prefix){
-  const checks = document.querySelectorAll('#'+prefix+'-benefit-chips input[type=checkbox]:checked');
-  const vals = Array.from(checks).map(c=>c.value);
-  const custom = document.getElementById(prefix+'-benefit-custom')?.value.trim();
-  if(custom) vals.push(custom);
-  return vals;
 }
 function selChip(g,el,v){
   document.querySelectorAll('#'+g+'-chips .chip').forEach(c=>c.classList.remove('active'));
@@ -1429,34 +1377,14 @@ JSON만 출력 (백틱/마크다운 절대 금지, body 필드 내 큰따옴표 
   }
   if(t==='press') return base+`\n역피라미드기사형식 / 크몽대행사전달용 / CTA: 네이버에서 '사운드글룩' 검색 또는 ${s.url} / 문의: ${s.tel}\n\nJSON만 출력:\n{"headline":"h","sub_headline":"sh","lead":"리드2~3문장","body":"본문800~1000자","quote":{"text":"인용","speaker":"사운드글룩 관계자"},"boilerplate":"회사소개3~4문장","image_guides":[{"num":1,"label":"메인","desc":"설명"},{"num":2,"label":"제품상세","desc":"설명"},{"num":3,"label":"브랜드로고","desc":"설명"},{"num":4,"label":"사용환경","desc":"설명"}],"contact":"문의정보"}`;
   if(t==='sns'){
-    const concept = (typeof snsConceptNum!=='undefined') ? snsConceptNum : '1';
-    const slideCnt = (typeof snsSlideCnt!=='undefined') ? snsSlideCnt : 1;
-    const contentSlides = slideCnt===1 ? 1 : slideCnt-1;
-    
-    // 컨셉별 스킬 지침
+    const concept = snsConceptNum||'A';
     const conceptGuides = {
-      '1': '[디자인 컨셉 1 — 프로모션 스타일]\n배경: 딥 블루/네이비 그라디언트 (#1a1a2e→#0f3460)\n포인트: #c8ff00 — 이벤트 타이틀/혜택 강조\n레이아웃: 중앙 정렬, 이벤트 타이틀 크게, 혜택 박스/배지\n분위기: 긴박감, 할인/특가 강조',
-      '2': '[디자인 컨셉 2 — 제품 특장점 스타일]\n배경: 다크 (#0d0d0d→#1a1a2e)\n포인트: #c8ff00 — 번호 배지, 특장점 제목\n레이아웃: 좌상단 번호+브랜드, 중앙 강조 카피, 하단 스펙 3가지 이내\n분위기: 전문적, 기술적, 신뢰감',
-      '3': '[디자인 컨셉 3 — 라인업/비교 스타일]\n배경: 완전 다크 (#0a0a0a)\n포인트: #c8ff00 — 강조 모델, 가격 배지\n레이아웃: 모델별 카드 교차 배치, 가격 배지, 핵심 스펙 비교표\n분위기: 비교, 선택, 가이드',
-      '4': '[디자인 컨셉 4 — 사운드글룩 자체 스타일]\n배경: 사진 있으면 전체 배경, 없으면 다크 #0a0a0a\n오버레이: linear-gradient(to top, rgba(0,0,0,.85), transparent)\n상단: SOUNDGLÜCK 배지 (#c8ff00 배경, #000 텍스트, 좌상단) + 우상단 카테고리 뱃지\n하단: 소제목(#c8ff00) → 메인타이틀(흰색 크게) → 설명(흰색 반투명)\n최하단: @SOUNDGLÜCK 크레딧 + 수평선\n해시태그: 둥근 테두리 배지형\n분위기: 고급 브랜드 감성, 잡지 광고 스타일'
+      'A': '[컨셉 A — SP7 Grand 스타일]\n배경: 다크 (#0a0a0a), 하단 퍼플 그라디언트 오버레이\n포인트: #a855f7 (퍼플) — 부제목/강조 텍스트\n로고: 검정 배경 + 퍼플 텍스트 (좌상단)\n레이아웃: 하단 대형 타이포, 부제목 퍼플\n분위기: 고급 스테이지 감성, 영문 대형 타이포 중심',
+      'B': '[컨셉 B — 사운드글룩 스타일]\n배경: 사진 있으면 전체 배경+다크 오버레이, 없으면 다크 #0a0a0a\n포인트: #c8ff00 (옐로우그린) — 부제목/강조/배지\n로고: #c8ff00 배경 + 검정 텍스트 (좌상단)\n레이아웃: 하단 소제목→메인타이틀→설명, 최하단 @SOUNDGLÜCK 크레딧\n분위기: 고급 브랜드 감성, 잡지 광고 스타일'
     };
-    
-    const conceptGuide = conceptGuides[concept] || conceptGuides['1'];
-    
-    // 슬라이드 수에 따른 구성
-    const slideStructure = slideCnt===1
-      ? `[슬라이드 구성: 1장]\n1장: 메인 카드 — 핵심 메시지 + 제품 정보 압축. CTA는 캡션에 포함.`
-      : `[슬라이드 구성: ${slideCnt}장]\n${Array.from({length:contentSlides},(_,i)=>`${i+1}장: 콘텐츠 슬라이드`).join('\n')}\n${slideCnt}장: CTA 고정 — 사운드글룩 채널 정보`;
-    
-    // 이미지 정보
-    const imgInfos = [];
-    for(let i=0;i<contentSlides;i++){
-      if(snsImages&&snsImages[i]) imgInfos.push(`${i+1}번 슬라이드: 업로드 이미지 있음 — 배경으로 활용`);
-      else imgInfos.push(`${i+1}번 슬라이드: 이미지 없음 — 컨셉 색상/도형으로 생성`);
-    }
-    
-        const _benefitStr = benefits&&benefits.length ? benefits.join(', ') : '없음';
-        return base+`\n\n[제품정보] 브랜드:${brand} / 품목:${item}${model?' / 모델:'+model:''}\n[선택된 베네핏]: ${_benefitStr}\n\n[SNS 콘텐츠 제작 지침]\n${conceptGuide}\n\n${slideStructure}\n\n[슬라이드별 이미지]: ${imgInfos.join(' / ')}\n사운드글룩 브랜드: 배경 #0a0a0a / 포인트 #c8ff00 / 텍스트 흰색\n\n[카드뉴스 5장 구성]\n1장: 훅 — 품목(${item})을 대표하는 강렬한 한 줄. subtitle 반드시 "${item}" 그대로.\n2장: 핵심 특장점 첫번째 그룹 3가지. 3번과 내용 절대 중복 금지.\n3장: 핵심 특장점 두번째 그룹 3가지. 2번에서 쓴 내용 반복 절대 금지.\n4장: 가격/혜택 — [선택된 베네핏] 항목만 사용. 임의추가 절대 금지.\n5장: CTA 고정 템플릿\n\n[슬라이드별 출력 규칙]\n\n1번(훅): html 필드에 완성 HTML 출력 (1080x1080, 다크 #0a0a0a, 포인트 #c8ff00). title/subtitle/body/badge도 출력.\n\n2번·3번(특장점): 제품 핵심 스펙/기술만. 가격/패키지/혜택 절대 금지. 영문 용어 번역 금지. s1_name/s1_desc/s2_name/s2_desc/s3_name/s3_desc 출력 (없으면 빈 문자열). html 출력 금지.\n\n4번(혜택): 특장점/스펙 절대 금지. title은 혜택 핵심 문구. b1/b2/b3은 [선택된 베네핏] 항목만 그대로 (자동추가 절대 금지). badge는 특가. html 출력 금지.\n\n5번(CTA): title/desc만 출력.\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"detected_skill":"스킬명","caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"슬라이드1 핵심 문구","subtitle":"${item}","body":"한줄 설명","badge":"${item}"},{"slide":2,"s1_name":"특장점1명","s1_desc":"설명","s2_name":"특장점2명","s2_desc":"설명","s3_name":"특장점3명","s3_desc":"설명","badge":""},{"slide":3,"s1_name":"2번과다른특장점","s1_desc":"설명","s2_name":"특장점명","s2_desc":"설명","s3_name":"","s3_desc":"","badge":""},{"slide":4,"title":"혜택 문구","b1":"베네핏1","b2":"베네핏2","b3":"베네핏3","badge":"특가"},{"slide":5,"title":"CTA","desc":""}],"posting_tips":["팁1","팁2","팁3"]}`;
+    const conceptGuide = conceptGuides[concept]||conceptGuides['A'];
+    const imgInfos = [0,1,2].map(i=>snsImages&&snsImages[i]?`${i+1}번: 업로드 이미지 있음`:`${i+1}번: 이미지 없음 — 다크 배경 자동 생성`);
+    return base+`\n\n[제품정보] 브랜드:${brand} / 품목:${item}${model?' / 모델:'+model:''}\n\n[SNS 콘텐츠 제작 지침]\n${conceptGuide}\n\n[슬라이드별 이미지]: ${imgInfos.join(' / ')}\n\n[카드뉴스 4장 고정 구성]\n1장(메인 훅): 품목을 대표하는 강렬한 한 줄. subtitle 반드시 "${item}" 그대로. html 필드에 완성된 1080x1080 HTML 출력.\n2장(특장점1): 핵심 특장점 첫번째 그룹 3가지. s1_name/s1_desc/s2_name/s2_desc/s3_name/s3_desc 출력. VAST 단독 반복 금지.\n3장(특장점2): 2번과 완전히 다른 카테고리 특장점 3가지 (예: 2번=엔진/음원→3번=컨트롤러/연결성/편의기능). html 출력 금지.\n4장(CTA): title/desc만 출력. 사운드글룩 채널 정보 고정.\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"html":"완성된HTML","title":"메인문구","subtitle":"${item}","body":"한줄설명","badge":""},{"slide":2,"s1_name":"특장점1","s1_desc":"설명","s2_name":"특장점2","s2_desc":"설명","s3_name":"특장점3","s3_desc":"설명"},{"slide":3,"s1_name":"2번과다른특장점","s1_desc":"설명","s2_name":"특장점","s2_desc":"설명","s3_name":"","s3_desc":""},{"slide":4,"title":"CTA문구","desc":""}],"posting_tips":["팁1","팁2","팁3"]}`;
   }
   if(t==='shorts') return base+`\n60초이내 / AI아바타나레이션용 / 훅→본론→CTA\n\nJSON만 출력:\n{"title":"제목","hook":"첫3초훅","script":[{"time":"0~3초","text":"멘트","visual":"화면"},{"time":"3~15초","text":"멘트","visual":"화면"},{"time":"15~35초","text":"멘트","visual":"화면"},{"time":"35~50초","text":"멘트","visual":"화면"},{"time":"50~60초","text":"CTA","visual":"화면"}],"thumbnail_text":"썸네일문구","description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
   if(t==='youtube') return base+`\n7~10분 / AI아바타+슬라이드 / EGLOO스타일 / CTA: ${s.url}\n\nJSON만 출력:\n{"title":"제목","thumbnail":{"main_text":"메인","sub_text":"서브"},"structure":[{"section":"인트로","duration":"0~30초","script":"스크립트","visual":"화면"},{"section":"본론1","duration":"30초~3분","script":"스크립트","visual":"화면"},{"section":"본론2","duration":"3~6분","script":"스크립트","visual":"화면"},{"section":"비교/추천","duration":"6~8분","script":"스크립트","visual":"화면"},{"section":"CTA","duration":"8~10분","script":"사운드글룩구매유도","visual":"화면"}],"comparison_chart":{"headers":["항목","제품A","제품B","제품C"],"rows":[["가격","","",""],["건반","","",""],["음색수","","",""],["특징","","",""],["추천대상","","",""]]},"description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
@@ -1611,148 +1539,101 @@ function renderPress(d,el){
 
 function renderSns(d,el){
   let h='';
-  const skillNames={'promo-sns-image':'프로모션 이미지','product-lineup-sns-image':'라인업/비교 이미지','product-feature-sns-image':'특장점 이미지'};
-  const usedSkill=d.detected_skill||'product-feature-sns-image';
-  h+=`<div class="r-card" style="border-left:3px solid var(--teal)"><div class="r-head"><div class="r-head-title">📱 적용 스킬: ${skillNames[usedSkill]||usedSkill}</div></div><div class="r-body"><div style="font-size:12px;color:var(--gray)">콘텐츠 유형에 맞게 자동 선택됨</div></div></div>`;
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">✍️ 캡션 3가지 버전</div></div><div class="r-body">${(d.caption_versions||[]).map((v,i)=>`<div class="prompt-item" style="margin-bottom:12px"><div class="prompt-label">${v.label}</div><div class="prompt-text" id="sns-cap-${i}">${v.text}</div><div class="r-actions" style="margin-top:8px"><button class="prompt-copy" onclick="cp(document.getElementById('sns-cap-${i}').innerText,this)">캡션 복사</button><button class="btn-edit" onclick="makeEditable(document.getElementById('sns-cap-${i}'))">✏️ 직접 편집</button><button class="btn-ai-edit" onclick="toggleAiBox('sns-cap-aibox-${i}')">🤖 AI로 수정</button></div><div class="ai-edit-box" id="sns-cap-aibox-${i}"><input class="ai-edit-input" placeholder="예: 더 재미있게, 이모지 더 넣어, 짧게 줄여줘..."><button class="btn-ai-run" onclick="runAiEdit('sns-cap-${i}','sns-cap-aibox-${i}','인스타그램 캡션')">AI 수정하기</button><div class="edit-loading">🤖 수정 중...</div></div></div>`).join('')}</div></div>`;
   const hs=(d.hashtags||[]).map(t=>'#'+t).join(' ');
-  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🏷️ 해시태그 <span class="r-badge">30개</span></div><button class="copy-btn" onclick="cp('${hs.replace(/'/g,"\\'")}',this)">전체 복사</button></div><div class="r-body"><div class="tag-wrap">${(d.hashtags||[]).map(t=>`<span class="tag">#${t}</span>`).join('')}</div></div></div>`;
-  if(d.slides&&d.slides.length){
-    window._snsSlides=d.slides.map((s,i)=>{
-      let hCode;
-      if(i===4){
-        // 5번 CTA — 고정 템플릿
-        hCode=buildCtaHtml({title:s.title,sub:s.desc});
-      } else if(i===0){
-        // 1번 — AI HTML 그대로 사용
-        hCode=s.html||buildSlideHtml('concept',null,{title:s.title,sub:s.subtitle||'',body:s.body||'',badge:s.badge||''});
-      } else {
-        // 2~4번 — 제품형 템플릿 + 이미지
-        let texts;
-        if(i===3){
-          // 4번 — 혜택 슬라이드 (b1/b2/b3 → specs 형식으로 변환)
-          const benItems=[];
-          if(s.b1) benItems.push({name:s.b1, desc:''});
-          if(s.b2) benItems.push({name:s.b2, desc:''});
-          if(s.b3) benItems.push({name:s.b3, desc:''});
-          texts={title:s.title||'사운드글룩 단독 혜택', sub:'SOUNDGLÜCK ONLY', body:'에누리 게시판 이용 시 추가 특가 및 사은품 제안 가능', badge:s.badge||'특가', s1_name:s.b1||'', s1_desc:'', s2_name:s.b2||'', s2_desc:'', s3_name:s.b3||'', s3_desc:''};
-        } else {
-          texts={title:s.title,sub:s.subtitle||s.desc||'',body:s.body||'',badge:s.badge||'',s1_name:s.s1_name||'',s1_desc:s.s1_desc||'',s2_name:s.s2_name||'',s2_desc:s.s2_desc||'',s3_name:s.s3_name||'',s3_desc:s.s3_desc||''};
-        }
-        hCode=buildSlideHtml('product', snsImages[i]||null, texts);
-      }
-      return {...s, html:hCode};
-    });
-    let sHtml='';
-    window._snsSlides.forEach((s,i)=>{
-      const hCode=s.html||'';
-      const enc=hCode.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-      const isCTA = i===4;
-      const slideColor = isCTA?'#f59e0b':'var(--teal)';
-
-      // 슬라이드별 편집 필드 생성
-      let editFields='';
-      if(i===0){
-        // 1번: 제목/부제/설명
-        editFields+=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
-          <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="제목" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
-          <input id="se-${i}-sub" value="${(s.subtitle||s.sub||'').replace(/"/g,'&quot;')}" placeholder="부제 (브랜드/모델)" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
-          <input id="se-${i}-body" value="${(s.body||'').replace(/"/g,'&quot;')}" placeholder="설명" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
-          <input id="se-${i}-badge" value="${(s.badge||'').replace(/"/g,'&quot;')}" placeholder="뱃지 (예: NEW)" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
-        </div>`;
-      } else if(i===1||i===2){
-        // 2~3번: 특장점 항목
-        editFields+=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">`;
-        ['1','2','3'].forEach(n=>{
-          const nm = s['s'+n+'_name']||'';
-          const dc = s['s'+n+'_desc']||'';
-          editFields+=`<div style="display:flex;gap:6px">
-            <input id="se-${i}-s${n}n" value="${nm.replace(/"/g,'&quot;')}" placeholder="특장점${n} 사양명 (녹색)" style="flex:1;padding:6px 10px;border:1px solid #c8ff00;border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
-            <input id="se-${i}-s${n}d" value="${dc.replace(/"/g,'&quot;')}" placeholder="설명 (흰색)" style="flex:2;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
-          </div>`;
-        });
-        editFields+=`<input id="se-${i}-badge" value="${(s.badge||'').replace(/"/g,'&quot;')}" placeholder="뱃지" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">`;
-        editFields+=`</div>`;
-      } else if(i===3){
-        // 4번: 혜택 항목
-        editFields+=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
-          <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="혜택 핵심 문구" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
-          <input id="se-${i}-b1" value="${(s.b1||'').replace(/"/g,'&quot;')}" placeholder="혜택1 (녹색)" style="padding:6px 10px;border:1px solid #c8ff00;border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
-          <input id="se-${i}-b2" value="${(s.b2||'').replace(/"/g,'&quot;')}" placeholder="혜택2 (녹색)" style="padding:6px 10px;border:1px solid #c8ff00;border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
-          <input id="se-${i}-b3" value="${(s.b3||'').replace(/"/g,'&quot;')}" placeholder="혜택3 (녹색)" style="padding:6px 10px;border:1px solid #c8ff00;border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
-        </div>`;
-      } else if(i===4){
-        // 5번: 타이틀
-        editFields+=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
-          <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="CTA 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:var(--bg);color:var(--dark)">
-        </div>`;
-      }
-
-      sHtml+=`<div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">`;
-      // 헤더
-      sHtml+=`<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--teal-pale);border-bottom:1px solid var(--border)">`;
-      sHtml+=`<div style="display:flex;align-items:center;gap:8px"><div style="background:${slideColor};color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">${s.slide}</div><strong style="font-size:13px;color:var(--dark2)">${s.title||''}</strong></div>`;
-      sHtml+=`<button onclick="openSlide(${i})" style="padding:5px 12px;background:var(--teal);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-weight:700;white-space:nowrap">🔗 새 탭 열기</button>`;
-      sHtml+=`</div>`;
-      // 미리보기
-      if(hCode){
-        sHtml+=`<div style="position:relative;width:100%;padding-bottom:100%;background:#000">`;
-        sHtml+=`<iframe id="sf-${i}" srcdoc="${enc}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" scrolling="no"></iframe>`;
-        sHtml+=`</div>`;
-      }
-      // 편집 패널
-      sHtml+=`<div style="padding:12px 14px;border-top:1px solid var(--border);background:var(--bg)">`;
-      sHtml+=`<div style="font-size:11px;font-weight:700;color:var(--teal-d);margin-bottom:8px">✏️ 편집</div>`;
-      // 이미지 교체 (1번/5번 제외)
-      if(i>0 && i<4){
-        sHtml+=`<div style="margin-bottom:8px"><label style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--teal-pale);border:1px dashed var(--teal);border-radius:6px;cursor:pointer;font-size:11px;color:var(--teal-d);font-weight:600">📷 이미지 교체<input type="file" accept="image/*" style="display:none" onchange="replaceSlideImg(this,${i})"></label></div>`;
-      }
-      sHtml+=editFields;
-      sHtml+=`<button onclick="applySlideEdit(${i})" style="padding:6px 18px;background:var(--teal);color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;font-weight:700">적용</button>`;
-      sHtml+=`</div>`;
-      sHtml+=`</div>`;
-    });
-    h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🖼️ 카드뉴스 <span class="r-badge">5장</span></div><small style="font-size:11px;color:var(--gray)">새 탭 열기 → 스크린샷 → 인스타그램</small></div><div class="r-body">${sHtml}</div></div>`;
-  }
+  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🏷️ 해시태그 <span class="r-badge">30개</span></div><button class="copy-btn" onclick="cp('${hs.replace(/'/g,"\'")}',this)">전체 복사</button></div><div class="r-body"><div class="tag-wrap">${(d.hashtags||[]).map(t=>`<span class="tag">#${t}</span>`).join('')}</div></div></div>`;
+  const slides=d.slides||[];
+  window._snsSlides=[0,1,2,3].map(i=>{
+    const s=slides[i]||{};
+    let hCode;
+    if(i===3){
+      hCode=buildCtaHtml({title:s.title||'사운드글룩에서 만나보세요',sub:s.desc||''});
+    } else if(i===0){
+      const _item=getChip('sns-item')||s.subtitle||s.sub||'';
+      hCode=s.html||buildSlideHtml('concept',snsImages[0]||null,{title:s.title||'',sub:_item,body:s.body||'',badge:s.badge||''});
+    } else {
+      const texts={title:s.title||'',sub:s.subtitle||s.sub||'',body:s.body||'',badge:s.badge||'',s1_name:s.s1_name||'',s1_desc:s.s1_desc||'',s2_name:s.s2_name||'',s2_desc:s.s2_desc||'',s3_name:s.s3_name||'',s3_desc:s.s3_desc||''};
+      hCode=buildSlideHtml('concept',snsImages[i]||null,texts);
+    }
+    return {...s,slide:i+1,html:hCode};
+  });
+  const slideLabels=['1번 — 메인 훅','2번 — 특장점','3번 — 특장점','4번 — CTA'];
+  let sHtml='';
+  window._snsSlides.forEach((s,i)=>{
+    const hCode=s.html||'';
+    const enc=hCode.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    const isCTA=i===3;
+    const slideColor=isCTA?'#f59e0b':'var(--teal)';
+    let editFields='';
+    if(i===0){
+      editFields=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
+        <input id="se-${i}-title" value="${(s.title||''). replace(/"/g,'&quot;')}" placeholder="메인 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        <input id="se-${i}-sub" value="${(s.subtitle||s.sub||''). replace(/"/g,'&quot;')}" placeholder="부제 (품목명)" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        <input id="se-${i}-body" value="${(s.body||''). replace(/"/g,'&quot;')}" placeholder="설명" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        <input id="se-${i}-badge" value="${(s.badge||''). replace(/"/g,'&quot;')}" placeholder="뱃지" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+      </div>`;
+    } else if(i===1||i===2){
+      editFields=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
+        <input id="se-${i}-sub" value="${(s.subtitle||s.sub||''). replace(/"/g,'&quot;')}" placeholder="슬라이드 부제" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        <div style="display:flex;gap:6px"><input id="se-${i}-s1n" value="${(s.s1_name||''). replace(/"/g,'&quot;')}" placeholder="특장점1" style="flex:1;padding:6px 10px;border:1px solid #a855f7;border-radius:6px;font-size:12px;color:var(--dark)"><input id="se-${i}-s1d" value="${(s.s1_desc||''). replace(/"/g,'&quot;')}" placeholder="설명" style="flex:2;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)"></div>
+        <div style="display:flex;gap:6px"><input id="se-${i}-s2n" value="${(s.s2_name||''). replace(/"/g,'&quot;')}" placeholder="특장점2" style="flex:1;padding:6px 10px;border:1px solid #a855f7;border-radius:6px;font-size:12px;color:var(--dark)"><input id="se-${i}-s2d" value="${(s.s2_desc||''). replace(/"/g,'&quot;')}" placeholder="설명" style="flex:2;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)"></div>
+        <div style="display:flex;gap:6px"><input id="se-${i}-s3n" value="${(s.s3_name||''). replace(/"/g,'&quot;')}" placeholder="특장점3" style="flex:1;padding:6px 10px;border:1px solid #a855f7;border-radius:6px;font-size:12px;color:var(--dark)"><input id="se-${i}-s3d" value="${(s.s3_desc||''). replace(/"/g,'&quot;')}" placeholder="설명" style="flex:2;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)"></div>
+      </div>`;
+    } else {
+      editFields=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
+        <input id="se-${i}-title" value="${(s.title||''). replace(/"/g,'&quot;')}" placeholder="CTA 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+      </div>`;
+    }
+    sHtml+=`<div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">`;
+    sHtml+=`<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--teal-pale);border-bottom:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px"><div style="background:${slideColor};color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">${i+1}</div><strong style="font-size:13px;color:var(--dark2)">${slideLabels[i]}</strong></div><button onclick="openSlide(${i})" style="padding:5px 12px;background:var(--teal);color:#fff;border:none;border-radius:6px;font-size:11px;cursor:pointer;font-weight:700;white-space:nowrap">🔗 새 탭 열기</button></div>`;
+    if(hCode){sHtml+=`<div style="position:relative;width:100%;padding-bottom:100%;background:#000"><iframe id="sf-${i}" srcdoc="${enc}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" scrolling="no"></iframe></div>`;}
+    sHtml+=`<div style="padding:12px 14px;border-top:1px solid var(--border)"><div style="font-size:11px;font-weight:700;color:var(--teal-d);margin-bottom:8px">✏️ 편집</div>`;
+    if(i<3){sHtml+=`<div style="margin-bottom:8px"><label style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--teal-pale);border:1px dashed var(--teal);border-radius:6px;cursor:pointer;font-size:11px;color:var(--teal-d);font-weight:600">📷 이미지 교체<input type="file" accept="image/*" style="display:none" onchange="replaceSlideImg(this,${i})"></label></div>`;}
+    sHtml+=editFields;
+    sHtml+=`<button onclick="applySlideEdit(${i})" style="padding:6px 18px;background:var(--teal);color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;font-weight:700">적용</button></div></div>`;
+  });
+  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🖼️ 카드뉴스 <span class="r-badge">4장</span></div><small style="font-size:11px;color:var(--gray)">새 탭 열기 → 스크린샷 → 인스타그램</small></div><div class="r-body">${sHtml}</div></div>`;
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">💡 포스팅 팁</div></div><div class="r-body">${(d.posting_tips||[]).map(t=>`<div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"></div><span>${t}</span></div>`).join('')}</div></div>`;
   el.innerHTML=h;
 }
 
-function replaceSlideImg(input, idx){
-  const file = input.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e){
-    snsImages[idx] = e.target.result;
-    applySlideEdit(idx);
+function replaceSlideImg(input,idx){
+  const file=input.files[0]; if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const img=new Image();
+    img.onload=function(){
+      const canvas=document.createElement('canvas');
+      const MAX=1920; let w=img.width,h=img.height;
+      if(w>MAX||h>MAX){if(w>h){h=Math.round(h*MAX/w);w=MAX;}else{w=Math.round(w*MAX/h);h=MAX;}}
+      canvas.width=w;canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      snsImages[idx]=canvas.toDataURL('image/jpeg',0.85);
+      applySlideEdit(idx);
+      updateImgSlots();
+    };
+    img.src=e.target.result;
   };
   reader.readAsDataURL(file);
 }
 
 function applySlideEdit(i){
-  const s = window._snsSlides[i];
-  if(!s) return;
-  // 입력값 읽기
-  const g = (id)=>{ const el=document.getElementById('se-'+i+'-'+id); return el?el.value.trim():''; };
+  const s=window._snsSlides[i]; if(!s)return;
+  const g=(id)=>{const el=document.getElementById('se-'+i+'-'+id);return el?el.value.trim():'';};
   let newHtml;
   if(i===0){
     const texts={title:g('title'),sub:g('sub'),body:g('body'),badge:g('badge'),s1_name:'',s1_desc:'',s2_name:'',s2_desc:'',s3_name:'',s3_desc:''};
-    newHtml = s.html ? s.html : buildSlideHtml('concept', null, texts);
-    // 1번은 AI HTML 있으면 그대로, 텍스트만 반영 어려우므로 concept으로 재빌드
-    newHtml = buildSlideHtml('concept', null, texts);
+    newHtml=buildSlideHtml('concept',snsImages[0]||null,texts);
   } else if(i===1||i===2){
-    const texts={title:g('s1n'),sub:'',body:'',badge:g('badge'),s1_name:g('s1n'),s1_desc:g('s1d'),s2_name:g('s2n'),s2_desc:g('s2d'),s3_name:g('s3n'),s3_desc:g('s3d')};
-    newHtml = buildSlideHtml('product', snsImages[i]||null, texts);
-  } else if(i===3){
-    const texts={title:g('title'),sub:'SOUNDGLÜCK ONLY',body:'에누리 게시판 이용 시 추가 특가 및 사은품 제안 가능',badge:g('badge')||'특가',s1_name:g('b1'),s1_desc:'',s2_name:g('b2'),s2_desc:'',s3_name:g('b3'),s3_desc:''};
-    newHtml = buildSlideHtml('product', snsImages[i]||null, texts);
-  } else if(i===4){
-    newHtml = buildCtaHtml({title:g('title'),sub:''});
+    const texts={title:g('s1n'),sub:g('sub'),body:'',badge:'',s1_name:g('s1n'),s1_desc:g('s1d'),s2_name:g('s2n'),s2_desc:g('s2d'),s3_name:g('s3n'),s3_desc:g('s3d')};
+    newHtml=buildSlideHtml('concept',snsImages[i]||null,texts);
+  } else {
+    newHtml=buildCtaHtml({title:g('title'),sub:''});
   }
-  window._snsSlides[i] = {...s, html:newHtml};
-  const enc = newHtml.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-  const iframe = document.getElementById('sf-'+i);
-  if(iframe) iframe.setAttribute('srcdoc', enc);
+  window._snsSlides[i]={...s,html:newHtml};
+  const enc=newHtml.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+  const iframe=document.getElementById('sf-'+i);
+  if(iframe)iframe.setAttribute('srcdoc',enc);
 }
 
 function openSlide(i){
@@ -1826,8 +1707,8 @@ async function gen(t){
       // ★ 모듈별 max_tokens 분기
       body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:maxTokensMap[t]||6000,messages:[{role:'user',content: (t==='sns' && snsImages && snsImages.some(x=>x)) ? [
         ...snsImages.filter(x=>x).map(img=>({type:'image',source:{type:'base64',media_type:img.split(';')[0].split(':')[1],data:img.split(',')[1]}})),
-        {type:'text',text:buildPrompt(t,brand,item,cType,tn,model,compare,specInput,getBenefits(t),typeof snsConceptNum!=='undefined'?snsConceptNum:'1',typeof snsSlideCnt!=='undefined'?snsSlideCnt:1)}
-      ] : buildPrompt(t,brand,item,cType,tn,model,compare,specInput,getBenefits(t),typeof snsConceptNum!=='undefined'?snsConceptNum:'1',typeof snsSlideCnt!=='undefined'?snsSlideCnt:1)}]})
+        {type:'text',text:buildPrompt(t,brand,item,cType,tn,model,compare,specInput,[],typeof snsConceptNum!=='undefined'?snsConceptNum:'A',snsSlideCnt)}
+      ] : buildPrompt(t,brand,item,cType,tn,model,compare,specInput,[],typeof snsConceptNum!=='undefined'?snsConceptNum:'A',snsSlideCnt)}]})
     });
     if(!res.ok){const err=await res.json();throw new Error(err.error?.message||`API 오류 (${res.status})`);}
     const data=await res.json();
