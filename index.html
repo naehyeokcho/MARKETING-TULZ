@@ -1035,7 +1035,7 @@ function buildCtaHtml(info){
   <div style="text-align:center;margin-bottom:56px">
     <div style="color:rgba(255,255,255,.45);font-size:22px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px">${info.brand||'SOUNDGLÜCK'}</div>
     <div style="color:${_accent};font-size:72px;font-weight:900;line-height:1.1;word-break:keep-all;letter-spacing:-.02em">${ctaTitle}</div>
-    <div style="color:rgba(255,255,255,.5);font-size:26px;font-weight:500;margin-top:16px">공식대리점 정품 · 전국 무료배송 · 납품 견적 환영</div>
+    <div style="color:rgba(255,255,255,.5);font-size:26px;font-weight:500;margin-top:16px">${info.sub||'공식대리점 정품 · 전국 무료배송 · 납품 견적 환영'}</div>
   </div>
   <div style="background:#111;border:1px solid #2a2a2a;border-radius:20px;padding:44px 64px;width:100%;max-width:880px">
     <div style="display:flex;flex-direction:column;gap:0">
@@ -1590,19 +1590,16 @@ function applySlideEdit(i){
     newHtml=buildSlideHtml('concept',snsImages[i]||null,texts,i);
   }
   window._snsSlides[i]={...s,html:newHtml};
-  const enc=newHtml.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
   const iframe=document.getElementById('sf-'+i);
   if(iframe){
     iframe.style.transform='';
-    const blob=new Blob([newHtml],{type:'text/html'});
-    const burl=URL.createObjectURL(blob);
     iframe.onload=function(){
       const wrap=iframe.closest('.sns-slide-wrap');
       if(wrap){ const sc=wrap.offsetWidth/1080; iframe.style.transform='scale('+sc+')'; }
       iframe.onload=null;
-      setTimeout(()=>URL.revokeObjectURL(burl),1000);
     };
-    iframe.src=burl;
+    const enc=newHtml.replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    iframe.setAttribute('srcdoc', enc);
   }
 }
 
