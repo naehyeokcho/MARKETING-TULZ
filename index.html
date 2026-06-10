@@ -1317,7 +1317,9 @@ JSON만 출력 (백틱/마크다운 절대 금지, body 필드 내 큰따옴표 
     const accentColors = {'A':'#a855f7','B':'#c8ff00','C':'#ff3b3b','D':'#3b82f6'};
     const accentColor = accentColors[concept]||'#a855f7';
     const imgInfos = [0,1,2].map(i=>snsImages&&snsImages[i]?`${i+1}번: 이미지 있음`:`${i+1}번: 이미지 없음`);
-    return base+`\n\n[제품정보] 브랜드:${brand} / 품목:${item}${model?' / 모델:'+model:''}\n\n[카드뉴스 4장 고정]\n공통 디자인: 다크 배경+사진 오버레이 / 포인트 색상 ${accentColor} / 태그는 #태그 형식으로 3개만\n이미지: ${imgInfos.join(' / ')}\n\n1장(메인훅): 제품을 대표하는 임팩트 있는 한 줄 타이틀. 태그 3개는 브랜드/모델/품목 관련.\n2장(특장점1): 핵심 기술/사운드 관련 특장점 태그 3개. 절대 VAST만 반복 금지.\n3장(특장점2): 2번과 완전히 다른 카테고리(조작/연결/편의) 특장점 태그 3개.\n4장(CTA): 사운드글룩 구매 유도 문구.\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"메인타이틀","sub":"${item}","t1":"태그1","t2":"태그2","t3":"태그3"},{"slide":2,"title":"특장점제목","sub":"핵심 기술","t1":"태그1","t2":"태그2","t3":"태그3"},{"slide":3,"title":"특장점제목","sub":"퍼포먼스","t1":"태그1","t2":"태그2","t3":"태그3"},{"slide":4,"title":"CTA문구","desc":""}],"posting_tips":["팁1","팁2","팁3"]}`;
+    return base+`\n\n[제품정보] 브랜드:${brand} / 품목:${item}${model?' / 모델:'+model:''}
+
+[중요] 모델명을 기반으로 실제 제품 스펙과 특장점을 정확히 파악해서 작성할 것. 추측 금지. 모르는 경우 브랜드/품목 기반으로 일반적 특장점 작성.${specInput?'\n\n[스펙 직접입력 - 최우선 반영]\n'+specInput:''}\n\n[카드뉴스 4장 고정]\n공통 디자인: 다크 배경+사진 오버레이 / 포인트 색상 ${accentColor} / 태그는 #태그 형식으로 3개만\n이미지: ${imgInfos.join(' / ')}\n\n1장(메인훅): 제품을 대표하는 임팩트 있는 한 줄 타이틀. 태그 3개는 브랜드/모델/품목 관련.\n2장(특장점1): 핵심 기술/사운드 관련 특장점 태그 3개. 절대 VAST만 반복 금지.\n3장(특장점2): 2번과 완전히 다른 카테고리(조작/연결/편의) 특장점 태그 3개.\n4장(CTA): 사운드글룩 구매 유도 문구.\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"메인타이틀","sub":"${item}","t1":"태그1","t2":"태그2","t3":"태그3"},{"slide":2,"title":"특장점제목","sub":"핵심 기술","t1":"태그1","t2":"태그2","t3":"태그3"},{"slide":3,"title":"특장점제목","sub":"퍼포먼스","t1":"태그1","t2":"태그2","t3":"태그3"},{"slide":4,"title":"CTA문구","desc":""}],"posting_tips":["팁1","팁2","팁3"]}`;
   }
 
 }
@@ -1481,8 +1483,7 @@ function renderSns(d,el){
     if(i===3){
       const _ctaBrand=getChip('sns-brand')||''; const _ctaModel=getChip('sns-model')||''; const _ctaLabel=_ctaModel?(_ctaBrand?_ctaBrand.toUpperCase()+' × SOUNDGLÜCK':_ctaModel.toUpperCase()+' × SOUNDGLÜCK'):(_ctaBrand?_ctaBrand.toUpperCase()+' × SOUNDGLÜCK':'SOUNDGLÜCK'); hCode=buildCtaHtml({title:s.title||(_ctaModel?'지금 바로 '+_ctaModel+'을 만나보세요':'지금 바로 만나보세요'),sub:s.desc||'',brand:_ctaLabel});
     } else {
-      const _item = i===0 ? (getChip('sns-item')||s.sub||s.subtitle||'') : (s.sub||s.subtitle||'');
-      const texts = {title:s.title||'', sub:_item, badge:s.badge||'', t1:s.t1||'', t2:s.t2||'', t3:s.t3||''};
+      const texts = {title:s.title||'', sub:s.sub||s.subtitle||'', badge:s.badge||getChip('sns-model')||'', t1:s.t1||'', t2:s.t2||'', t3:s.t3||''};
       hCode = buildSlideHtml('concept', snsImages[i]||null, texts, i);
     }
     return {...s,slide:i+1,html:hCode};
@@ -1598,8 +1599,7 @@ function applySlideEdit(i){
       if(wrap){ const sc=wrap.offsetWidth/1080; iframe.style.transform='scale('+sc+')'; }
       iframe.onload=null;
     };
-    const enc=newHtml.replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-    iframe.setAttribute('srcdoc', enc);
+    iframe.setAttribute('srcdoc', newHtml);
   }
 }
 
