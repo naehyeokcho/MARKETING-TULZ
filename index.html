@@ -977,8 +977,8 @@ ${overlay}
 <div style="position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 80px">
   ${badge?`<div style="background:${_accent};color:${accentDark};font-size:26px;font-weight:900;padding:10px 32px;border-radius:6px;letter-spacing:.1em;margin-bottom:32px;display:inline-block">${badge}</div>`:''}
   ${sub?`<div style="color:rgba(255,255,255,.6);font-size:28px;font-weight:600;margin-bottom:24px;letter-spacing:.04em">${sub}</div>`:''}
-  <div style="color:#fff;font-size:${title&&title.length>8?'110':'130'}px;font-weight:900;line-height:1.0;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:12px">${title&&title.includes('|')?title.split('|')[0].trim():(title||'').split(' ').slice(0,Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
-  <div style="color:${_accent};font-size:${title&&title.length>8?'110':'130'}px;font-weight:900;line-height:1.0;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em">${title&&title.includes('|')?title.split('|')[1].trim():(title||'').split(' ').slice(Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
+  <div style="color:#fff;font-size:${title&&title.length>8?'90':'108'}px;font-weight:900;line-height:1.05;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:12px">${title&&title.includes('|')?title.split('|')[0].trim():(title||'').split(' ').slice(0,Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
+  <div style="color:${_accent};font-size:${title&&title.length>8?'90':'108'}px;font-weight:900;line-height:1.05;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em">${title&&title.includes('|')?title.split('|')[1].trim():(title||'').split(' ').slice(Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
   <div style="width:60px;height:4px;background:${_accent};border-radius:2px;margin-top:40px"></div>
   ${tag1Html?`<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:32px">${tag1Html}</div>`:''}
 </div>
@@ -1013,8 +1013,8 @@ ${overlay}
 </div>
 <div style="position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:center;padding:0 64px">
   <div style="color:rgba(255,255,255,.55);font-size:26px;font-weight:700;letter-spacing:.04em;margin-bottom:16px;word-break:keep-all">${sub||''}</div>
-  <div style="color:#fff;font-size:${title&&title.length>8?'96':'116'}px;font-weight:900;line-height:1.0;text-shadow:0 2px 32px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:8px">${title&&title.includes('|')?title.split('|')[0].trim():(title||'').split(' ')[0]||''}</div>
-  <div style="color:${_accent};font-size:${title&&title.length>8?'96':'116'}px;font-weight:900;line-height:1.0;text-shadow:0 2px 32px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:36px">${title&&title.includes('|')?title.split('|')[1].trim():(title||'').split(' ').slice(1).join(' ')||''}</div>
+  <div style="color:#fff;font-size:${title&&title.length>8?'78':'94'}px;font-weight:900;line-height:1.05;text-shadow:0 2px 32px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:8px">${title&&title.includes('|')?title.split('|')[0].trim():(title||'').split(' ')[0]||''}</div>
+  <div style="color:${_accent};font-size:${title&&title.length>8?'78':'94'}px;font-weight:900;line-height:1.05;text-shadow:0 2px 32px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:36px">${title&&title.includes('|')?title.split('|')[1].trim():(title||'').split(' ').slice(1).join(' ')||''}</div>
   <div style="width:56px;height:4px;background:${_accent};border-radius:2px;margin-bottom:36px"></div>
   ${bulletsHtml||tagHtml?`<div style="display:flex;flex-direction:column;gap:0">${bulletsHtml}</div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:${bulletsHtml?'8':'0'}px">${tagHtml}</div>`:''}
 </div>
@@ -1034,7 +1034,7 @@ function buildCtaHtml(info){
 <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 80px;gap:0">
   <div style="text-align:center;margin-bottom:56px">
     <div style="color:rgba(255,255,255,.45);font-size:22px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px">${info.brand||'SOUNDGLÜCK'}</div>
-    <div style="color:${_accent};font-size:96px;font-weight:900;line-height:1.0;word-break:keep-all;letter-spacing:-.02em">${ctaTitle}</div>
+    <div style="color:${_accent};font-size:72px;font-weight:900;line-height:1.1;word-break:keep-all;letter-spacing:-.02em">${ctaTitle}</div>
     <div style="color:rgba(255,255,255,.5);font-size:26px;font-weight:500;margin-top:16px">공식대리점 정품 · 전국 무료배송 · 납품 견적 환영</div>
   </div>
   <div style="background:#111;border:1px solid #2a2a2a;border-radius:20px;padding:44px 64px;width:100%;max-width:880px">
@@ -1508,11 +1508,27 @@ function renderSns(d,el){
       const slide1Labels = ['메인 타이틀','배지 (상단 accent박스)','서브 타이틀'];
       const slide23Labels = ['메인 타이틀','서브 타이틀 (회색 소제목)',''];
       editFields=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
-        <div style="font-size:11px;color:var(--gray);margin-bottom:2px">${i===0?'메인 타이틀':'메인 타이틀'}</div>
-        <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="메인 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
-        ${i===0?`<div style="font-size:11px;color:var(--gray);margin-top:4px;margin-bottom:2px">배지 (상단 accent 박스)</div><input id="se-${i}-badge" value="${(s.badge||'').replace(/"/g,'&quot;')}" placeholder="예: KURZWEIL SP8" style="padding:6px 10px;border:1px solid var(--teal);border-radius:6px;font-size:12px;color:var(--dark)">`:``}
-        <div style="font-size:11px;color:var(--gray);margin-top:4px;margin-bottom:2px">서브 타이틀</div>
-        <input id="se-${i}-sub" value="${(s.sub||s.subtitle||'').replace(/"/g,'&quot;')}" placeholder="서브 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        <div style="font-size:11px;color:var(--gray);margin-bottom:2px">메인 타이틀 <span style="font-size:10px;color:var(--gray);opacity:.7">( | 로 흰색|색상 구분)</span></div>
+        <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="메인 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark);width:100%">
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="btn-ai-edit" onclick="toggleAiBox('se-${i}-title-aibox')" style="font-size:11px;padding:4px 10px">🤖 AI 수정</button>
+        </div>
+        <div class="ai-edit-box" id="se-${i}-title-aibox">
+          <input class="ai-edit-input" placeholder="예: 더 임팩트 있게, 짧게, 감성적으로...">
+          <button class="btn-ai-run" onclick="runAiEditInput('se-${i}-title','se-${i}-title-aibox','슬라이드 ${i+1}번 메인 타이틀')">AI 수정하기</button>
+          <div class="edit-loading">🤖 수정 중...</div>
+        </div>
+        ${i===0?`<div style="font-size:11px;color:var(--gray);margin-top:8px;margin-bottom:2px">배지 (상단 accent 박스)</div><input id="se-${i}-badge" value="${(s.badge||'').replace(/"/g,'&quot;')}" placeholder="예: KURZWEIL SP8" style="padding:6px 10px;border:1px solid var(--teal);border-radius:6px;font-size:12px;color:var(--dark);width:100%">`:``}
+        <div style="font-size:11px;color:var(--gray);margin-top:8px;margin-bottom:2px">서브 타이틀</div>
+        <input id="se-${i}-sub" value="${(s.sub||s.subtitle||'').replace(/"/g,'&quot;')}" placeholder="서브 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark);width:100%">
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <button class="btn-ai-edit" onclick="toggleAiBox('se-${i}-sub-aibox')" style="font-size:11px;padding:4px 10px">🤖 AI 수정</button>
+        </div>
+        <div class="ai-edit-box" id="se-${i}-sub-aibox">
+          <input class="ai-edit-input" placeholder="예: 더 간결하게, 전문적으로...">
+          <button class="btn-ai-run" onclick="runAiEditInput('se-${i}-sub','se-${i}-sub-aibox','슬라이드 ${i+1}번 서브 타이틀')">AI 수정하기</button>
+          <div class="edit-loading">🤖 수정 중...</div>
+        </div>
         <div style="font-size:11px;color:var(--gray);margin-top:4px;margin-bottom:2px">태그 3개</div>
         <div style="display:flex;gap:6px">
           <input id="se-${i}-t1" value="${(s.t1||'').replace(/"/g,'&quot;')}" placeholder="태그1" style="flex:1;padding:6px 10px;border:1px solid var(--teal);border-radius:6px;font-size:12px;color:var(--dark)">
@@ -1722,6 +1738,38 @@ function makeEditable(el) {
   const isEditing = el.contentEditable === 'true';
   if (isEditing) { el.contentEditable = 'false'; el.style.cursor = ''; }
   else { el.contentEditable = 'true'; el.focus(); const range = document.createRange(); range.selectNodeContents(el); range.collapse(false); const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range); }
+}
+
+// 슬라이드 input 필드용 AI 수정
+async function runAiEditInput(inputId, boxId, context) {
+  if (!apiKey) { openApi(); return; }
+  const input_el = document.getElementById(inputId);
+  const box = document.getElementById(boxId);
+  const req = box.querySelector('.ai-edit-input');
+  const btn = box.querySelector('.btn-ai-run');
+  const loading = box.querySelector('.edit-loading');
+  const instruction = req.value.trim();
+  if (!instruction) { alert('수정 지시사항을 입력해주세요.'); return; }
+  btn.disabled = true; btn.textContent = '수정 중...';
+  loading.style.display = 'block';
+  const currentText = input_el.value;
+  const prompt = `다음 텍스트를 아래 지시사항에 따라 수정해주세요. 수정된 텍스트만 출력하고 다른 설명은 절대 하지 마세요.\n\n[현재 텍스트]\n${currentText}\n\n[지시사항]\n${instruction}\n\n[참고 컨텍스트]\n사운드글룩 SNS 카드뉴스 슬라이드 / ${context}`;
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 500, messages: [{ role: 'user', content: prompt }] })
+    });
+    const data = await res.json();
+    const newText = data.content.map(c => c.text || '').join('').trim();
+    input_el.value = newText;
+    box.classList.remove('open');
+    req.value = '';
+    input_el.style.borderColor = 'var(--teal)';
+    setTimeout(() => input_el.style.borderColor = '', 1000);
+  } catch(e) { alert('오류: ' + e.message); }
+  btn.disabled = false; btn.textContent = 'AI 수정하기';
+  loading.style.display = 'none';
 }
 
 function toggleAiBox(boxId) {
