@@ -964,19 +964,22 @@ function _buildSlideHtml_orig(tpl, img, texts, _accent, _logoBg, _logoTxt, _conc
 
   // ── 1번 슬라이드: "무대를 지배하라" 컨셉 ──
   if(slideIdx===0){
-    const tag1Html = [t1,t2,t3].filter(Boolean).map(t=>
-      `<span style="display:inline-block;border:1.5px solid ${_accent};color:${_accent};font-size:20px;font-weight:700;padding:7px 18px;border-radius:30px;white-space:nowrap">#${t}</span>`
-    ).join('');
+    const tag1Html = [t1,t2,t3].filter(Boolean).map(t=>{
+      const tc=t.replace(/^#+/,'');
+      return `<span style="display:inline-block;border:1.5px solid ${_accent};color:${_accent};font-size:20px;font-weight:700;padding:7px 18px;border-radius:30px;white-space:nowrap">#${tc}</span>`;
+    }).join('');
     return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;position:relative;background:#0a0a0a}</style></head><body>
 ${imgTag}
 ${overlay}
+<div style="position:absolute;top:52px;left:52px;z-index:3">
+  <span style="color:rgba(255,255,255,.5);font-size:20px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">SOUNDGLÜCK</span>
+</div>
 <div style="position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 80px">
   ${badge?`<div style="background:${_accent};color:${accentDark};font-size:26px;font-weight:900;padding:10px 32px;border-radius:6px;letter-spacing:.1em;margin-bottom:32px;display:inline-block">${badge}</div>`:''}
   ${sub?`<div style="color:rgba(255,255,255,.6);font-size:28px;font-weight:600;margin-bottom:24px;letter-spacing:.04em">${sub}</div>`:''}
-  <div style="color:#fff;font-size:${title&&title.length>8?'110':'130'}px;font-weight:900;line-height:1.0;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:12px">${(title||'').split(' ').slice(0,Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
-  <div style="color:${_accent};font-size:${title&&title.length>8?'110':'130'}px;font-weight:900;line-height:1.0;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em">${(title||'').split(' ').slice(Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
+  <div style="color:#fff;font-size:${title&&title.length>8?'110':'130'}px;font-weight:900;line-height:1.0;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:12px">${title&&title.includes('|')?title.split('|')[0].trim():(title||'').split(' ').slice(0,Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
+  <div style="color:${_accent};font-size:${title&&title.length>8?'110':'130'}px;font-weight:900;line-height:1.0;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em">${title&&title.includes('|')?title.split('|')[1].trim():(title||'').split(' ').slice(Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
   <div style="width:60px;height:4px;background:${_accent};border-radius:2px;margin-top:40px"></div>
-  ${badge?`<div style="color:rgba(255,255,255,.65);font-size:28px;font-weight:500;margin-top:24px;letter-spacing:.02em">${badge}</div>`:''}
   ${tag1Html?`<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:32px">${tag1Html}</div>`:''}
 </div>
 </body></html>`;
@@ -1010,8 +1013,8 @@ ${overlay}
 </div>
 <div style="position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:center;padding:0 64px">
   <div style="color:rgba(255,255,255,.55);font-size:26px;font-weight:700;letter-spacing:.04em;margin-bottom:16px;word-break:keep-all">${sub||''}</div>
-  <div style="color:#fff;font-size:${title&&title.length>8?'96':'116'}px;font-weight:900;line-height:1.0;text-shadow:0 2px 32px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:8px">${(title||'').split(' ')[0]||''}</div>
-  <div style="color:${_accent};font-size:${title&&title.length>8?'96':'116'}px;font-weight:900;line-height:1.0;text-shadow:0 2px 32px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:36px">${(title||'').split(' ').slice(1).join(' ')||''}</div>
+  <div style="color:#fff;font-size:${title&&title.length>8?'96':'116'}px;font-weight:900;line-height:1.0;text-shadow:0 2px 32px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:8px">${title&&title.includes('|')?title.split('|')[0].trim():(title||'').split(' ')[0]||''}</div>
+  <div style="color:${_accent};font-size:${title&&title.length>8?'96':'116'}px;font-weight:900;line-height:1.0;text-shadow:0 2px 32px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:36px">${title&&title.includes('|')?title.split('|')[1].trim():(title||'').split(' ').slice(1).join(' ')||''}</div>
   <div style="width:56px;height:4px;background:${_accent};border-radius:2px;margin-bottom:36px"></div>
   ${bulletsHtml||tagHtml?`<div style="display:flex;flex-direction:column;gap:0">${bulletsHtml}</div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:${bulletsHtml?'8':'0'}px">${tagHtml}</div>`:''}
 </div>
@@ -1032,7 +1035,7 @@ function buildCtaHtml(info){
   <div style="text-align:center;margin-bottom:56px">
     <div style="color:rgba(255,255,255,.45);font-size:22px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px">${info.brand||'SOUNDGLÜCK'}</div>
     <div style="color:${_accent};font-size:96px;font-weight:900;line-height:1.0;word-break:keep-all;letter-spacing:-.02em">${ctaTitle}</div>
-    <div style="color:rgba(255,255,255,.5);font-size:26px;font-weight:500;margin-top:16px">${info.sub||'공식대리점 정품 · 전국 무료배송 · 납품 견적 환영'}</div>
+    <div style="color:rgba(255,255,255,.5);font-size:26px;font-weight:500;margin-top:16px">공식대리점 정품 · 전국 무료배송 · 납품 견적 환영</div>
   </div>
   <div style="background:#111;border:1px solid #2a2a2a;border-radius:20px;padding:44px 64px;width:100%;max-width:880px">
     <div style="display:flex;flex-direction:column;gap:0">
@@ -1575,12 +1578,15 @@ function applySlideEdit(i){
   const iframe=document.getElementById('sf-'+i);
   if(iframe){
     iframe.style.transform='';
+    const blob=new Blob([newHtml],{type:'text/html'});
+    const burl=URL.createObjectURL(blob);
     iframe.onload=function(){
       const wrap=iframe.closest('.sns-slide-wrap');
       if(wrap){ const sc=wrap.offsetWidth/1080; iframe.style.transform='scale('+sc+')'; }
       iframe.onload=null;
+      setTimeout(()=>URL.revokeObjectURL(burl),1000);
     };
-    iframe.setAttribute('srcdoc',enc);
+    iframe.src=burl;
   }
 }
 
