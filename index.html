@@ -971,7 +971,8 @@ function _buildSlideHtml_orig(tpl, img, texts, _accent, _logoBg, _logoTxt, _conc
 ${imgTag}
 ${overlay}
 <div style="position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 80px">
-  <div style="background:${_accent};color:${accentDark};font-size:26px;font-weight:900;padding:10px 32px;border-radius:6px;letter-spacing:.1em;margin-bottom:48px;display:inline-block">${sub||'SOUNDGLÜCK'}</div>
+  ${badge?`<div style="background:${_accent};color:${accentDark};font-size:26px;font-weight:900;padding:10px 32px;border-radius:6px;letter-spacing:.1em;margin-bottom:32px;display:inline-block">${badge}</div>`:''}
+  ${sub?`<div style="color:rgba(255,255,255,.6);font-size:28px;font-weight:600;margin-bottom:24px;letter-spacing:.04em">${sub}</div>`:''}
   <div style="color:#fff;font-size:${title&&title.length>8?'110':'130'}px;font-weight:900;line-height:1.0;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:12px">${(title||'').split(' ').slice(0,Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
   <div style="color:${_accent};font-size:${title&&title.length>8?'110':'130'}px;font-weight:900;line-height:1.0;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em">${(title||'').split(' ').slice(Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
   <div style="width:60px;height:4px;background:${_accent};border-radius:2px;margin-top:40px"></div>
@@ -1030,9 +1031,8 @@ function buildCtaHtml(info){
 <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 80px;gap:0">
   <div style="text-align:center;margin-bottom:56px">
     <div style="color:rgba(255,255,255,.45);font-size:22px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px">${info.brand||'SOUNDGLÜCK'}</div>
-    <div style="color:#fff;font-size:64px;font-weight:900;line-height:1.1;word-break:keep-all">지금 바로</div>
     <div style="color:${_accent};font-size:96px;font-weight:900;line-height:1.0;word-break:keep-all;letter-spacing:-.02em">${ctaTitle}</div>
-    <div style="color:rgba(255,255,255,.5);font-size:26px;font-weight:500;margin-top:16px">${info.sub||'공식 대리점 정품 · 전국 무료배송 · 전문가 상담'}</div>
+    <div style="color:rgba(255,255,255,.5);font-size:26px;font-weight:500;margin-top:16px">${info.sub||'공식대리점 정품 · 전국 무료배송 · 납품 견적 환영'}</div>
   </div>
   <div style="background:#111;border:1px solid #2a2a2a;border-radius:20px;padding:44px 64px;width:100%;max-width:880px">
     <div style="display:flex;flex-direction:column;gap:0">
@@ -1502,9 +1502,15 @@ function renderSns(d,el){
         <input id="se-${i}-sub" value="${(s.sub||'').replace(/"/g,'&quot;')}" placeholder="예: 공식 대리점 정품 · 전국 무료배송 · 전문가 상담" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
       </div>`;
     } else {
+      const slide1Labels = ['메인 타이틀','배지 (상단 accent박스)','서브 타이틀'];
+      const slide23Labels = ['메인 타이틀','서브 타이틀 (회색 소제목)',''];
       editFields=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
-        <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
-        <input id="se-${i}-sub" value="${(s.sub||s.subtitle||'').replace(/"/g,'&quot;')}" placeholder="부제" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        <div style="font-size:11px;color:var(--gray);margin-bottom:2px">${i===0?'메인 타이틀':'메인 타이틀'}</div>
+        <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="메인 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        ${i===0?`<div style="font-size:11px;color:var(--gray);margin-top:4px;margin-bottom:2px">배지 (상단 accent 박스)</div><input id="se-${i}-badge" value="${(s.badge||'').replace(/"/g,'&quot;')}" placeholder="예: KURZWEIL SP8" style="padding:6px 10px;border:1px solid var(--teal);border-radius:6px;font-size:12px;color:var(--dark)">`:``}
+        <div style="font-size:11px;color:var(--gray);margin-top:4px;margin-bottom:2px">서브 타이틀</div>
+        <input id="se-${i}-sub" value="${(s.sub||s.subtitle||'').replace(/"/g,'&quot;')}" placeholder="서브 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        <div style="font-size:11px;color:var(--gray);margin-top:4px;margin-bottom:2px">태그 3개</div>
         <div style="display:flex;gap:6px">
           <input id="se-${i}-t1" value="${(s.t1||'').replace(/"/g,'&quot;')}" placeholder="태그1" style="flex:1;padding:6px 10px;border:1px solid var(--teal);border-radius:6px;font-size:12px;color:var(--dark)">
           <input id="se-${i}-t2" value="${(s.t2||'').replace(/"/g,'&quot;')}" placeholder="태그2" style="flex:1;padding:6px 10px;border:1px solid var(--teal);border-radius:6px;font-size:12px;color:var(--dark)">
@@ -1561,19 +1567,20 @@ function applySlideEdit(i){
   if(i===3){
     const _eb2=g('brand')||getChip('sns-brand')||''; const _em2=getChip('sns-model')||''; const _el2=_eb2||(_em2?(_eb2?_eb2+' '+_em2:_em2):''); newHtml=buildCtaHtml({title:g('title')||'지금 바로 만나보세요',sub:g('sub')||'',brand:_el2});
   } else {
-    const texts={title:g('title'),sub:g('sub'),badge:g('badge'),t1:g('t1'),t2:g('t2'),t3:g('t3')};
+    const texts={title:g('title'),sub:g('sub'),badge:i===0?g('badge'):(g('badge')||''),t1:g('t1'),t2:g('t2'),t3:g('t3')};
     newHtml=buildSlideHtml('concept',snsImages[i]||null,texts,i);
   }
   window._snsSlides[i]={...s,html:newHtml};
   const enc=newHtml.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
   const iframe=document.getElementById('sf-'+i);
   if(iframe){
-    iframe.setAttribute('srcdoc',enc);
     iframe.style.transform='';
-    setTimeout(()=>{
+    iframe.onload=function(){
       const wrap=iframe.closest('.sns-slide-wrap');
       if(wrap){ const sc=wrap.offsetWidth/1080; iframe.style.transform='scale('+sc+')'; }
-    },150);
+      iframe.onload=null;
+    };
+    iframe.setAttribute('srcdoc',enc);
   }
 }
 
