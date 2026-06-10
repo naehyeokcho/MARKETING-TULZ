@@ -1029,10 +1029,10 @@ function buildCtaHtml(info){
 <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(80,80,80,.18) 0%,rgba(0,0,0,0) 70%)"></div>
 <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 80px;gap:0">
   <div style="text-align:center;margin-bottom:56px">
-    <div style="color:rgba(255,255,255,.45);font-size:22px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px">${info.brand?info.brand+' × SOUNDGLÜCK':'SOUNDGLÜCK'}</div>
+    <div style="color:rgba(255,255,255,.45);font-size:22px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px">${info.brand||'SOUNDGLÜCK'}</div>
     <div style="color:#fff;font-size:64px;font-weight:900;line-height:1.1;word-break:keep-all">지금 바로</div>
     <div style="color:${_accent};font-size:96px;font-weight:900;line-height:1.0;word-break:keep-all;letter-spacing:-.02em">${ctaTitle}</div>
-    <div style="color:rgba(255,255,255,.5);font-size:26px;font-weight:500;margin-top:16px">공식 대리점 정품 · 전국 무료배송 · 전문가 상담</div>
+    <div style="color:rgba(255,255,255,.5);font-size:26px;font-weight:500;margin-top:16px">${info.sub||'공식 대리점 정품 · 전국 무료배송 · 전문가 상담'}</div>
   </div>
   <div style="background:#111;border:1px solid #2a2a2a;border-radius:20px;padding:44px 64px;width:100%;max-width:880px">
     <div style="display:flex;flex-direction:column;gap:0">
@@ -1476,7 +1476,7 @@ function renderSns(d,el){
     const s=slides[i]||{};
     let hCode;
     if(i===3){
-      const _ctaBrand=getChip('sns-brand')||''; const _ctaModel=getChip('sns-model')||''; const _ctaLabel=_ctaModel?(_ctaBrand?_ctaBrand+' '+_ctaModel:_ctaModel):(_ctaBrand||''); hCode=buildCtaHtml({title:s.title||(_ctaModel?'지금 바로 '+_ctaModel+'을 만나보세요':'지금 바로 만나보세요'),sub:s.desc||'',brand:_ctaLabel});
+      const _ctaBrand=getChip('sns-brand')||''; const _ctaModel=getChip('sns-model')||''; const _ctaLabel=_ctaModel?(_ctaBrand?_ctaBrand.toUpperCase()+' × SOUNDGLÜCK':_ctaModel.toUpperCase()+' × SOUNDGLÜCK'):(_ctaBrand?_ctaBrand.toUpperCase()+' × SOUNDGLÜCK':'SOUNDGLÜCK'); hCode=buildCtaHtml({title:s.title||(_ctaModel?'지금 바로 '+_ctaModel+'을 만나보세요':'지금 바로 만나보세요'),sub:s.desc||'',brand:_ctaLabel});
     } else {
       const _item = i===0 ? (getChip('sns-item')||s.sub||s.subtitle||'') : (s.sub||s.subtitle||'');
       const texts = {title:s.title||'', sub:_item, badge:s.badge||'', t1:s.t1||'', t2:s.t2||'', t3:s.t3||''};
@@ -1494,7 +1494,12 @@ function renderSns(d,el){
     let editFields='';
     if(i===3){
       editFields=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
-        <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="CTA 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        <div style="font-size:11px;color:var(--gray);margin-bottom:2px">상단 브랜드 × 모델</div>
+        <input id="se-${i}-brand" value="${(s.brand||'').replace(/"/g,'&quot;')}" placeholder="예: KURZWEIL × SOUNDGLÜCK" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        <div style="font-size:11px;color:var(--gray);margin-top:4px;margin-bottom:2px">CTA 타이틀 (accent색)</div>
+        <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="예: SP8을 만나세요" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        <div style="font-size:11px;color:var(--gray);margin-top:4px;margin-bottom:2px">서브 문구</div>
+        <input id="se-${i}-sub" value="${(s.sub||'').replace(/"/g,'&quot;')}" placeholder="예: 공식 대리점 정품 · 전국 무료배송 · 전문가 상담" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
       </div>`;
     } else {
       editFields=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
@@ -1554,7 +1559,7 @@ function applySlideEdit(i){
   const g=(id)=>{const el=document.getElementById('se-'+i+'-'+id);return el?el.value.trim():'';};
   let newHtml;
   if(i===3){
-    const _eb=getChip('sns-brand')||''; const _em=getChip('sns-model')||''; const _el=_em?(_eb?_eb+' '+_em:_em):(_eb||''); newHtml=buildCtaHtml({title:g('title')||(_em?'지금 바로 '+_em+'을 만나보세요':'지금 바로 만나보세요'),sub:'',brand:_el});
+    const _eb2=g('brand')||getChip('sns-brand')||''; const _em2=getChip('sns-model')||''; const _el2=_eb2||(_em2?(_eb2?_eb2+' '+_em2:_em2):''); newHtml=buildCtaHtml({title:g('title')||'지금 바로 만나보세요',sub:g('sub')||'',brand:_el2});
   } else {
     const texts={title:g('title'),sub:g('sub'),badge:g('badge'),t1:g('t1'),t2:g('t2'),t3:g('t3')};
     newHtml=buildSlideHtml('concept',snsImages[i]||null,texts,i);
