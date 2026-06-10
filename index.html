@@ -701,22 +701,52 @@ body {
   <div class="form-card">
     <div class="form-card-title">디자인 컨셉</div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px" id="sns-concept-grid">
-      <div class="concept-card active" onclick="selConcept(this,'A')" id="concept-card-A">
-        <div style="background:#0a0a0a;height:90px;border-radius:8px;margin-bottom:10px;position:relative;overflow:hidden">
+      <div class="concept-card active" onclick="selConcept(this,'A')">
+        <div style="background:#0a0a0a;height:80px;border-radius:8px;margin-bottom:8px;position:relative;overflow:hidden">
           <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(80,0,180,.7),transparent 60%)"></div>
-          <div style="position:absolute;top:8px;left:10px;color:#fff;font-size:7px;font-weight:900;letter-spacing:.1em">KURZWEIL</div>
-          <div style="position:absolute;bottom:10px;left:10px"><div style="color:#fff;font-size:13px;font-weight:900">SP7</div><div style="color:#a855f7;font-size:11px;font-weight:900">GRAND</div></div>
-          <div style="position:absolute;top:8px;right:10px;color:rgba(255,255,255,.5);font-size:8px">01/04</div>
+          <div style="position:absolute;top:8px;left:10px;background:#000;color:#a855f7;font-size:7px;font-weight:900;padding:2px 6px;border-radius:2px">SOUNDGLÜCK</div>
+          <div style="position:absolute;bottom:10px;left:10px;right:10px">
+            <div style="color:#fff;font-size:11px;font-weight:900;margin-bottom:4px">무한한 창의성</div>
+            <div style="display:flex;gap:4px"><span style="border:1px solid #a855f7;color:#a855f7;border-radius:10px;padding:1px 6px;font-size:7px">#VAST</span><span style="border:1px solid #a855f7;color:#a855f7;border-radius:10px;padding:1px 6px;font-size:7px">#88건반</span></div>
+          </div>
         </div>
-        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 A — SP7 Grand 스타일</div>
-        <div style="font-size:10px;color:var(--gray);margin-top:2px">퍼플 포인트 · 영문 대형 타이포</div>
+        <div style="font-size:11px;font-weight:700;color:var(--dark2)">A — 퍼플</div>
       </div>
-      <div class="concept-card" onclick="selConcept(this,'B')" id="concept-card-B">
-        <div style="background:#111;height:90px;border-radius:8px;margin-bottom:10px;position:relative;overflow:hidden">
+      <div class="concept-card" onclick="selConcept(this,'B')">
+        <div style="background:#111;height:80px;border-radius:8px;margin-bottom:8px;position:relative;overflow:hidden">
           <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85),transparent 55%)"></div>
           <div style="position:absolute;top:8px;left:8px;background:#c8ff00;color:#000;font-size:7px;font-weight:900;padding:2px 6px;border-radius:2px">SOUNDGLÜCK</div>
-          <div style="position:absolute;bottom:8px;left:10px;right:10px"><div style="color:#c8ff00;font-size:7px;font-weight:700;margin-bottom:2px">본사 인증 S급 리퍼</div><div style="color:#fff;font-size:9px;font-weight:900;margin-bottom:4px">커즈와일 디지털 피아노</div><div style="display:flex;gap:3px"><span style="border:1px solid rgba(255,255,255,.5);border-radius:10px;padding:1px 5px;font-size:6px;color:#fff">#본사검수</span><span style="border:1px solid rgba(255,255,255,.4);border-radius:10px;padding:1px 5px;font-size:6px;color:#fff">#AS보증</span></div></div>
+          <div style="position:absolute;bottom:10px;left:10px;right:10px">
+            <div style="color:#fff;font-size:11px;font-weight:900;margin-bottom:4px">디지털 피아노</div>
+            <div style="display:flex;gap:4px"><span style="border:1px solid #c8ff00;color:#c8ff00;border-radius:10px;padding:1px 6px;font-size:7px">#본사검수</span><span style="border:1px solid #c8ff00;color:#c8ff00;border-radius:10px;padding:1px 6px;font-size:7px">#AS보증</span></div>
+          </div>
         </div>
+        <div style="font-size:11px;font-weight:700;color:var(--dark2)">B — 라임</div>
+      </div>
+      <div class="concept-card" onclick="selConcept(this,'C')">
+        <div style="background:#0a0a0a;height:80px;border-radius:8px;margin-bottom:8px;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(180,0,0,.7),transparent 60%)"></div>
+          <div style="position:absolute;top:8px;left:8px;background:#ff3b3b;color:#fff;font-size:7px;font-weight:900;padding:2px 6px;border-radius:2px">SOUNDGLÜCK</div>
+          <div style="position:absolute;bottom:10px;left:10px;right:10px">
+            <div style="color:#fff;font-size:11px;font-weight:900;margin-bottom:4px">신디사이저</div>
+            <div style="display:flex;gap:4px"><span style="border:1px solid #ff3b3b;color:#ff3b3b;border-radius:10px;padding:1px 6px;font-size:7px">#ARP</span><span style="border:1px solid #ff3b3b;color:#ff3b3b;border-radius:10px;padding:1px 6px;font-size:7px">#레이어</span></div>
+          </div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:var(--dark2)">C — 레드</div>
+      </div>
+      <div class="concept-card" onclick="selConcept(this,'D')">
+        <div style="background:#0a0a0a;height:80px;border-radius:8px;margin-bottom:8px;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,60,180,.7),transparent 60%)"></div>
+          <div style="position:absolute;top:8px;left:8px;background:#3b82f6;color:#fff;font-size:7px;font-weight:900;padding:2px 6px;border-radius:2px">SOUNDGLÜCK</div>
+          <div style="position:absolute;bottom:10px;left:10px;right:10px">
+            <div style="color:#fff;font-size:11px;font-weight:900;margin-bottom:4px">스테이지 키보드</div>
+            <div style="display:flex;gap:4px"><span style="border:1px solid #3b82f6;color:#3b82f6;border-radius:10px;padding:1px 6px;font-size:7px">#퍼포먼스</span><span style="border:1px solid #3b82f6;color:#3b82f6;border-radius:10px;padding:1px 6px;font-size:7px">#Zone</span></div>
+          </div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:var(--dark2)">D — 블루</div>
+      </div>
+    </div>
+  </div>
         <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 B — 사운드글룩 스타일</div>
         <div style="font-size:10px;color:var(--gray);margin-top:2px">사진 배경 · 해시태그 배지 · @SOUNDGLÜCK</div>
       </div>
@@ -1054,57 +1084,39 @@ let snsTemplate = 'concept';
 
 function buildSlideHtml(tpl, img, texts){
   var _concept = (typeof snsConceptStyle !== 'undefined') ? snsConceptStyle : 'A';
-  var _accent  = _concept === 'A' ? '#a855f7' : '#c8ff00';
-  var _accentTxt = _concept === 'A' ? '#a855f7' : '#c8ff00';
-  var _logoBg  = _concept === 'A' ? '#000' : '#c8ff00';
-  var _logoTxt = _concept === 'A' ? '#a855f7' : '#000';
-  // 원본 함수에 컨셉 변수 주입 후 동작
-  var _orig = _buildSlideHtml_orig(tpl, img, texts, _accent, _logoBg, _logoTxt, _concept);
-  return _orig;
+  var _palettes = {
+    'A': {accent:'#a855f7', logoBg:'#000',     logoTxt:'#a855f7'},
+    'B': {accent:'#c8ff00', logoBg:'#c8ff00',  logoTxt:'#000'},
+    'C': {accent:'#ff3b3b', logoBg:'#ff3b3b',  logoTxt:'#fff'},
+    'D': {accent:'#3b82f6', logoBg:'#3b82f6',  logoTxt:'#fff'},
+  };
+  var _p = _palettes[_concept] || _palettes['A'];
+  return _buildSlideHtml_orig(tpl, img, texts, _p.accent, _p.logoBg, _p.logoTxt, _concept);
 }
 function _buildSlideHtml_orig(tpl, img, texts, _accent, _logoBg, _logoTxt, _concept){
-  const {title, sub, body, badge} = texts;
-  const bgStyle = img ? '' : 'background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%)';
+  const {title, sub, body, badge, t1, t2, t3} = texts;
+  const bgStyle = img ? '' : 'background:#0a0a0a';
   const imgTag = img ? `<img src="${img}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1">` : '';
 
-  // 특장점 항목 (s1_name/s2_name/s3_name)
-  const specItems=[];
-  if(texts.s1_name) specItems.push({name:texts.s1_name, desc:texts.s1_desc||''});
-  if(texts.s2_name) specItems.push({name:texts.s2_name, desc:texts.s2_desc||''});
-  if(texts.s3_name) specItems.push({name:texts.s3_name, desc:texts.s3_desc||''});
+  const tagHtml = [t1,t2,t3].filter(Boolean).map(t=>
+    `<span style="display:inline-block;border:1.5px solid ${_accent};color:${_accent};font-size:22px;font-weight:700;padding:8px 20px;border-radius:30px;white-space:nowrap">#${t}</span>`
+  ).join('');
 
-  const specHtml = specItems.length
-    ? specItems.map(sp=>`
-        <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:18px">
-          <div style="min-width:36px;height:36px;background:${_accent};border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <span style="color:#000;font-size:16px;font-weight:900">♪</span>
-          </div>
-          <div>
-            <div style="color:#fff;font-size:28px;font-weight:900;line-height:1.1;word-break:keep-all;overflow-wrap:break-word">${sp.name}</div>
-            ${sp.desc?`<div style="color:rgba(255,255,255,.7);font-size:20px;margin-top:4px;line-height:1.4;word-break:keep-all;overflow-wrap:break-word">${sp.desc}</div>`:''}
-          </div>
-        </div>`).join('')
-    : '';
-
-  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;position:relative;background:#111;${bgStyle}}</style></head><body>
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;position:relative;${bgStyle}}</style></head><body>
 ${imgTag}
-<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.15) 100%);z-index:2"></div>
-<div style="position:absolute;top:40px;left:48px;z-index:3;display:flex;align-items:center;gap:10px">
-  <span style="background:${_logoBg};color:${_logoTxt};font-size:22px;font-weight:900;padding:6px 16px;border-radius:4px;letter-spacing:.05em">SOUNDGLÜCK</span>
+<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.3) 55%,rgba(0,0,0,.1) 100%);z-index:2"></div>
+<div style="position:absolute;top:44px;left:48px;z-index:3">
+  <span style="background:${_logoBg};color:${_logoTxt};font-size:22px;font-weight:900;padding:7px 18px;border-radius:4px;letter-spacing:.05em">SOUNDGLÜCK</span>
 </div>
-${badge?`<div style="position:absolute;top:40px;right:48px;z-index:3;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:20px;padding:8px 18px;border-radius:6px;backdrop-filter:blur(4px)">${badge}</div>`:''} 
-<div style="position:absolute;bottom:0;left:0;right:0;padding:48px;z-index:3">
-  ${sub?`<div style="color:${_accent};font-size:26px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;word-break:keep-all;overflow-wrap:break-word">${sub}</div>`:''}
-  ${specItems.length
-    ? `<div style="margin-bottom:0">${specHtml}</div>`
-    : `<div style="color:#fff;font-size:${title&&title.length>12?'88':'108'}px;font-weight:900;line-height:1.05;margin-bottom:24px;text-shadow:0 2px 20px rgba(0,0,0,.5);word-break:keep-all;overflow-wrap:break-word">${title||''}</div>
-       ${body?`<div style="color:rgba(255,255,255,.85);font-size:30px;line-height:1.6;font-weight:400;word-break:keep-all;overflow-wrap:break-word">${body}</div>`:''}`
-  }
-  ${_concept==='B'?`<div style="display:flex;align-items:center;gap:16px;margin-top:20px"><span style="color:rgba(255,255,255,.4);font-size:16px;letter-spacing:.08em">@SOUNDGLÜCK</span><div style="flex:1;height:1px;background:rgba(255,255,255,.2)"></div></div>`:''}
+${badge?`<div style="position:absolute;top:44px;right:48px;z-index:3;border:1.5px solid rgba(255,255,255,.4);color:#fff;font-size:18px;padding:7px 18px;border-radius:6px">${badge}</div>`:''}
+<div style="position:absolute;bottom:72px;left:48px;right:48px;z-index:3">
+  ${sub?`<div style="color:${_accent};font-size:26px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px;word-break:keep-all;overflow-wrap:break-word">${sub}</div>`:''}
+  <div style="color:#fff;font-size:${title&&title.length>10?'82':'104'}px;font-weight:900;line-height:1.05;margin-bottom:32px;text-shadow:0 2px 24px rgba(0,0,0,.6);word-break:keep-all;overflow-wrap:break-word">${title||''}</div>
+  ${tagHtml?`<div style="display:flex;gap:14px;flex-wrap:nowrap">${tagHtml}</div>`:''}
+  ${_concept==='B'?`<div style="display:flex;align-items:center;gap:16px;margin-top:28px"><span style="color:rgba(255,255,255,.4);font-size:16px;letter-spacing:.1em">@SOUNDGLÜCK</span><div style="flex:1;height:1px;background:rgba(255,255,255,.2)"></div></div>`:''}
 </div>
 </body></html>`;
 }
-
 function buildCtaHtml(info){
   return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;background:#0a0a0a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}</style></head><body>
 <div style="text-align:center;margin-bottom:48px">
@@ -1378,13 +1390,10 @@ JSON만 출력 (백틱/마크다운 절대 금지, body 필드 내 큰따옴표 
   if(t==='press') return base+`\n역피라미드기사형식 / 크몽대행사전달용 / CTA: 네이버에서 '사운드글룩' 검색 또는 ${s.url} / 문의: ${s.tel}\n\nJSON만 출력:\n{"headline":"h","sub_headline":"sh","lead":"리드2~3문장","body":"본문800~1000자","quote":{"text":"인용","speaker":"사운드글룩 관계자"},"boilerplate":"회사소개3~4문장","image_guides":[{"num":1,"label":"메인","desc":"설명"},{"num":2,"label":"제품상세","desc":"설명"},{"num":3,"label":"브랜드로고","desc":"설명"},{"num":4,"label":"사용환경","desc":"설명"}],"contact":"문의정보"}`;
   if(t==='sns'){
     const concept = snsConceptNum||'A';
-    const conceptGuides = {
-      'A': '[컨셉 A — SP7 Grand 스타일]\n배경: 다크 (#0a0a0a), 하단 퍼플 그라디언트 오버레이\n포인트: #a855f7 (퍼플) — 부제목/강조 텍스트\n로고: 검정 배경 + 퍼플 텍스트 (좌상단)\n레이아웃: 하단 대형 타이포, 부제목 퍼플\n분위기: 고급 스테이지 감성, 영문 대형 타이포 중심',
-      'B': '[컨셉 B — 사운드글룩 스타일]\n배경: 사진 있으면 전체 배경+다크 오버레이, 없으면 다크 #0a0a0a\n포인트: #c8ff00 (옐로우그린) — 부제목/강조/배지\n로고: #c8ff00 배경 + 검정 텍스트 (좌상단)\n레이아웃: 하단 소제목→메인타이틀→설명, 최하단 @SOUNDGLÜCK 크레딧\n분위기: 고급 브랜드 감성, 잡지 광고 스타일'
-    };
-    const conceptGuide = conceptGuides[concept]||conceptGuides['A'];
-    const imgInfos = [0,1,2].map(i=>snsImages&&snsImages[i]?`${i+1}번: 업로드 이미지 있음`:`${i+1}번: 이미지 없음 — 다크 배경 자동 생성`);
-    return base+`\n\n[제품정보] 브랜드:${brand} / 품목:${item}${model?' / 모델:'+model:''}\n\n[SNS 콘텐츠 제작 지침]\n${conceptGuide}\n\n[슬라이드별 이미지]: ${imgInfos.join(' / ')}\n\n[카드뉴스 4장 고정 구성]\n1장(메인 훅): 품목을 대표하는 강렬한 한 줄. subtitle 반드시 "${item}" 그대로. html 필드에 완성된 1080x1080 HTML 출력.\n2장(특장점1): 핵심 특장점 첫번째 그룹 3가지. s1_name/s1_desc/s2_name/s2_desc/s3_name/s3_desc 출력. VAST 단독 반복 금지.\n3장(특장점2): 2번과 완전히 다른 카테고리 특장점 3가지 (예: 2번=엔진/음원→3번=컨트롤러/연결성/편의기능). html 출력 금지.\n4장(CTA): title/desc만 출력. 사운드글룩 채널 정보 고정.\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"html":"완성된HTML","title":"메인문구","subtitle":"${item}","body":"한줄설명","badge":""},{"slide":2,"s1_name":"특장점1","s1_desc":"설명","s2_name":"특장점2","s2_desc":"설명","s3_name":"특장점3","s3_desc":"설명"},{"slide":3,"s1_name":"2번과다른특장점","s1_desc":"설명","s2_name":"특장점","s2_desc":"설명","s3_name":"","s3_desc":""},{"slide":4,"title":"CTA문구","desc":""}],"posting_tips":["팁1","팁2","팁3"]}`;
+    const accentColors = {'A':'#a855f7','B':'#c8ff00','C':'#ff3b3b','D':'#3b82f6'};
+    const accentColor = accentColors[concept]||'#a855f7';
+    const imgInfos = [0,1,2].map(i=>snsImages&&snsImages[i]?`${i+1}번: 이미지 있음`:`${i+1}번: 이미지 없음`);
+    return base+`\n\n[제품정보] 브랜드:${brand} / 품목:${item}${model?' / 모델:'+model:''}\n\n[카드뉴스 4장 고정]\n공통 디자인: 다크 배경+사진 오버레이 / 포인트 색상 ${accentColor} / 태그는 #태그 형식으로 3개만\n이미지: ${imgInfos.join(' / ')}\n\n1장(메인훅): 제품을 대표하는 임팩트 있는 한 줄 타이틀. 태그 3개는 브랜드/모델/품목 관련.\n2장(특장점1): 핵심 기술/사운드 관련 특장점 태그 3개. 절대 VAST만 반복 금지.\n3장(특장점2): 2번과 완전히 다른 카테고리(조작/연결/편의) 특장점 태그 3개.\n4장(CTA): 사운드글룩 구매 유도 문구.\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"메인타이틀","sub":"${item}","t1":"태그1","t2":"태그2","t3":"태그3"},{"slide":2,"title":"특장점제목","sub":"핵심 기술","t1":"태그1","t2":"태그2","t3":"태그3"},{"slide":3,"title":"특장점제목","sub":"퍼포먼스","t1":"태그1","t2":"태그2","t3":"태그3"},{"slide":4,"title":"CTA문구","desc":""}],"posting_tips":["팁1","팁2","팁3"]}`;
   }
   if(t==='shorts') return base+`\n60초이내 / AI아바타나레이션용 / 훅→본론→CTA\n\nJSON만 출력:\n{"title":"제목","hook":"첫3초훅","script":[{"time":"0~3초","text":"멘트","visual":"화면"},{"time":"3~15초","text":"멘트","visual":"화면"},{"time":"15~35초","text":"멘트","visual":"화면"},{"time":"35~50초","text":"멘트","visual":"화면"},{"time":"50~60초","text":"CTA","visual":"화면"}],"thumbnail_text":"썸네일문구","description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
   if(t==='youtube') return base+`\n7~10분 / AI아바타+슬라이드 / EGLOO스타일 / CTA: ${s.url}\n\nJSON만 출력:\n{"title":"제목","thumbnail":{"main_text":"메인","sub_text":"서브"},"structure":[{"section":"인트로","duration":"0~30초","script":"스크립트","visual":"화면"},{"section":"본론1","duration":"30초~3분","script":"스크립트","visual":"화면"},{"section":"본론2","duration":"3~6분","script":"스크립트","visual":"화면"},{"section":"비교/추천","duration":"6~8분","script":"스크립트","visual":"화면"},{"section":"CTA","duration":"8~10분","script":"사운드글룩구매유도","visual":"화면"}],"comparison_chart":{"headers":["항목","제품A","제품B","제품C"],"rows":[["가격","","",""],["건반","","",""],["음색수","","",""],["특징","","",""],["추천대상","","",""]]},"description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
@@ -1548,12 +1557,10 @@ function renderSns(d,el){
     let hCode;
     if(i===3){
       hCode=buildCtaHtml({title:s.title||'사운드글룩에서 만나보세요',sub:s.desc||''});
-    } else if(i===0){
-      const _item=getChip('sns-item')||s.subtitle||s.sub||'';
-      hCode=s.html||buildSlideHtml('concept',snsImages[0]||null,{title:s.title||'',sub:_item,body:s.body||'',badge:s.badge||''});
     } else {
-      const texts={title:s.title||'',sub:s.subtitle||s.sub||'',body:s.body||'',badge:s.badge||'',s1_name:s.s1_name||'',s1_desc:s.s1_desc||'',s2_name:s.s2_name||'',s2_desc:s.s2_desc||'',s3_name:s.s3_name||'',s3_desc:s.s3_desc||''};
-      hCode=buildSlideHtml('concept',snsImages[i]||null,texts);
+      const _item = i===0 ? (getChip('sns-item')||s.sub||s.subtitle||'') : (s.sub||s.subtitle||'');
+      const texts = {title:s.title||'', sub:_item, badge:s.badge||'', t1:s.t1||'', t2:s.t2||'', t3:s.t3||''};
+      hCode = buildSlideHtml('concept', snsImages[i]||null, texts);
     }
     return {...s,slide:i+1,html:hCode};
   });
@@ -1565,23 +1572,19 @@ function renderSns(d,el){
     const isCTA=i===3;
     const slideColor=isCTA?'#f59e0b':'var(--teal)';
     let editFields='';
-    if(i===0){
+    if(i===3){
       editFields=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
-        <input id="se-${i}-title" value="${(s.title||''). replace(/"/g,'&quot;')}" placeholder="메인 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
-        <input id="se-${i}-sub" value="${(s.subtitle||s.sub||''). replace(/"/g,'&quot;')}" placeholder="부제 (품목명)" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
-        <input id="se-${i}-body" value="${(s.body||''). replace(/"/g,'&quot;')}" placeholder="설명" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
-        <input id="se-${i}-badge" value="${(s.badge||''). replace(/"/g,'&quot;')}" placeholder="뱃지" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
-      </div>`;
-    } else if(i===1||i===2){
-      editFields=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
-        <input id="se-${i}-sub" value="${(s.subtitle||s.sub||''). replace(/"/g,'&quot;')}" placeholder="슬라이드 부제" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
-        <div style="display:flex;gap:6px"><input id="se-${i}-s1n" value="${(s.s1_name||''). replace(/"/g,'&quot;')}" placeholder="특장점1" style="flex:1;padding:6px 10px;border:1px solid #a855f7;border-radius:6px;font-size:12px;color:var(--dark)"><input id="se-${i}-s1d" value="${(s.s1_desc||''). replace(/"/g,'&quot;')}" placeholder="설명" style="flex:2;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)"></div>
-        <div style="display:flex;gap:6px"><input id="se-${i}-s2n" value="${(s.s2_name||''). replace(/"/g,'&quot;')}" placeholder="특장점2" style="flex:1;padding:6px 10px;border:1px solid #a855f7;border-radius:6px;font-size:12px;color:var(--dark)"><input id="se-${i}-s2d" value="${(s.s2_desc||''). replace(/"/g,'&quot;')}" placeholder="설명" style="flex:2;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)"></div>
-        <div style="display:flex;gap:6px"><input id="se-${i}-s3n" value="${(s.s3_name||''). replace(/"/g,'&quot;')}" placeholder="특장점3" style="flex:1;padding:6px 10px;border:1px solid #a855f7;border-radius:6px;font-size:12px;color:var(--dark)"><input id="se-${i}-s3d" value="${(s.s3_desc||''). replace(/"/g,'&quot;')}" placeholder="설명" style="flex:2;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)"></div>
+        <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="CTA 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
       </div>`;
     } else {
       editFields=`<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px">
-        <input id="se-${i}-title" value="${(s.title||''). replace(/"/g,'&quot;')}" placeholder="CTA 타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        <input id="se-${i}-title" value="${(s.title||'').replace(/"/g,'&quot;')}" placeholder="타이틀" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        <input id="se-${i}-sub" value="${(s.sub||s.subtitle||'').replace(/"/g,'&quot;')}" placeholder="부제" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;color:var(--dark)">
+        <div style="display:flex;gap:6px">
+          <input id="se-${i}-t1" value="${(s.t1||'').replace(/"/g,'&quot;')}" placeholder="태그1" style="flex:1;padding:6px 10px;border:1px solid var(--teal);border-radius:6px;font-size:12px;color:var(--dark)">
+          <input id="se-${i}-t2" value="${(s.t2||'').replace(/"/g,'&quot;')}" placeholder="태그2" style="flex:1;padding:6px 10px;border:1px solid var(--teal);border-radius:6px;font-size:12px;color:var(--dark)">
+          <input id="se-${i}-t3" value="${(s.t3||'').replace(/"/g,'&quot;')}" placeholder="태그3" style="flex:1;padding:6px 10px;border:1px solid var(--teal);border-radius:6px;font-size:12px;color:var(--dark)">
+        </div>
       </div>`;
     }
     sHtml+=`<div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px">`;
@@ -1621,14 +1624,11 @@ function applySlideEdit(i){
   const s=window._snsSlides[i]; if(!s)return;
   const g=(id)=>{const el=document.getElementById('se-'+i+'-'+id);return el?el.value.trim():'';};
   let newHtml;
-  if(i===0){
-    const texts={title:g('title'),sub:g('sub'),body:g('body'),badge:g('badge'),s1_name:'',s1_desc:'',s2_name:'',s2_desc:'',s3_name:'',s3_desc:''};
-    newHtml=buildSlideHtml('concept',snsImages[0]||null,texts);
-  } else if(i===1||i===2){
-    const texts={title:g('s1n'),sub:g('sub'),body:'',badge:'',s1_name:g('s1n'),s1_desc:g('s1d'),s2_name:g('s2n'),s2_desc:g('s2d'),s3_name:g('s3n'),s3_desc:g('s3d')};
-    newHtml=buildSlideHtml('concept',snsImages[i]||null,texts);
-  } else {
+  if(i===3){
     newHtml=buildCtaHtml({title:g('title'),sub:''});
+  } else {
+    const texts={title:g('title'),sub:g('sub'),badge:g('badge'),t1:g('t1'),t2:g('t2'),t3:g('t3')};
+    newHtml=buildSlideHtml('concept',snsImages[i]||null,texts);
   }
   window._snsSlides[i]={...s,html:newHtml};
   const enc=newHtml.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
