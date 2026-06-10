@@ -966,17 +966,17 @@ function _buildSlideHtml_orig(tpl, img, texts, _accent, _logoBg, _logoTxt, _conc
   if(slideIdx===0){
     const tag1Html = [t1,t2,t3].filter(Boolean).map(t=>{
       const tc=t.replace(/^#+/,'');
-      return `<span style="display:inline-block;border:1.5px solid ${_accent};color:${_accent};font-size:20px;font-weight:700;padding:7px 18px;border-radius:30px;white-space:nowrap">#${tc}</span>`;
+      return `<span style="display:inline-block;border:1.5px solid ${_accent};color:${_accent};font-size:30px;font-weight:700;padding:7px 18px;border-radius:30px;white-space:nowrap">#${tc}</span>`;
     }).join('');
     return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;position:relative;background:#0a0a0a}</style></head><body>
 ${imgTag}
 ${overlay}
 <div style="position:absolute;top:52px;left:52px;z-index:3">
-  <span style="color:rgba(255,255,255,.5);font-size:20px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">SOUNDGLÜCK</span>
+  <span style="color:rgba(255,255,255,.5);font-size:30px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">SOUNDGLÜCK</span>
 </div>
 <div style="position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 80px">
-  ${badge?`<div style="background:${_accent};color:${accentDark};font-size:26px;font-weight:900;padding:10px 32px;border-radius:6px;letter-spacing:.1em;margin-bottom:32px;display:inline-block">${badge}</div>`:''}
-  ${sub?`<div style="color:rgba(255,255,255,.6);font-size:28px;font-weight:600;margin-bottom:24px;letter-spacing:.04em">${sub}</div>`:''}
+  ${badge?`<div style="background:${_accent};color:${accentDark};font-size:39px;font-weight:900;padding:10px 32px;border-radius:6px;letter-spacing:.1em;margin-bottom:32px;display:inline-block">${badge}</div>`:''}
+  ${sub?`<div style="color:rgba(255,255,255,.6);font-size:42px;font-weight:600;margin-bottom:24px;letter-spacing:.04em">${sub}</div>`:''}
   <div style="color:#fff;font-size:${title&&title.length>8?'90':'108'}px;font-weight:900;line-height:1.05;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:12px">${title&&title.includes('|')?title.split('|')[0].trim():(title||'').split(' ').slice(0,Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
   <div style="color:${_accent};font-size:${title&&title.length>8?'90':'108'}px;font-weight:900;line-height:1.05;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em">${title&&title.includes('|')?title.split('|')[1].trim():(title||'').split(' ').slice(Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
   <div style="width:60px;height:4px;background:${_accent};border-radius:2px;margin-top:40px"></div>
@@ -989,7 +989,7 @@ ${overlay}
   const numLabel = slideIdx===1?'01':'02';
   const tagHtml = [t1,t2,t3].filter(Boolean).map(t=>{
     const tc=t.replace(/^#+/,'');
-    return `<span style="display:inline-block;border:1.5px solid ${_accent};color:${_accent};font-size:20px;font-weight:700;padding:7px 18px;border-radius:30px;white-space:nowrap">#${tc}</span>`;
+    return `<span style="display:inline-block;border:1.5px solid ${_accent};color:${_accent};font-size:30px;font-weight:700;padding:7px 18px;border-radius:30px;white-space:nowrap">#${tc}</span>`;
   }).join('');
 
   // sub를 " — " 기준으로 분리해서 불릿 포인트 생성
@@ -998,8 +998,8 @@ ${overlay}
     ? bulletItems.map(b=>{
         const parts = b.split('—');
         return `<div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:20px">
-          <span style="color:${_accent};font-size:20px;margin-top:2px">●</span>
-          <div><span style="color:#fff;font-size:24px;font-weight:700">${parts[0]||''}</span>${parts[1]?`<span style="color:rgba(255,255,255,.55);font-size:20px;font-weight:400"> — ${parts[1]}</span>`:''}</div>
+          <span style="color:${_accent};font-size:30px;margin-top:2px">●</span>
+          <div><span style="color:#fff;font-size:36px;font-weight:700">${parts[0]||''}</span>${parts[1]?`<span style="color:rgba(255,255,255,.55);font-size:30px;font-weight:400"> — ${parts[1]}</span>`:''}</div>
         </div>`;
       }).join('')
     : '';
@@ -1008,11 +1008,11 @@ ${overlay}
 ${imgTag}
 ${overlay}
 <div style="position:absolute;top:56px;left:56px;z-index:3;display:flex;align-items:center;gap:20px">
-  <div style="border:2px solid ${_accent};color:${_accent};font-size:22px;font-weight:900;width:56px;height:56px;border-radius:6px;display:flex;align-items:center;justify-content:center">${numLabel}</div>
-  <span style="color:rgba(255,255,255,.55);font-size:20px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">SOUNDGLÜCK</span>
+  <div style="border:2px solid ${_accent};color:${_accent};font-size:33px;font-weight:900;width:56px;height:56px;border-radius:6px;display:flex;align-items:center;justify-content:center">${numLabel}</div>
+  <span style="color:rgba(255,255,255,.55);font-size:30px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">SOUNDGLÜCK</span>
 </div>
 <div style="position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:center;padding:0 64px">
-  <div style="color:rgba(255,255,255,.55);font-size:26px;font-weight:700;letter-spacing:.04em;margin-bottom:16px;word-break:keep-all">${sub||''}</div>
+  <div style="color:rgba(255,255,255,.55);font-size:39px;font-weight:700;letter-spacing:.04em;margin-bottom:16px;word-break:keep-all">${sub||''}</div>
   <div style="color:#fff;font-size:${title&&title.length>8?'78':'94'}px;font-weight:900;line-height:1.05;text-shadow:0 2px 32px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:8px">${title&&title.includes('|')?title.split('|')[0].trim():(title||'').split(' ')[0]||''}</div>
   <div style="color:${_accent};font-size:${title&&title.length>8?'78':'94'}px;font-weight:900;line-height:1.05;text-shadow:0 2px 32px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:36px">${title&&title.includes('|')?title.split('|')[1].trim():(title||'').split(' ').slice(1).join(' ')||''}</div>
   <div style="width:56px;height:4px;background:${_accent};border-radius:2px;margin-bottom:36px"></div>
@@ -1033,27 +1033,27 @@ function buildCtaHtml(info){
 <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(80,80,80,.18) 0%,rgba(0,0,0,0) 70%)"></div>
 <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 80px;gap:0">
   <div style="text-align:center;margin-bottom:56px">
-    <div style="color:rgba(255,255,255,.45);font-size:22px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px">${info.brand||'SOUNDGLÜCK'}</div>
+    <div style="color:rgba(255,255,255,.45);font-size:33px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px">${info.brand||'SOUNDGLÜCK'}</div>
     <div style="color:${_accent};font-size:72px;font-weight:900;line-height:1.1;word-break:keep-all;letter-spacing:-.02em">${ctaTitle}</div>
-    <div style="color:rgba(255,255,255,.5);font-size:26px;font-weight:500;margin-top:16px">${info.sub||'공식대리점 정품 · 전국 무료배송 · 납품 견적 환영'}</div>
+    <div style="color:rgba(255,255,255,.5);font-size:39px;font-weight:500;margin-top:16px">${info.sub||'공식대리점 정품 · 전국 무료배송 · 납품 견적 환영'}</div>
   </div>
   <div style="background:#111;border:1px solid #2a2a2a;border-radius:20px;padding:44px 64px;width:100%;max-width:880px">
     <div style="display:flex;flex-direction:column;gap:0">
       <div style="display:flex;align-items:center;gap:24px;padding:20px 0;border-bottom:1px solid #1e1e1e">
-        <span style="color:${_accent};font-size:24px;min-width:32px">🌐</span>
-        <div><div style="color:#fff;font-size:26px;font-weight:700">사운드글룩 공식 쇼핑몰</div><div style="color:#666;font-size:22px;margin-top:4px">soundgluck.com</div></div>
+        <span style="color:${_accent};font-size:36px;min-width:32px">🌐</span>
+        <div><div style="color:#fff;font-size:39px;font-weight:700">사운드글룩 공식 쇼핑몰</div><div style="color:#666;font-size:33px;margin-top:4px">soundgluck.com</div></div>
       </div>
       <div style="display:flex;align-items:center;gap:24px;padding:20px 0;border-bottom:1px solid #1e1e1e">
-        <span style="color:${_accent};font-size:24px;min-width:32px">🛒</span>
-        <div><div style="color:#fff;font-size:26px;font-weight:700">네이버 스마트스토어</div><div style="color:#666;font-size:22px;margin-top:4px">smartstore.naver.com/soundgluck</div></div>
+        <span style="color:${_accent};font-size:36px;min-width:32px">🛒</span>
+        <div><div style="color:#fff;font-size:39px;font-weight:700">네이버 스마트스토어</div><div style="color:#666;font-size:33px;margin-top:4px">smartstore.naver.com/soundgluck</div></div>
       </div>
       <div style="display:flex;align-items:center;gap:24px;padding:20px 0;border-bottom:1px solid #1e1e1e">
-        <span style="color:${_accent};font-size:24px;min-width:32px">💬</span>
-        <div><div style="color:#fff;font-size:26px;font-weight:700">카카오톡 채널</div><div style="color:#666;font-size:22px;margin-top:4px">카카오톡에서 '사운드글룩' 검색</div></div>
+        <span style="color:${_accent};font-size:36px;min-width:32px">💬</span>
+        <div><div style="color:#fff;font-size:39px;font-weight:700">카카오톡 채널</div><div style="color:#666;font-size:33px;margin-top:4px">카카오톡에서 '사운드글룩' 검색</div></div>
       </div>
       <div style="display:flex;align-items:center;gap:24px;padding:20px 0">
-        <span style="color:${_accent};font-size:24px;min-width:32px">📞</span>
-        <div><div style="color:#fff;font-size:26px;font-weight:700">사운드글룩 고객센터</div><div style="color:#666;font-size:22px;margin-top:4px">010-8369-2104 <span style="font-size:18px">(09:00~20:00)</span></div></div>
+        <span style="color:${_accent};font-size:36px;min-width:32px">📞</span>
+        <div><div style="color:#fff;font-size:39px;font-weight:700">사운드글룩 고객센터</div><div style="color:#666;font-size:33px;margin-top:4px">010-8369-2104 <span style="font-size:27px">(09:00~20:00)</span></div></div>
       </div>
     </div>
   </div>
