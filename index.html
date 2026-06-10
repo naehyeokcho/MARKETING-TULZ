@@ -502,8 +502,6 @@ body {
     <button class="nav-tab active" onclick="goPage('blog',this)"><span class="nav-tab-icon">📝</span> 블로그</button>
     <button class="nav-tab" onclick="goPage('press',this)"><span class="nav-tab-icon">📰</span> 언론보도</button>
     <button class="nav-tab" onclick="goPage('sns',this)"><span class="nav-tab-icon">📱</span> SNS</button>
-    <button class="nav-tab" onclick="goPage('shorts',this)"><span class="nav-tab-icon">🎬</span> 유튜브 쇼츠</button>
-    <button class="nav-tab" onclick="goPage('youtube',this)"><span class="nav-tab-icon">🎥</span> 유튜브 영상</button>
     <button class="nav-tab" onclick="goPage('settings',this)"><span class="nav-tab-icon">⚙️</span> 설정</button>
   </div>
 </div>
@@ -747,11 +745,6 @@ body {
       </div>
     </div>
   </div>
-        <div style="font-size:12px;font-weight:700;color:var(--dark2)">컨셉 B — 사운드글룩 스타일</div>
-        <div style="font-size:10px;color:var(--gray);margin-top:2px">사진 배경 · 해시태그 배지 · @SOUNDGLÜCK</div>
-      </div>
-    </div>
-  </div>
 
 
 
@@ -825,139 +818,6 @@ body {
   </div>
 </div>
 
-<!-- ══ SHORTS ══ -->
-<div class="page" id="page-shorts">
-  <div class="page-header">
-    <div class="page-tag">Video Module 01</div>
-    <div class="page-title">🎬 유튜브 쇼츠 스크립트</div>
-    <div class="page-desc">60초 이내 · AI 아바타 나레이션용 · 훅→본론→CTA 타임라인</div>
-  </div>
-  <div class="form-card">
-    <div class="form-card-title">톤 선택</div>
-    <div class="tone-grid" id="shorts-tone">
-      <div class="tone-chip active" onclick="selTone('shorts',this,'믹스형')">⚡ 믹스형</div>
-      <div class="tone-chip" onclick="selTone('shorts',this,'전문가형')">🎯 전문가형</div>
-      <div class="tone-chip" onclick="selTone('shorts',this,'친근형')">😊 친근형</div>
-      <div class="tone-chip" onclick="selTone('shorts',this,'임팩트형')">🔥 임팩트형</div>
-      <div class="tone-chip" onclick="selTone('shorts',this,'유머러스형')">😂 유머러스형</div>
-    </div>
-  </div>
-  <div class="form-card">
-    <div class="form-card-title">브랜드 선택</div>
-    <div class="chip-grid" id="shorts-brand-chips">
-      <div class="chip" onclick="selChip('shorts-brand',this,'Kurzweil')">Kurzweil</div>
-      <div class="chip gold" onclick="selChip('shorts-brand',this,'Kurzweil 리퍼')">★ Kurzweil 리퍼</div>
-      <div class="chip" onclick="selChip('shorts-brand',this,'Samick')">Samick</div>
-      <div class="chip" onclick="selChip('shorts-brand',this,'Casio')">Casio</div>
-      <div class="chip" onclick="selChip('shorts-brand',this,'고퍼우드')">고퍼우드</div>
-      <div class="chip" onclick="selChip('shorts-brand',this,'NORD')">NORD</div>
-      <div class="chip" onclick="selChip('shorts-brand',this,'Yamaha')">Yamaha</div>
-      <div class="chip" onclick="selChip('shorts-brand',this,'__custom__')">+ 직접 입력</div>
-    </div>
-    <div class="custom-wrap" id="shorts-brand-cw"><input class="field-input" id="shorts-brand-ci" placeholder="브랜드명 입력..."></div>
-  </div>
-  <div class="form-card">
-    <div class="form-card-title">품목 선택</div>
-    <div class="chip-grid" id="shorts-item-chips">
-      <div class="chip" onclick="selChip('shorts-item',this,'전자피아노')">전자피아노</div>
-      <div class="chip" onclick="selChip('shorts-item',this,'신디사이저')">신디사이저</div>
-      <div class="chip" onclick="selChip('shorts-item',this,'전자드럼')">전자드럼</div>
-      <div class="chip" onclick="selChip('shorts-item',this,'헤드폰')">헤드폰</div>
-      <div class="chip" onclick="selChip('shorts-item',this,'기타')">기타</div>
-      <div class="chip" onclick="selChip('shorts-item',this,'__custom__')">+ 직접 입력</div>
-    </div>
-    <div class="custom-wrap" id="shorts-item-cw"><input class="field-input" id="shorts-item-ci" placeholder="품목명 입력..."></div>
-  </div>
-  <div class="form-card">
-    <div class="form-card-title">쇼츠 유형</div>
-    <div class="chip-grid" id="shorts-type-chips">
-      <div class="chip" onclick="selChip('shorts-type',this,'제품 소개')">제품 소개</div>
-      <div class="chip" onclick="selChip('shorts-type',this,'Top 3 추천')">Top 3 추천</div>
-      <div class="chip" onclick="selChip('shorts-type',this,'이런 사람 추천')">이런 사람 추천</div>
-      <div class="chip" onclick="selChip('shorts-type',this,'가성비 비교')">가성비 비교</div>
-      <div class="chip" onclick="selChip('shorts-type',this,'__custom__')">+ 직접 입력</div>
-    </div>
-    <div class="custom-wrap" id="shorts-type-cw"><input class="field-input" id="shorts-type-ci" placeholder="쇼츠 유형 입력..."></div>
-  </div>
-  <div class="form-card">
-    <div class="form-card-title">모델명 (선택사항)</div>
-    <input class="field-input" id="shorts-model" placeholder="예: SP7 Grand, Stage 3...">
-  </div>
-  <button class="gen-btn" onclick="gen('shorts')">쇼츠 스크립트 생성하기 →</button>
-  <div id="shorts-result" class="hidden">
-    <hr class="divider">
-    <div id="shorts-loading" class="loading-wrap hidden"><div class="loading-ring"></div><div class="loading-title">생성 중...</div><div class="loading-sub" id="shorts-ls">구성 기획 중</div></div>
-    <div id="shorts-rb" class="hidden"></div>
-    <div id="shorts-err" class="hidden"><div class="error-box" id="shorts-em"></div></div>
-  </div>
-</div>
-
-<!-- ══ YOUTUBE ══ -->
-<div class="page" id="page-youtube">
-  <div class="page-header">
-    <div class="page-tag">Video Module 02</div>
-    <div class="page-title">🎥 유튜브 영상 기획</div>
-    <div class="page-desc">풀 영상 스크립트 · 슬라이드 구성 · 사양 비교차트 · AI 아바타용</div>
-  </div>
-  <div class="form-card">
-    <div class="form-card-title">톤 선택</div>
-    <div class="tone-grid" id="youtube-tone">
-      <div class="tone-chip active" onclick="selTone('youtube',this,'믹스형')">⚡ 믹스형</div>
-      <div class="tone-chip" onclick="selTone('youtube',this,'전문가형')">🎯 전문가형</div>
-      <div class="tone-chip" onclick="selTone('youtube',this,'친근형')">😊 친근형</div>
-      <div class="tone-chip" onclick="selTone('youtube',this,'임팩트형')">🔥 임팩트형</div>
-      <div class="tone-chip" onclick="selTone('youtube',this,'유머러스형')">😂 유머러스형</div>
-    </div>
-  </div>
-  <div class="form-card">
-    <div class="form-card-title">브랜드 선택</div>
-    <div class="chip-grid" id="youtube-brand-chips">
-      <div class="chip" onclick="selChip('youtube-brand',this,'Kurzweil')">Kurzweil</div>
-      <div class="chip" onclick="selChip('youtube-brand',this,'Samick')">Samick</div>
-      <div class="chip" onclick="selChip('youtube-brand',this,'Casio')">Casio</div>
-      <div class="chip" onclick="selChip('youtube-brand',this,'고퍼우드')">고퍼우드</div>
-      <div class="chip" onclick="selChip('youtube-brand',this,'NORD')">NORD</div>
-      <div class="chip" onclick="selChip('youtube-brand',this,'Yamaha')">Yamaha</div>
-      <div class="chip" onclick="selChip('youtube-brand',this,'__custom__')">+ 직접 입력</div>
-    </div>
-    <div class="custom-wrap" id="youtube-brand-cw"><input class="field-input" id="youtube-brand-ci" placeholder="브랜드명 입력..."></div>
-  </div>
-  <div class="form-card">
-    <div class="form-card-title">품목 선택</div>
-    <div class="chip-grid" id="youtube-item-chips">
-      <div class="chip" onclick="selChip('youtube-item',this,'전자피아노')">전자피아노</div>
-      <div class="chip" onclick="selChip('youtube-item',this,'신디사이저')">신디사이저</div>
-      <div class="chip" onclick="selChip('youtube-item',this,'전자드럼')">전자드럼</div>
-      <div class="chip" onclick="selChip('youtube-item',this,'헤드폰')">헤드폰</div>
-      <div class="chip" onclick="selChip('youtube-item',this,'기타')">기타</div>
-      <div class="chip" onclick="selChip('youtube-item',this,'__custom__')">+ 직접 입력</div>
-    </div>
-    <div class="custom-wrap" id="youtube-item-cw"><input class="field-input" id="youtube-item-ci" placeholder="품목명 입력..."></div>
-  </div>
-  <div class="form-card">
-    <div class="form-card-title">영상 유형</div>
-    <div class="chip-grid" id="youtube-type-chips">
-      <div class="chip" onclick="selChip('youtube-type',this,'랭킹/추천')">랭킹/추천</div>
-      <div class="chip" onclick="selChip('youtube-type',this,'제품 리뷰')">제품 리뷰</div>
-      <div class="chip" onclick="selChip('youtube-type',this,'가격대별 비교')">가격대별 비교</div>
-      <div class="chip" onclick="selChip('youtube-type',this,'입문자 가이드')">입문자 가이드</div>
-      <div class="chip" onclick="selChip('youtube-type',this,'__custom__')">+ 직접 입력</div>
-    </div>
-    <div class="custom-wrap" id="youtube-type-cw"><input class="field-input" id="youtube-type-ci" placeholder="영상 유형 입력..."></div>
-  </div>
-  <div class="form-card">
-    <div class="form-card-title">모델명 / 가격대 (선택사항)</div>
-    <input class="field-input" id="youtube-model" placeholder="예: 100만원대 신디사이저, SP7 Grand vs Stage 3...">
-  </div>
-  <button class="gen-btn" onclick="gen('youtube')">영상 기획안 생성하기 →</button>
-  <div id="youtube-result" class="hidden">
-    <hr class="divider">
-    <div id="youtube-loading" class="loading-wrap hidden"><div class="loading-ring"></div><div class="loading-title">생성 중...</div><div class="loading-sub" id="youtube-ls">영상 구조 기획 중</div></div>
-    <div id="youtube-rb" class="hidden"></div>
-    <div id="youtube-err" class="hidden"><div class="error-box" id="youtube-em"></div></div>
-  </div>
-</div>
-
 <!-- ══ SETTINGS ══ -->
 <div class="page" id="page-settings">
   <div class="page-header">
@@ -1005,7 +865,7 @@ body {
 </main>
 
 <script>
-const CS={}, tone={blog:'믹스형',press:'전문가형',sns:'믹스형',shorts:'믹스형',youtube:'믹스형'};
+const CS={}, tone={blog:'믹스형',press:'전문가형',sns:'믹스형'};
 let apiKey=localStorage.getItem('sg_api')||'';
 let trends=JSON.parse(localStorage.getItem('sg_trends')||'{}');
 let st=JSON.parse(localStorage.getItem('sg_st')||'{}');
@@ -1104,6 +964,9 @@ function _buildSlideHtml_orig(tpl, img, texts, _accent, _logoBg, _logoTxt, _conc
 
   // ── 1번 슬라이드: "무대를 지배하라" 컨셉 ──
   if(slideIdx===0){
+    const tag1Html = [t1,t2,t3].filter(Boolean).map(t=>
+      `<span style="display:inline-block;border:1.5px solid ${_accent};color:${_accent};font-size:20px;font-weight:700;padding:7px 18px;border-radius:30px;white-space:nowrap">#${t}</span>`
+    ).join('');
     return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0;box-sizing:border-box}body{width:1080px;height:1080px;overflow:hidden;font-family:'Noto Sans KR',sans-serif;position:relative;background:#0a0a0a}</style></head><body>
 ${imgTag}
 ${overlay}
@@ -1112,16 +975,18 @@ ${overlay}
   <div style="color:#fff;font-size:${title&&title.length>8?'110':'130'}px;font-weight:900;line-height:1.0;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em;margin-bottom:12px">${(title||'').split(' ').slice(0,Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
   <div style="color:${_accent};font-size:${title&&title.length>8?'110':'130'}px;font-weight:900;line-height:1.0;text-shadow:0 4px 40px rgba(0,0,0,.8);word-break:keep-all;letter-spacing:-.03em">${(title||'').split(' ').slice(Math.ceil((title||'').split(' ').length/2)).join(' ')}</div>
   <div style="width:60px;height:4px;background:${_accent};border-radius:2px;margin-top:40px"></div>
-  <div style="color:rgba(255,255,255,.65);font-size:28px;font-weight:500;margin-top:24px;letter-spacing:.02em">${badge||''}</div>
+  ${badge?`<div style="color:rgba(255,255,255,.65);font-size:28px;font-weight:500;margin-top:24px;letter-spacing:.02em">${badge}</div>`:''}
+  ${tag1Html?`<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:32px">${tag1Html}</div>`:''}
 </div>
 </body></html>`;
   }
 
   // ── 2번, 3번 슬라이드: 특장점 컨셉 ──
   const numLabel = slideIdx===1?'01':'02';
-  const tagHtml = [t1,t2,t3].filter(Boolean).map(t=>
-    `<span style="display:inline-block;border:1.5px solid ${_accent};color:${_accent};font-size:20px;font-weight:700;padding:7px 18px;border-radius:30px;white-space:nowrap">#${t}</span>`
-  ).join('');
+  const tagHtml = [t1,t2,t3].filter(Boolean).map(t=>{
+    const tc=t.replace(/^#+/,'');
+    return `<span style="display:inline-block;border:1.5px solid ${_accent};color:${_accent};font-size:20px;font-weight:700;padding:7px 18px;border-radius:30px;white-space:nowrap">#${tc}</span>`;
+  }).join('');
 
   // sub를 " — " 기준으로 분리해서 불릿 포인트 생성
   const bulletItems = (body||'').split('|').filter(Boolean);
@@ -1164,7 +1029,7 @@ function buildCtaHtml(info){
 <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(80,80,80,.18) 0%,rgba(0,0,0,0) 70%)"></div>
 <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 80px;gap:0">
   <div style="text-align:center;margin-bottom:56px">
-    <div style="color:rgba(255,255,255,.45);font-size:22px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px">SOUNDGLÜCK × ${info.model||'SOUNDGLÜCK'}</div>
+    <div style="color:rgba(255,255,255,.45);font-size:22px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px">${info.brand?info.brand+' × SOUNDGLÜCK':'SOUNDGLÜCK'}</div>
     <div style="color:#fff;font-size:64px;font-weight:900;line-height:1.1;word-break:keep-all">지금 바로</div>
     <div style="color:${_accent};font-size:96px;font-weight:900;line-height:1.0;word-break:keep-all;letter-spacing:-.02em">${ctaTitle}</div>
     <div style="color:rgba(255,255,255,.5);font-size:26px;font-weight:500;margin-top:16px">공식 대리점 정품 · 전국 무료배송 · 전문가 상담</div>
@@ -1451,8 +1316,7 @@ JSON만 출력 (백틱/마크다운 절대 금지, body 필드 내 큰따옴표 
     const imgInfos = [0,1,2].map(i=>snsImages&&snsImages[i]?`${i+1}번: 이미지 있음`:`${i+1}번: 이미지 없음`);
     return base+`\n\n[제품정보] 브랜드:${brand} / 품목:${item}${model?' / 모델:'+model:''}\n\n[카드뉴스 4장 고정]\n공통 디자인: 다크 배경+사진 오버레이 / 포인트 색상 ${accentColor} / 태그는 #태그 형식으로 3개만\n이미지: ${imgInfos.join(' / ')}\n\n1장(메인훅): 제품을 대표하는 임팩트 있는 한 줄 타이틀. 태그 3개는 브랜드/모델/품목 관련.\n2장(특장점1): 핵심 기술/사운드 관련 특장점 태그 3개. 절대 VAST만 반복 금지.\n3장(특장점2): 2번과 완전히 다른 카테고리(조작/연결/편의) 특장점 태그 3개.\n4장(CTA): 사운드글룩 구매 유도 문구.\n\nJSON만 출력 (백틱/마크다운 절대 금지):\n{"caption_versions":[{"label":"전문가 톤","text":"캡션"},{"label":"친근한 톤","text":"캡션"},{"label":"짧고 임팩트","text":"캡션"}],"hashtags":["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","h14","h15","h16","h17","h18","h19","h20","h21","h22","h23","h24","h25","h26","h27","h28","h29","h30"],"slides":[{"slide":1,"title":"메인타이틀","sub":"${item}","t1":"태그1","t2":"태그2","t3":"태그3"},{"slide":2,"title":"특장점제목","sub":"핵심 기술","t1":"태그1","t2":"태그2","t3":"태그3"},{"slide":3,"title":"특장점제목","sub":"퍼포먼스","t1":"태그1","t2":"태그2","t3":"태그3"},{"slide":4,"title":"CTA문구","desc":""}],"posting_tips":["팁1","팁2","팁3"]}`;
   }
-  if(t==='shorts') return base+`\n60초이내 / AI아바타나레이션용 / 훅→본론→CTA\n\nJSON만 출력:\n{"title":"제목","hook":"첫3초훅","script":[{"time":"0~3초","text":"멘트","visual":"화면"},{"time":"3~15초","text":"멘트","visual":"화면"},{"time":"15~35초","text":"멘트","visual":"화면"},{"time":"35~50초","text":"멘트","visual":"화면"},{"time":"50~60초","text":"CTA","visual":"화면"}],"thumbnail_text":"썸네일문구","description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
-  if(t==='youtube') return base+`\n7~10분 / AI아바타+슬라이드 / EGLOO스타일 / CTA: ${s.url}\n\nJSON만 출력:\n{"title":"제목","thumbnail":{"main_text":"메인","sub_text":"서브"},"structure":[{"section":"인트로","duration":"0~30초","script":"스크립트","visual":"화면"},{"section":"본론1","duration":"30초~3분","script":"스크립트","visual":"화면"},{"section":"본론2","duration":"3~6분","script":"스크립트","visual":"화면"},{"section":"비교/추천","duration":"6~8분","script":"스크립트","visual":"화면"},{"section":"CTA","duration":"8~10분","script":"사운드글룩구매유도","visual":"화면"}],"comparison_chart":{"headers":["항목","제품A","제품B","제품C"],"rows":[["가격","","",""],["건반","","",""],["음색수","","",""],["특징","","",""],["추천대상","","",""]]},"description":"설명란","tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]}`;
+
 }
 
 function cp(text,btn){navigator.clipboard.writeText(text).then(()=>{const o=btn.textContent;btn.textContent='복사됨!';setTimeout(()=>btn.textContent=o,1500);});}
@@ -1612,7 +1476,7 @@ function renderSns(d,el){
     const s=slides[i]||{};
     let hCode;
     if(i===3){
-      const _ctaModel=getChip('sns-model')||getChip('model')||''; hCode=buildCtaHtml({title:s.title||'지금 바로 만나보세요',sub:s.desc||'',model:_ctaModel});
+      const _ctaBrand=getChip('sns-brand')||''; const _ctaModel=getChip('sns-model')||''; const _ctaLabel=_ctaModel?(_ctaBrand?_ctaBrand+' '+_ctaModel:_ctaModel):(_ctaBrand||''); hCode=buildCtaHtml({title:s.title||(_ctaModel?'지금 바로 '+_ctaModel+'을 만나보세요':'지금 바로 만나보세요'),sub:s.desc||'',brand:_ctaLabel});
     } else {
       const _item = i===0 ? (getChip('sns-item')||s.sub||s.subtitle||'') : (s.sub||s.subtitle||'');
       const texts = {title:s.title||'', sub:_item, badge:s.badge||'', t1:s.t1||'', t2:s.t2||'', t3:s.t3||''};
@@ -1653,6 +1517,7 @@ function renderSns(d,el){
   });
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🖼️ 카드뉴스 <span class="r-badge">4장</span></div><small style="font-size:11px;color:var(--gray)">새 탭 열기 → 스크린샷 → 인스타그램</small></div><div class="r-body">${sHtml}</div></div>`;
   h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">💡 포스팅 팁</div></div><div class="r-body">${(d.posting_tips||[]).map(t=>`<div class="check-item" onclick="this.classList.toggle('done')"><div class="check-box"></div><span>${t}</span></div>`).join('')}</div></div>`;
+  el.innerHTML=h;
   // iframe scale 적용
   setTimeout(()=>{
     document.querySelectorAll('.sns-slide-wrap').forEach(wrap=>{
@@ -1662,7 +1527,6 @@ function renderSns(d,el){
       if(fr) fr.style.transform='scale('+sc+')';
     });
   },200);
-  el.innerHTML=h;
 }
 
 function replaceSlideImg(input,idx){
@@ -1690,23 +1554,22 @@ function applySlideEdit(i){
   const g=(id)=>{const el=document.getElementById('se-'+i+'-'+id);return el?el.value.trim():'';};
   let newHtml;
   if(i===3){
-    newHtml=buildCtaHtml({title:g('title'),sub:''});
+    const _eb=getChip('sns-brand')||''; const _em=getChip('sns-model')||''; const _el=_em?(_eb?_eb+' '+_em:_em):(_eb||''); newHtml=buildCtaHtml({title:g('title')||(_em?'지금 바로 '+_em+'을 만나보세요':'지금 바로 만나보세요'),sub:'',brand:_el});
   } else {
     const texts={title:g('title'),sub:g('sub'),badge:g('badge'),t1:g('t1'),t2:g('t2'),t3:g('t3')};
     newHtml=buildSlideHtml('concept',snsImages[i]||null,texts,i);
   }
   window._snsSlides[i]={...s,html:newHtml};
-  setTimeout(()=>{
-    document.querySelectorAll('.sns-slide-wrap').forEach(wrap=>{
-      const w=wrap.offsetWidth;
-      const sc=w/1080;
-      const fr=wrap.querySelector('iframe');
-      if(fr) fr.style.transform='scale('+sc+')';
-    });
-  },200);
   const enc=newHtml.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
   const iframe=document.getElementById('sf-'+i);
-  if(iframe)iframe.setAttribute('srcdoc',enc);
+  if(iframe){
+    iframe.setAttribute('srcdoc',enc);
+    iframe.style.transform='';
+    setTimeout(()=>{
+      const wrap=iframe.closest('.sns-slide-wrap');
+      if(wrap){ const sc=wrap.offsetWidth/1080; iframe.style.transform='scale('+sc+')'; }
+    },150);
+  }
 }
 
 function openSlide(i){
@@ -1717,39 +1580,15 @@ function openSlide(i){
   window.open(u,'_blank');
 }
 
-function renderShorts(d,el){
-  let h='';
-  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🎬 제목 & 썸네일</div><button class="copy-btn" onclick="cp('${(d.title+'').replace(/'/g,"\\'")}',this)">복사</button></div><div class="r-body"><div style="font-size:20px;font-weight:700;color:var(--dark);margin-bottom:10px">${d.title}</div><div style="font-size:14px;color:var(--gray)">썸네일: <strong style="color:var(--teal-d)">${d.thumbnail_text}</strong></div></div></div>`;
-  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🎙️ 타임라인 스크립트</div><button class="copy-btn" onclick="cp(document.getElementById('sh-sc').textContent,this)">전체 복사</button></div><div class="r-body"><div id="sh-sc">${d.script.map((s,i)=>`<div class="prompt-item" style="margin-bottom:10px"><div class="prompt-label">${s.time}</div><div style="font-size:15px;color:var(--dark);margin-bottom:5px;line-height:1.6" id="sh-sc-${i}">${s.text}</div><div class="prompt-text">📽 ${s.visual}</div><div class="r-actions" style="margin-top:8px"><button class="btn-edit" onclick="makeEditable(document.getElementById('sh-sc-${i}'))">✏️ 직접 편집</button><button class="btn-ai-edit" onclick="toggleAiBox('sh-sc-aibox-${i}')">🤖 AI로 수정</button></div><div class="ai-edit-box" id="sh-sc-aibox-${i}"><input class="ai-edit-input" placeholder="예: 더 임팩트 있게, 자연스럽게, 구어체로..."><button class="btn-ai-run" onclick="runAiEdit('sh-sc-${i}','sh-sc-aibox-${i}','유튜브 쇼츠 나레이션 스크립트')">AI 수정하기</button><div class="edit-loading">🤖 수정 중...</div></div></div>`).join('')}</div></div></div>`;
-  const ts=d.tags.map(t=>'#'+t).join(' ');
-  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🏷️ 태그</div><button class="copy-btn" onclick="cp('${ts.replace(/'/g,"\\'")}',this)">전체 복사</button></div><div class="r-body"><div class="tag-wrap">${d.tags.map(t=>`<span class="tag">#${t}</span>`).join('')}</div></div></div>`;
-  el.innerHTML=h;
-}
-
-function renderYoutube(d,el){
-  let h='';
-  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🎥 제목 & 썸네일</div></div><div class="r-body"><div style="font-size:20px;font-weight:700;color:var(--dark);margin-bottom:10px">${d.title}</div><div style="font-size:14px;color:var(--gray)">썸네일: <strong style="color:var(--teal-d)">${d.thumbnail.main_text}</strong> / ${d.thumbnail.sub_text}</div></div></div>`;
-  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🎙️ 영상 구성 & 스크립트</div><button class="copy-btn" onclick="cp(document.getElementById('yt-sc').textContent,this)">전체 복사</button></div><div class="r-body"><div id="yt-sc">${d.structure.map(s=>`<div class="prompt-item"><div class="prompt-label">${s.section} · ${s.duration}</div><div style="font-size:14px;color:var(--dark);margin-bottom:5px;line-height:1.6">${s.script}</div><div class="prompt-text">📽 ${s.visual}</div></div>`).join('')}</div></div></div>`;
-  const ch=d.comparison_chart;
-  let tb=`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:14px">`;
-  tb+=`<tr>${ch.headers.map(hh=>`<th style="padding:12px 16px;border:1.5px solid var(--border);background:var(--teal-pale);color:var(--teal-d);text-align:left;font-weight:700">${hh}</th>`).join('')}</tr>`;
-  ch.rows.forEach(row=>{tb+=`<tr>${row.map(cell=>`<td style="padding:12px 16px;border:1.5px solid var(--border);color:var(--dark2)">${cell}</td>`).join('')}</tr>`;});
-  tb+='</table></div>';
-  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">📊 사양 비교 차트</div></div><div class="r-body">${tb}</div></div>`;
-  const ts=d.tags.map(t=>'#'+t).join(' ');
-  h+=`<div class="r-card"><div class="r-head"><div class="r-head-title">🏷️ 태그</div><button class="copy-btn" onclick="cp('${ts.replace(/'/g,"\\'")}',this)">전체 복사</button></div><div class="r-body"><div class="tag-wrap">${d.tags.map(t=>`<span class="tag">#${t}</span>`).join('')}</div></div></div>`;
-  el.innerHTML=h;
-}
-
-const lMs={blog:['공식 매뉴얼 확인 중','키워드 분석 중','제목 생성 중','본문 작성 중','스펙 비교표 생성 중'],press:['기사 구조 잡는 중','본문 작성 중','이미지 가이드 생성 중','마무리 중'],sns:['캡션 작성 중','해시태그 생성 중','카드뉴스 구성 중','편집 가이드 생성 중'],shorts:['구성 기획 중','스크립트 작성 중','타임라인 구성 중','마무리 중'],youtube:['영상 구조 기획 중','스크립트 작성 중','비교 차트 생성 중','마무리 중']};
+const lMs={blog:['공식 매뉴얼 확인 중','키워드 분석 중','제목 생성 중','본문 작성 중','스펙 비교표 생성 중'],press:['기사 구조 잡는 중','본문 작성 중','이미지 가이드 생성 중','마무리 중'],sns:['캡션 작성 중','해시태그 생성 중','카드뉴스 구성 중','편집 가이드 생성 중']};
 const lTs={};
 function startL(t){let i=0;lTs[t]=setInterval(()=>{i=(i+1)%lMs[t].length;const e=document.getElementById(t+'-ls');if(e)e.textContent=lMs[t][i];},1800);}
 function stopL(t){clearInterval(lTs[t]);}
 
-const btnTxt={blog:'블로그 콘텐츠 생성하기 →',press:'보도자료 생성하기 →',sns:'SNS 콘텐츠 생성하기 →',shorts:'쇼츠 스크립트 생성하기 →',youtube:'영상 기획안 생성하기 →'};
+const btnTxt={blog:'블로그 콘텐츠 생성하기 →',press:'보도자료 생성하기 →',sns:'SNS 콘텐츠 생성하기 →'};
 
 // ★ blog는 8000, 나머지는 6000
-const maxTokensMap={blog:8000,press:6000,sns:16000,shorts:4000,youtube:6000};
+const maxTokensMap={blog:8000,press:6000,sns:16000};
 
 async function gen(t){
   if(!apiKey){openApi();return;}
@@ -1793,7 +1632,7 @@ async function gen(t){
       throw new Error('JSON 파싱 오류: 다시 시도해주세요. ('+e1.message+')');
     }
     stopL(t);lDiv.classList.add('hidden');rbDiv.classList.remove('hidden');
-    ({blog:(d,el)=>renderBlog(d,el,cType),press:renderPress,sns:renderSns,shorts:renderShorts,youtube:renderYoutube})[t](d,rbDiv);
+    ({blog:(d,el)=>renderBlog(d,el,cType),press:renderPress,sns:renderSns})[t](d,rbDiv);
     rDiv.scrollIntoView({behavior:'smooth',block:'start'});
   }catch(e){
     stopL(t);lDiv.classList.add('hidden');eDiv.classList.remove('hidden');
