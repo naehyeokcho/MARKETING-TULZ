@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOUNDGLÜCK · A.I MARKETING TULZ v4.7</title>
+<title>SOUNDGLÜCK · A.I MARKETING TULZ v4.8</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -474,7 +474,7 @@ body {
   <div class="logo">
     <div>
       <span class="logo-name">SOUNDGLÜCK</span>
-      <span class="logo-ver">v4.7</span>
+      <span class="logo-ver">v4.8</span>
     </div>
   </div>
   <button class="api-btn" onclick="openApi()">
@@ -1308,8 +1308,21 @@ ${isCompare ? `## spec_table (스펙 비교표) 필수 포함
 
 길이: 3000~4000자 (절대 2500자 이하 금지) / 네이버SEO / 소제목(##) 구조 / 핵심키워드 3~5회 / 각 섹션 충분한 설명으로 체류시간 확보
 
-JSON만 출력 (백틱/마크다운 절대 금지, body 필드 내 큰따옴표 사용 금지 — 작은따옴표로 대체, 줄바꿈은 반드시 \\n으로):
-{"keywords":["k1","k2","k3","k4","k5"],"keyword_desc":"선택이유","titles":[{"title":"t1","reason":"r"},{"title":"t2","reason":"r"},{"title":"t3","reason":"r"}],"tags":["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10","t11","t12","t13","t14","t15","t16","t17","t18","t19","t20"],"body":"본문전체(줄바꿈은\\n으로)","spec_table":{"headers":["구분","음원용량","동시발음","건반","기타"],"rows":[["모델A","2GB","256음","해머88","특징"],["모델B","166MB","128음","해머88","특징"]]},"price_chart":{"items":[{"label":"모델명","new_price":1500000,"refurb_price":1200000},{"label":"경쟁모델","new_price":1300000,"refurb_price":null}]},"image_guide":[{"order":1,"label":"제품 메인 컷","source":"제조사 공식 이미지","desc":"정면 전체 컷 사용"},{"order":2,"label":"컨트롤러 섹션","source":"상세페이지","desc":"버튼/노브 클로즈업"},{"order":3,"label":"LCD/디스플레이","source":"상세페이지","desc":"화면 표시 클로즈업"},{"order":4,"label":"음색 카테고리","source":"상세페이지","desc":"음색 버튼 섹션"},{"order":5,"label":"실사용 환경","source":"직접 촬영 권장","desc":"교회 무대 or 스튜디오 설치 컷"},{"order":6,"label":"패키지/구성품","source":"실제 촬영","desc":"박스 오픈 or 구성품 전체"}],"spec_summary":{"sections":[{"category":"사운드 엔진","items":[{"name":"엔진명","value":"설명","what":"이게 뭔지","usage":"뭘 할 수 있는지"}]},{"category":"컨트롤러","items":[{"name":"컨트롤러명","value":"상세","what":"이게 뭔지","usage":"활용법"}]},{"category":"음원/메모리","items":[{"name":"항목명","value":"수치","what":"의미","usage":"실사용"}]},{"category":"연결/인터페이스","items":[{"name":"항목명","value":"스펙","what":"설명","usage":"활용"}]}]},"spec_comparison":[{"item":"항목","main":"메인모델값","competitors":[{"model":"경쟁모델명","value":"값","verdict":"유리/불리/동급"}]}],"youtube_queries":["q1","q2","q3"]}`;
+아래 XML 형식으로만 출력. 백틱/마크다운/추가 설명 절대 금지.
+
+<KEYWORDS>["k1","k2","k3","k4","k5"]</KEYWORDS>
+<KEYWORD_DESC>선택이유</KEYWORD_DESC>
+<TITLES>[{"title":"t1","reason":"r"},{"title":"t2","reason":"r"},{"title":"t3","reason":"r"}]</TITLES>
+<TAGS>["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10","t11","t12","t13","t14","t15","t16","t17","t18","t19","t20"]</TAGS>
+<BODY>
+본문 전체 (줄바꿈 자유롭게 사용. 마크다운 ## 소제목 사용 가능)
+</BODY>
+<SPEC_TABLE>{"headers":["구분","음원용량","동시발음","건반","기타"],"rows":[["모델A","2GB","256음","해머88","특징"],["모델B","166MB","128음","해머88","특징"]]}</SPEC_TABLE>
+<PRICE_CHART>{"items":[{"label":"모델명","new_price":1500000,"refurb_price":1200000},{"label":"경쟁모델","new_price":1300000,"refurb_price":null}]}</PRICE_CHART>
+<IMAGE_GUIDE>[{"order":1,"label":"제품 메인 컷","source":"제조사 공식 이미지","desc":"정면 전체 컷 사용"},{"order":2,"label":"컨트롤러 섹션","source":"상세페이지","desc":"버튼/노브 클로즈업"},{"order":3,"label":"LCD/디스플레이","source":"상세페이지","desc":"화면 표시 클로즈업"},{"order":4,"label":"음색 카테고리","source":"상세페이지","desc":"음색 버튼 섹션"},{"order":5,"label":"실사용 환경","source":"직접 촬영 권장","desc":"교회 무대 or 스튜디오 설치 컷"},{"order":6,"label":"패키지/구성품","source":"실제 촬영","desc":"박스 오픈 or 구성품 전체"}]</IMAGE_GUIDE>
+<SPEC_SUMMARY>{"sections":[{"category":"사운드 엔진","items":[{"name":"엔진명","value":"설명","what":"이게 뭔지","usage":"뭘 할 수 있는지"}]},{"category":"컨트롤러","items":[{"name":"컨트롤러명","value":"상세","what":"이게 뭔지","usage":"활용법"}]},{"category":"음원/메모리","items":[{"name":"항목명","value":"수치","what":"의미","usage":"실사용"}]},{"category":"연결/인터페이스","items":[{"name":"항목명","value":"스펙","what":"설명","usage":"활용"}]}]}</SPEC_SUMMARY>
+<SPEC_COMPARISON>[{"item":"항목","main":"메인모델값","competitors":[{"model":"경쟁모델명","value":"값","verdict":"유리/불리/동급"}]}]</SPEC_COMPARISON>
+<YOUTUBE_QUERIES>["q1","q2","q3"]</YOUTUBE_QUERIES>`;
   }
   if(t==='press') return base+`\n역피라미드기사형식 / 크몽대행사전달용 / CTA: 네이버에서 '사운드글룩' 검색 또는 ${s.url} / 문의: ${s.tel}\n\nJSON만 출력:\n{"headline":"h","sub_headline":"sh","lead":"리드2~3문장","body":"본문800~1000자","quote":{"text":"인용","speaker":"사운드글룩 관계자"},"boilerplate":"회사소개3~4문장","image_guides":[{"num":1,"label":"메인","desc":"설명"},{"num":2,"label":"제품상세","desc":"설명"},{"num":3,"label":"브랜드로고","desc":"설명"},{"num":4,"label":"사용환경","desc":"설명"}],"contact":"문의정보"}`;
   if(t==='sns'){
@@ -1655,12 +1668,33 @@ async function gen(t){
     });
     if(!res.ok){const err=await res.json();throw new Error(err.error?.message||`API 오류 (${res.status})`);}
     const data=await res.json();
-    const rawText=data.content.map(i=>i.text||'').join('').replace(/```json|```/g,'').trim();
+    const rawText=data.content.map(i=>i.text||'').join('').trim();
     let d;
-    try{
-      d=JSON.parse(rawText);
-    }catch(e1){
-      throw new Error('JSON 파싱 오류: 다시 시도해주세요. ('+e1.message+')');
+    if(t==='blog'){
+      // XML 태그 방식 파싱
+      const getTag=(tag)=>{const m=rawText.match(new RegExp('<'+tag+'>[\\s\\S]*?<\\/'+tag+'>','i'));return m?m[0].replace(new RegExp('<\\/?'+tag+'>','gi'),'').trim():'';};
+      const getJson=(tag)=>{try{return JSON.parse(getTag(tag));}catch(e){return null;}};
+      d={
+        keywords: getJson('KEYWORDS')||[],
+        keyword_desc: getTag('KEYWORD_DESC'),
+        titles: getJson('TITLES')||[],
+        tags: getJson('TAGS')||[],
+        body: getTag('BODY'),
+        spec_table: getJson('SPEC_TABLE'),
+        price_chart: getJson('PRICE_CHART'),
+        image_guide: getJson('IMAGE_GUIDE')||[],
+        spec_summary: getJson('SPEC_SUMMARY'),
+        spec_comparison: getJson('SPEC_COMPARISON'),
+        youtube_queries: getJson('YOUTUBE_QUERIES')||[]
+      };
+      if(!d.body) throw new Error('블로그 본문 생성 실패. 다시 시도해주세요.');
+    } else {
+      const cleanText=rawText.replace(/```json|```/g,'').trim();
+      try{
+        d=JSON.parse(cleanText);
+      }catch(e1){
+        throw new Error('JSON 파싱 오류: 다시 시도해주세요. ('+e1.message+')');
+      }
     }
     stopL(t);lDiv.classList.add('hidden');rbDiv.classList.remove('hidden');
     ({blog:(d,el)=>renderBlog(d,el,cType),press:renderPress,sns:renderSns})[t](d,rbDiv);
