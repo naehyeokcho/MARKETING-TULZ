@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOUNDGLÜCK · A.I MARKETING TULZ v4.8</title>
+<title>SOUNDGLÜCK · A.I MARKETING TULZ v4.9</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -474,7 +474,7 @@ body {
   <div class="logo">
     <div>
       <span class="logo-name">SOUNDGLÜCK</span>
-      <span class="logo-ver">v4.8</span>
+      <span class="logo-ver">v4.9</span>
     </div>
   </div>
   <button class="api-btn" onclick="openApi()">
@@ -1661,7 +1661,7 @@ async function gen(t){
       method:'POST',
       headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
       // ★ 모듈별 max_tokens 분기
-      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:maxTokensMap[t]||6000,messages:[{role:'user',content: (t==='sns' && snsImages && snsImages.some(x=>x)) ? [
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:maxTokensMap[t]||6000,...(t==='blog'?{tools:[{type:'web_search_20250305',name:'web_search'}]}:{}),messages:[{role:'user',content: (t==='sns' && snsImages && snsImages.some(x=>x)) ? [
         ...snsImages.filter(x=>x).map(img=>({type:'image',source:{type:'base64',media_type:img.split(';')[0].split(':')[1],data:img.split(',')[1]}})),
         {type:'text',text:buildPrompt(t,brand,item,cType,tn,model,compare,specInput,[],typeof snsConceptNum!=='undefined'?snsConceptNum:'A',snsSlideCnt)}
       ] : buildPrompt(t,brand,item,cType,tn,model,compare,specInput,[],typeof snsConceptNum!=='undefined'?snsConceptNum:'A',snsSlideCnt)}]})
